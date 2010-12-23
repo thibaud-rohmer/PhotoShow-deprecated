@@ -1,3 +1,10 @@
+<div id="close" class="menubar_button"><a href="#">x</a></div>
+<script>
+$("#close a").click(function(){
+	$("#help").fadeOut("slow");
+});
+</script>
+
 <br /><strong>Fleches :</strong> se deplacer
 <br /><strong>Entree :</strong> Afficher l'image
 <br /><strong>a/ctrl  + clic :</strong> Ajouter/retirer element

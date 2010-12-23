@@ -1,4 +1,4 @@
-<div id="close_exif" class="menubar_button"><a href="#">x</a></div>
+<div id="close" class="menubar_button"><a href="#">x</a></div>
 <?php
 $exifDat=@exif_read_data($_GET['img']);
 
@@ -28,7 +28,7 @@ $exifDat=@exif_read_data($_GET['img']);
 
 ?>
 <script>
-$("#close_exif a").click(function(){
+$("#close a").click(function(){
 	$("#exif").toggle("slow");
 });
 </script>
