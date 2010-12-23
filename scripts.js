@@ -216,7 +216,11 @@ $(document).ready(function() {
 	
 	$("#wtf a").click(function(){
 		$('#help .content').load('help.txt');
-		$("#help").toggle("slow");
+		if($("#help").is(":visible")){
+			$("#help").fadeOut("slow");
+		}else{
+			$("#help").fadeIn("slow");
+		}
 	});
 	
 	$( "#exif" ).draggable();
@@ -277,7 +281,11 @@ $(document).ready(function() {
 	   	}
 	  	if (event.keyCode == '72') { // h
 			$('#help .content').load('help.txt');
-			$("#help").toggle("slow");
+			if($("#help").is(":visible")){
+				$("#help").fadeOut("slow");
+			}else{
+				$("#help").fadeIn("slow");
+			}
 	   	}
 	  	if (event.keyCode == '13') { // enter
 			change_display();
