@@ -21,7 +21,6 @@ if ($page < 1) echo ("<div id='null'></div><ul id='album_contents'>");
 if($action=="album"){
 	$images=array();
 	$dir = scandir(urldecode($album)); 
-	$size_dir=sizeof($dir);
 	for($i=0;$i<sizeof($dir);$i++) 
 	{
 		$images[]=$album.$dir[$i];
@@ -29,19 +28,18 @@ if($action=="album"){
 
 }elseif($action=="age"){
 	$images=sort_by_date();
-	$size_dir=sizeof($images);
 
 }elseif($action=="virtual"){
 	$images=array();
 	$lines=file(stripslashes(urldecode($album)));
 	foreach($lines as $line_num => $line)
 		$images[]=$line;
-	$size_dir=sizeof($images);
 
 }elseif($action=="go_on"){
-	$size_dir=sizeof($images);
+// Do nothing
 }
 
+	$size_dir=sizeof($images);
 
 $_SESSION['images']=$images;
 display_thumbnails($images,$page*$limit,$limit);	
