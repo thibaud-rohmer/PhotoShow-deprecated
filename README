@@ -5,7 +5,7 @@ So, you want a fully-configured website to display your wonderful photo albums ?
 - Take PhotoShow and put it on your server (the archive)
 - Uncompress the archive
 - Rename the folder you got to whatever you want.
-- Inside that folder, create a "photos" folder. This is where your pictures are gonna go.
+- Inside that folder, you'll see a "photos" folder. This is where your pictures are gonna go.
 
 PhotoShow works with a "Projecs/Albums/photos" structure. This means that inside that "photos" folder, the Projects folders are stored. Then, in each Project folder, Albums folders are stored. And then, in each Album folder, you put the photos.
 
