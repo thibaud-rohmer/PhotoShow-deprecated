@@ -1,10 +1,7 @@
 <?php
 session_start();
-// A ranger dans les options...
-$dirname = "./photos/";
-$thumbdir= "./thumb/";
-$limit=25;
 
+include "settings.php";
 
 include "functions.php";
 

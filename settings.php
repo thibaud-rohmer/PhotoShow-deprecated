@@ -8,5 +8,6 @@ $virtual="./virtual/";
 
 $thumbdir= "./thumb/";
 
+$limit=25;
 
 ?>
