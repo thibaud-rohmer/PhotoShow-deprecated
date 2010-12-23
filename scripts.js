@@ -1,3 +1,6 @@
+/*
+*  Created by Thibaud Rohmer on 2010-12-23.
+*/
 
 /* 	refresh_img
 *	loads given image url in the fullscreen (fs) and display (display_img) divs 

@@ -1,4 +1,8 @@
 <?php
+/*
+*  Created by Thibaud Rohmer on 2010-12-23.
+*/
+
 session_start();
 
 include "settings.php";

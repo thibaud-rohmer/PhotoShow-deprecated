@@ -1,5 +1,9 @@
 <div id="close" class="menubar_button"><a href="#">x</a></div>
 <?php
+/*
+*  Created by Thibaud Rohmer on 2010-12-23.
+*/
+
 $exifDat=@exif_read_data($_GET['img']);
 
    if($exifDat)

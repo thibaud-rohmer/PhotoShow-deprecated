@@ -1,4 +1,10 @@
-<?php include "settings.php"; ?>
+<?php 
+/*
+*  Created by Thibaud Rohmer on 2010-12-23.
+*/
+
+include "settings.php"; 
+?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
 	"http://www.w3.org/TR/html4/strict.dtd">

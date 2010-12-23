@@ -1,4 +1,7 @@
 <?php 
+/*
+*  Created by Thibaud Rohmer on 2010-12-23.
+*/
 
 include "settings.php";
 
