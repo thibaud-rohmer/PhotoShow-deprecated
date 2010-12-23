@@ -36,6 +36,7 @@ if($action=="album"){
 	$lines=file(stripslashes(urldecode($album)));
 	foreach($lines as $line_num => $line)
 		$images[]=$line;
+	$size_dir=sizeof($images);
 
 }elseif($action=="go_on"){
 	$size_dir=sizeof($images);
