@@ -7,8 +7,6 @@ $("#close a").click(function(){
 
 <br /><strong>Fleches :</strong> se deplacer
 <br /><strong>Entree :</strong> Afficher l'image
-<br /><strong>a/ctrl  + clic :</strong> Ajouter/retirer element
-<br /><strong>maj + clic :</strong> Selection multiple
 <br /><strong>d :</strong> Diaporama 
 <br /><strong>espace :</strong> Pause/Play
 <br /><strong>f :</strong> full-screen 
