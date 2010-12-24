@@ -30,23 +30,17 @@ function display_thumbnails($images,$first,$num){
 	{	
 		$images[$i] = str_replace("./","",$images[$i]);
 				
-		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]))
+		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]))
 		{
+
 			if(!is_file($thumbdir.$images[$i]))
 			{
-				if(is_file($images[$i])){
-					
-
-					
 					$x=100;
 					$y=100;
 					$src=$images[$i];
 					$dest=$thumbdir.$images[$i];
-					
-					
 					system("umask u=rwx,go=rx; mkdir -p ".$thumbdir.addslashes(substr($images[$i],0,strrpos($images[$i],"/"))));
 					include "thumb.php";
-				}
 			}
 
 			echo ('
