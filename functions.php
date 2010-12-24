@@ -35,6 +35,7 @@ function display_thumbnails($images,$first,$num){
 
 			if(!is_file($thumbdir.$images[$i]))
 			{
+					define("IS_IN_MY_APP", "TRUE");
 					$x=100;
 					$y=100;
 					$src=$images[$i];

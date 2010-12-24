@@ -1,6 +1,5 @@
 <?php
-
-
+if(!defined("IS_IN_MY_APP")) die("This shouldn't be called like this.");
 
 system("convert $src -thumbnail ".$x."x$y $dest",$plip);
 if($plip) {
