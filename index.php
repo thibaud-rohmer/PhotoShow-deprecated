@@ -17,7 +17,6 @@ include "settings.php";
 		<title><?php echo $title ?></title>
 		
 	<link href="stylesheet.css" rel="stylesheet" media="screen" type="text/css" >
-	<link rel="stylesheet" href="jquery.jscrollpane.css" type="text/css" media="screen" title="no title" charset="utf-8">
 	
 	<script src='jQuery/jquery.min.js' type="text/javascript" charset="utf-8"></script>
 	<script src='jQuery/jquery-ui.min.js' type="text/javascript" charset="utf-8"></script>
