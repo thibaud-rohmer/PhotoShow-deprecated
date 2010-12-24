@@ -1,4 +1,5 @@
 <?php 
+session_start();
 /*
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
@@ -33,9 +34,20 @@ function display_thumbnails($images,$first,$num){
 		{
 			if(!is_file($thumbdir.$images[$i]))
 			{
-				system("umask u=rwx,go=rx; mkdir -p ".$thumbdir.addslashes(substr($images[$i],0,strrpos($images[$i],"/"))));
-				$mypage='thumb.php?src='.urlencode($images[$i]).'&dest='.urlencode($thumbdir.$images[$i]).'&x=100&y=100';
-				echo('<script>$.get("'.$mypage.'");</script>');
+				if(is_file($images[$i])){
+					
+
+					
+					$x=100;
+					$y=100;
+					$src=$images[$i];
+					$dest=$thumbdir.$images[$i];
+					
+					
+					system("umask u=rwx,go=rx; mkdir -p ".$thumbdir.addslashes(substr($images[$i],0,strrpos($images[$i],"/"))));
+					//echo('<script>$.get("thumb.php");</script>');
+					include "thumb.php";
+				}
 			}
 
 			echo ('

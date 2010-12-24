@@ -1,23 +1,26 @@
 <?php
-
-if (isset($_REQUEST['src'])) {
-  $src = urldecode($_REQUEST['src']);
+/*
+session_start();
+if (isset($_SESSION['src'])) {
+  $src = urldecode($_SESSION['src']);
 }
 
-if (isset($_REQUEST['dest'])) {
-  $dest = urldecode($_REQUEST['dest']);
+if (isset($_SESSION['dest'])) {
+  $dest = urldecode($_SESSION['dest']);
 }
 
-if (isset($_REQUEST['x'])) {
-  $x = intval($_REQUEST['x']);
+if (isset($_SESSION['x'])) {
+  $x = intval($_SESSION['x']);
 }
 
-if (isset($_REQUEST['y'])) {
-  $y = intval($_REQUEST['y']);
+if (isset($_SESSION['y'])) {
+  $y = intval($_SESSION['y']);
 }
-
+*/
 system("convert $src -thumbnail ".$x."x$y $dest",$plip);
-if(!$plip) die();
+if($plip) {
+	
+
 
 ###############################################################
 # Thumbnail Image Generator 1.3
@@ -85,41 +88,46 @@ $thumbs_folder = './';
 ///////////////////////////////////////////////////
 
 $to_name = '';
-
-if (isset($_REQUEST['f'])) {
-  $save_to_file = intval($_REQUEST['f']) == 1;
+/*
+if (isset($_SESSION['f'])) {
+  $save_to_file = intval($_SESSION['f']) == 1;
 }
 
-if (isset($_REQUEST['src'])) {
-  $from_name = urldecode($_REQUEST['src']);
+if (isset($_SESSION['src'])) {
+  $from_name = urldecode($_SESSION['src']);
 }
 else {
   die("Source file name must be specified.");
 }
 
-if (isset($_REQUEST['dest'])) {
-  $to_name = urldecode($_REQUEST['dest']);
+if (isset($_SESSION['dest'])) {
+  $to_name = urldecode($_SESSION['dest']);
 }
 else if ($save_to_file) {
   die("Thumbnail file name must be specified.");
 }
 
-if (isset($_REQUEST['q'])) {
-  $image_quality = intval($_REQUEST['q']);
+if (isset($_SESSION['q'])) {
+  $image_quality = intval($_SESSION['q']);
 }
 
-if (isset($_REQUEST['t'])) {
-  $image_type = intval($_REQUEST['t']);
+if (isset($_SESSION['t'])) {
+  $image_type = intval($_SESSION['t']);
 }
 
-if (isset($_REQUEST['x'])) {
-  $max_x = intval($_REQUEST['x']);
+if (isset($_SESSION['x'])) {
+  $max_x = intval($_SESSION['x']);
 }
 
-if (isset($_REQUEST['y'])) {
-  $max_y = intval($_REQUEST['y']);
+if (isset($_SESSION['y'])) {
+  $max_y = intval($_SESSION['y']);
 }
+*/
 
+$from_name=$src;
+$to_name=$dest;
+$max_x=$x;
+$max_y=$y;
 if (!file_exists($images_folder)) die('Images folder does not exist (update $images_folder in the script)');
 if ($save_to_file && !file_exists($thumbs_folder)) die('Thumbnails folder does not exist (update $thumbs_folder in the script)');
 
@@ -128,8 +136,10 @@ if ($save_to_file && !file_exists($thumbs_folder)) die('Thumbnails folder does n
 ini_set('memory_limit', '-1');
 
 // include image processing code
-include('image.class.php');
-
+if(!$isdef){
+	include('image.class.php');
+	$isdef=1;
+}
 $img = new Zubrag_image;
 
 // initialize
@@ -143,5 +153,5 @@ $img->image_type   = $image_type;
 
 // generate thumbnail
 $img->GenerateThumbFile($images_folder . $from_name, $thumbs_folder . $to_name);
-
+}
 ?>

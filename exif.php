@@ -33,6 +33,6 @@ $exifDat=@exif_read_data($_GET['img']);
 ?>
 <script>
 $("#close a").click(function(){
-	$("#exif").toggle("slow");
+	$("#exif").fadeOut("slow");
 });
 </script>

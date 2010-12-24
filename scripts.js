@@ -199,7 +199,7 @@ $(document).ready(function() {
 	$("#leftcolumn li").click(function() {
 		$("#projcontent").load("./files.php?action="+$(this).attr("class")+"&album="+$(this).attr("title"));
 		$('#ex').hide();
-		$('#exif').hide();	
+		$('#exif').fadeOut("slow");	
 		location.hash="action="+$(this).attr("class")+"&album="+$(this).attr("title");
 	});
 	
@@ -214,7 +214,11 @@ $(document).ready(function() {
 	});
 	
 	$("#ex a").click(function(){
-		$("#exif").toggle("slow");
+		if($("#exif").is(":visible")){
+			$("#exif").fadeOut("slow");
+		}else{
+			$("#exif").fadeIn("slow");
+		}
 	});
 	
 	$("#wtf a").click(function(){
@@ -288,6 +292,13 @@ $(document).ready(function() {
 				$("#help").fadeOut("slow");
 			}else{
 				$("#help").fadeIn("slow");
+			}
+	   	}
+	  	if (event.keyCode == '69') { // e
+			if($("#exif").is(":visible")){
+				$("#exif").fadeOut("slow");
+			}else{
+				$("#exif").fadeIn("slow");
 			}
 	   	}
 	  	if (event.keyCode == '13') { // enter
