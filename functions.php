@@ -45,7 +45,6 @@ function display_thumbnails($images,$first,$num){
 					
 					
 					system("umask u=rwx,go=rx; mkdir -p ".$thumbdir.addslashes(substr($images[$i],0,strrpos($images[$i],"/"))));
-					//echo('<script>$.get("thumb.php");</script>');
 					include "thumb.php";
 				}
 			}

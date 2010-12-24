@@ -1,22 +1,7 @@
 <?php
-/*
-session_start();
-if (isset($_SESSION['src'])) {
-  $src = urldecode($_SESSION['src']);
-}
 
-if (isset($_SESSION['dest'])) {
-  $dest = urldecode($_SESSION['dest']);
-}
 
-if (isset($_SESSION['x'])) {
-  $x = intval($_SESSION['x']);
-}
 
-if (isset($_SESSION['y'])) {
-  $y = intval($_SESSION['y']);
-}
-*/
 system("convert $src -thumbnail ".$x."x$y $dest",$plip);
 if($plip) {
 	
@@ -88,41 +73,7 @@ $thumbs_folder = './';
 ///////////////////////////////////////////////////
 
 $to_name = '';
-/*
-if (isset($_SESSION['f'])) {
-  $save_to_file = intval($_SESSION['f']) == 1;
-}
 
-if (isset($_SESSION['src'])) {
-  $from_name = urldecode($_SESSION['src']);
-}
-else {
-  die("Source file name must be specified.");
-}
-
-if (isset($_SESSION['dest'])) {
-  $to_name = urldecode($_SESSION['dest']);
-}
-else if ($save_to_file) {
-  die("Thumbnail file name must be specified.");
-}
-
-if (isset($_SESSION['q'])) {
-  $image_quality = intval($_SESSION['q']);
-}
-
-if (isset($_SESSION['t'])) {
-  $image_type = intval($_SESSION['t']);
-}
-
-if (isset($_SESSION['x'])) {
-  $max_x = intval($_SESSION['x']);
-}
-
-if (isset($_SESSION['y'])) {
-  $max_y = intval($_SESSION['y']);
-}
-*/
 
 $from_name=$src;
 $to_name=$dest;
