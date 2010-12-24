@@ -1,5 +1,24 @@
 <?php
 
+if (isset($_REQUEST['src'])) {
+  $src = urldecode($_REQUEST['src']);
+}
+
+if (isset($_REQUEST['dest'])) {
+  $dest = urldecode($_REQUEST['dest']);
+}
+
+if (isset($_REQUEST['x'])) {
+  $x = intval($_REQUEST['x']);
+}
+
+if (isset($_REQUEST['y'])) {
+  $y = intval($_REQUEST['y']);
+}
+
+system("convert $src -thumbnail ".$x."x$y $dest",$plip);
+if(!$plip) die();
+
 ###############################################################
 # Thumbnail Image Generator 1.3
 ###############################################################
