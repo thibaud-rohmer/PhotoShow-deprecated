@@ -2,7 +2,7 @@
 $name=$_POST['name'];
 $pass=sha1($_POST['pass']);
 if(isset($name)){
-	echo("Please add this line to the 'pass.php' file : </p><p>$name:$pass</p>");
+	echo("Please add this line to the 'pass.php' file : </p><p>\$groups[]='$name:$pass';</p>");
 	die();
 }
 
