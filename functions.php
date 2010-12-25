@@ -4,7 +4,38 @@ session_start();
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
-include "settings.php";
+/* generate_settings
+* generates the settings.php file if it isnt there
+*/
+function generate_settings(){
+	$tit='<?php $title="PhotoShow"; ?>';
+	$dir='<?php $dirname="./photos/"; ?>';
+	$vir='<?php $virtual="./virtual/"; ?>';
+	$thu='<?php $thumbdir= "./thumb/"; ?>';
+	$lim='<?php $limit=25; ?>';
+
+	@include "./settings.php";
+	$settings = "./settings.php";
+	$file = fopen($settings, 'a');
+	
+	if(!isset($title)){
+		fwrite($file,$tit);
+	}
+	if(!isset($dirname)){
+		fwrite($file,$dir);
+	}
+	if(!isset($virtual)){
+		fwrite($file,$virt);
+	}
+	if(!isset($thumbdir)){
+		fwrite($file,$thu);
+	}
+	if(!isset($limit)){
+		fwrite($file,$lim);
+	}
+	
+	if(!is_file())
+}
 
 /* sort_by_date
 * sorts all of the pictures by date added on the server and returns an array

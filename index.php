@@ -3,6 +3,8 @@
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
+include "functions.php";
+generate_settings();
 include "settings.php"; 
 
 ?>

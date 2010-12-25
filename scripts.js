@@ -93,6 +93,124 @@ function select_prev() {
 	preload_prev();
 }
 
+
+/* Diaporama */
+
+var diapo=0;
+var diapoId=0;
+	
+function diaporama(){
+	if(diapo==1){
+		$("#fs").show();
+		diapoId = setInterval(select_next,3000);
+	}else{
+		$("#fs").hide();
+		clearInterval(diapoId);
+		diapoId=0;
+	}
+}	
+
+function pause_diaporama(){
+	if(diapo==1){
+		if (diapoId==0){
+			diapoId = setInterval(select_next,3000);
+		}else{
+			clearInterval(diapoId);
+			diapoId=0;
+		}
+	}
+}
+
+/* remove_keyboard
+* removes keyboard shortcuts
+*/
+function remove_keyboard(){	
+	$('body').unbind("keydown");
+}
+
+/* setup_keyboard
+* setups keyboard shortcuts
+*/
+function setup_keyboard(){	
+	remove_keyboard();
+	
+	$('body').keydown(function(event) {
+
+		if (event.keyCode == '39') { // arrow right
+			select_next();
+	   	}
+		if (event.keyCode == '37') { // arrow left
+				select_prev();
+		}
+		if (event.keyCode == '40') { //arrow down
+			var number=($(window).width()-360)/170;
+			for(i=0;i<number;i++){
+				select_next();
+			}
+	   	}
+		if (event.keyCode == '38') { //arrow up
+			var number=($(window).width()-360)/170;
+			for(i=0;i<number;i++){
+				select_prev();
+			}
+	   	}
+	  	if (event.keyCode == '70') { // f
+			if(diapo!=1){
+				$("#fs").toggle();
+			}
+	   	}
+	  	if (event.keyCode == '72') { // h
+			$('#help .content').load('help.txt');
+			if($("#help").is(":visible")){
+				$("#help").fadeOut("slow");
+			}else{
+				$("#help").fadeIn("slow");
+			}
+	   	}
+	  	if (event.keyCode == '69') { // e
+			if($("#exif").is(":visible")){
+				$("#exif").fadeOut("slow");
+			}else{
+				$("#exif").fadeIn("slow");
+			}
+	   	}
+	  	if (event.keyCode == '13') { // enter
+			change_display();
+	   	}
+
+	  	if (event.keyCode == '27') { // escape
+			if($("#fs").is(":visible")) {
+				$("#fs").hide();
+				if(diapo==1){
+					diapo=0;
+					diaporama();
+				}
+			}else{
+				if($("#projcontent").hasClass("inline")) {
+					change_display();
+				}else{
+					$(".select").removeClass("select");
+   				}
+			}
+		}
+
+	  	if (event.keyCode == '68') { // d
+			diapo=1-diapo;
+			diaporama();
+		}
+		
+		if (event.keyCode == '32') { // space
+			pause_diaporama();
+		}
+
+		if (event.keyCode == '79') { // o
+
+		}
+		
+	});
+}
+
+
 /* 	change_display
 *	toggles display_div visibility along with many other things...
 *	
@@ -234,110 +352,10 @@ $(document).ready(function() {
 	
 	$( "#exif" ).draggable();
 		
-/* Diaporama */
 
-	var diapo=0;
-	var diapoId=0;
-	
-	function diaporama(){
-		if(diapo==1){
-			$("#fs").show();
-			diapoId = setInterval(select_next,3000);
-		}else{
-			$("#fs").hide();
-			clearInterval(diapoId);
-			diapoId=0;
-		}
-	}	
-
-	function pause_diaporama(){
-		if(diapo==1){
-			if (diapoId==0){
-				diapoId = setInterval(select_next,3000);
-			}else{
-				clearInterval(diapoId);
-				diapoId=0;
-			}
-		}
-	}
 
 /* Keyboard events */
-	
-	$('body').keydown(function(event) {
-
-		if (event.keyCode == '39') { // arrow right
-			select_next();
-	   	}
-		if (event.keyCode == '37') { // arrow left
-				select_prev();
-		}
-		if (event.keyCode == '40') { //arrow down
-			var number=($(window).width()-360)/170;
-			for(i=0;i<number;i++){
-				select_next();
-			}
-	   	}
-		if (event.keyCode == '38') { //arrow up
-			var number=($(window).width()-360)/170;
-			for(i=0;i<number;i++){
-				select_prev();
-			}
-	   	}
-	  	if (event.keyCode == '70') { // f
-			if(diapo!=1){
-				$("#fs").toggle();
-			}
-	   	}
-	  	if (event.keyCode == '72') { // h
-			$('#help .content').load('help.txt');
-			if($("#help").is(":visible")){
-				$("#help").fadeOut("slow");
-			}else{
-				$("#help").fadeIn("slow");
-			}
-	   	}
-	  	if (event.keyCode == '69') { // e
-			if($("#exif").is(":visible")){
-				$("#exif").fadeOut("slow");
-			}else{
-				$("#exif").fadeIn("slow");
-			}
-	   	}
-	  	if (event.keyCode == '13') { // enter
-			change_display();
-	   	}
-
-	  	if (event.keyCode == '27') { // escape
-			if($("#fs").is(":visible")) {
-				$("#fs").hide();
-				if(diapo==1){
-					diapo=0;
-					diaporama();
-				}
-			}else{
-				if($("#projcontent").hasClass("inline")) {
-					change_display();
-				}else{
-					$(".select").removeClass("select");
-   				}
-			}
-		}
-
-	  	if (event.keyCode == '68') { // d
-			diapo=1-diapo;
-			diaporama();
-		}
-		
-		if (event.keyCode == '32') { // space
-			pause_diaporama();
-		}
-
-		if (event.keyCode == '79') { // o
-
-		}
-		
-	});
-
+	setup_keyboard();
 	
 // Anchor
 

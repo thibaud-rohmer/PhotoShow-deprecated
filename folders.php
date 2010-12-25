@@ -25,7 +25,7 @@ if(is_dir($virtual)){
 		$file=$virtual_dir[$j];
 		if(substr($file,strrpos($file,"/")+1,1) != '.' && !is_dir($file))
 		{
-			echo("	<li 
+			echo("<li 
 				class='virtual'
 				title='$virtual$file'
 				> ".substr($file,strrpos($file,"/"),strrpos($file,"."))." </li>
@@ -54,7 +54,7 @@ for($i=0;$i<sizeof($dir);$i++) {
 				$count=0;
 				for($k=0;$k<sizeof($files);$k++) {
 					$myfile=$files[$k];
-					if(substr($myfile,0,6)!="thumb_" && substr($myfile,0,1)!="." && substr($images[$i],-3,3) != "txt")
+					if(substr($myfile,0,6)!="thumb_" && substr($myfile,0,1)!="." && substr($myfile,-3,3) != "txt")
 					{
 						$count++;
 					}

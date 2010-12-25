@@ -7,7 +7,7 @@ if(!defined("ME_IZ_GOOD")) die("You = bad man.");
 $groups[]="demo:00000000000000000000000000000000";
 
 
-
+$groups[]='plip:cfc73b1859dd9302de92c6e65558156d805336fc';
 
 /***** ADD YOUR GROUPS BEFORE THIS LINE ******/
 

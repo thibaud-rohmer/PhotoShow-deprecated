@@ -18,7 +18,7 @@ $groups	= $_SESSION['groups'];
 
 if(!isset($groups))  $groups = array();
 
-if ($page < 1) echo ("<div id='null'></div><ul id='album_contents'>");
+if ($page < 1) echo ("<script>setup_keyboard();</script><div id='null'></div><ul id='album_contents'>");
 
 
 if($action=="album"){
