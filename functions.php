@@ -25,6 +25,8 @@ function sort_by_date(){
 */
 function display_thumbnails($images,$first,$num){
 	include "settings.php";
+	define("IS_IN_MY_APP", "TRUE");
+	
 	
 	for($i=$first;$i<$first+$num && $i < sizeof($images);$i++)
 	{	
@@ -35,7 +37,6 @@ function display_thumbnails($images,$first,$num){
 
 			if(!is_file($thumbdir.$images[$i]))
 			{
-					define("IS_IN_MY_APP", "TRUE");
 					$x=100;
 					$y=100;
 					$src=$images[$i];

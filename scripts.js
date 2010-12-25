@@ -201,6 +201,8 @@ $(document).ready(function() {
 		$('#ex').hide();
 		$('#exif').fadeOut("slow");	
 		location.hash="action="+$(this).attr("class")+"&album="+$(this).attr("title");
+		$("#leftcolumn li").removeClass('menu_selected');
+		$(this).addClass('menu_selected');
 	});
 	
 /* Menubar */
