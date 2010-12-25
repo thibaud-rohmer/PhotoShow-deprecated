@@ -104,12 +104,15 @@ function display_thumbnails($images,$first,$num){
 					$src=$images[$i];
 					$dest=$thumbdir.$images[$i];
 					$dirs=explode("/",$images[$i]);
-					for($sec=0;$sec<sizeof($dir);$sec++){
-						$tempvar="./";
+					for($sec=0;$sec<sizeof($dirs);$sec++){
+						$tempvar=$thumbdir;
 						for($sectemp=0;$sectemp<$sec;$sectemp++){
-							$tempvar="$tempvar/$dir[$sectemp]";
+							$tempvar="$tempvar/$dirs[$sectemp]";
 						}
-						mkdir($tempvar, 0755, 0);
+						if(!is_dir($tempvar)){
+							 mkdir($tempvar);
+							 chmod($tempvar,0777);
+							}
 					}
 					
 					include "thumb.php";
