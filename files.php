@@ -14,21 +14,39 @@ $action	= $_GET['action'];
 $album 	= $_GET['album'];
 $page 	= $_GET['page'];
 $images = $_SESSION['images'];
+$groups	= $_SESSION['groups'];
 
+if(!isset($groups))  $groups = array();
 
 if ($page < 1) echo ("<div id='null'></div><ul id='album_contents'>");
 
 
 if($action=="album"){
 	$images=array();
+	/* Security */
+	
+	if (is_file(urldecode($album)."authorized.txt")){
+		$lines=file(stripslashes(urldecode($album)."authorized.txt"));
+		foreach($lines as $line_num => $line)
+			$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking car of the "\n" 
+		if(sizeof(array_intersect($groups,$authorized))==0){
+			echo("<div id='logindiv'>Only the groups : ");
+			foreach($authorized as $line_num => $group_name)
+				echo "$group_name ";
+			echo("are allowed to view this album.</p><div id='logindivcontent'>");
+			include "login.php";
+			echo("</div></div>");
+			die();
+		}
+	}
+	
 	$dir = scandir(urldecode($album)); 
 	for($i=0;$i<sizeof($dir);$i++) 
 	{
 		$images[]=$album.$dir[$i];
 	}
-
 }elseif($action=="age"){
-	$images=sort_by_date();
+	$images=sort_by_date($groups);
 
 }elseif($action=="virtual"){
 	$images=array();

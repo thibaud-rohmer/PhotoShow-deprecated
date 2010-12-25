@@ -54,7 +54,7 @@ for($i=0;$i<sizeof($dir);$i++) {
 				$count=0;
 				for($k=0;$k<sizeof($files);$k++) {
 					$myfile=$files[$k];
-					if(substr($myfile,0,6)!="thumb_" && substr($myfile,0,1)!="." )
+					if(substr($myfile,0,6)!="thumb_" && substr($myfile,0,1)!="." && substr($images[$i],-3,3) != "txt")
 					{
 						$count++;
 					}

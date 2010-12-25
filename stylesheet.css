@@ -287,6 +287,7 @@ div#exif {
 div#close{
 	float:right;
 }
+
 div#exif .exif_infos{
 	width:100%;
 	border-top:1px solid #ccc;
@@ -394,4 +395,20 @@ div#help {
 	overflow:auto;
 }
 
+div#logindiv {
+	border: 1px solid black;
+	background: #333;
+	color: white;
+	text-align:center;
+	padding:50px;
+	margin:auto;
+}
 
+div#logmein{
+	margin:10px;
+	cursor:pointer;
+}
+
+div#logmein:hover{
+	color:#aaa;
+}

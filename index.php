@@ -4,6 +4,7 @@
 */
 
 include "settings.php"; 
+
 ?>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
@@ -34,9 +35,10 @@ include "settings.php";
 	
 <div id="wrapper" >
 	<div id="leftcolumn" >
-		<div id="accordion"  >	
+		<div id="accordion"  >
 			<?php include("folders.php"); ?>
 		</div> 
+		<?php echo $name; ?>
 	</div>
 	<div id="exif">
 		<div class="content">EXIF</div>
