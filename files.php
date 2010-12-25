@@ -4,17 +4,18 @@
 */
 
 session_start();
-
 include "settings.php";
-
 include "functions.php";
 
+define("IS_IN_MY_APP", "TRUE");
 
 $action	= $_GET['action'];
 $album 	= $_GET['album'];
 $page 	= $_GET['page'];
 $images = $_SESSION['images'];
 $groups	= $_SESSION['groups'];
+
+
 
 if(!isset($groups))  $groups = array();
 

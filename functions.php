@@ -33,8 +33,26 @@ function generate_settings(){
 	if(!isset($limit)){
 		fwrite($file,$lim);
 	}
+	fclose($file);
 	
-	if(!is_file())
+	if(!is_file("pass.php")){
+		$file = fopen("pass.php", 'w');
+		$ploup='
+			<?php
+			if(!defined("ME_IZ_GOOD")) die("You = bad man.");
+
+			/***** ADD YOUR GROUPS HERE ******/
+
+			// You may remove this group : it is just an example.
+			$groups[]="demo:00000000000000000000000000000000";
+
+
+
+			/***** ADD YOUR GROUPS BEFORE THIS LINE ******/
+
+			?>';
+		fwrite($file,$ploup);
+	}
 }
 
 /* sort_by_date
@@ -70,7 +88,6 @@ function sort_by_date($groups){
 */
 function display_thumbnails($images,$first,$num){
 	include "settings.php";
-	define("IS_IN_MY_APP", "TRUE");
 	
 	
 	for($i=$first;$i<$first+$num && $i < sizeof($images);$i++)
@@ -86,7 +103,15 @@ function display_thumbnails($images,$first,$num){
 					$y=100;
 					$src=$images[$i];
 					$dest=$thumbdir.$images[$i];
-					system("umask u=rwx,go=rx; mkdir -p ".$thumbdir.addslashes(substr($images[$i],0,strrpos($images[$i],"/"))));
+					$dirs=explode("/",$images[$i]),
+					for($sec=0;$sec<sizeof($dir);$sec++){
+						$tempvar="./";
+						for($sectemp=0;$sectemp<$sec;$sectemp++){
+							$tempvar="$tempvar/$dir[$sectemp]";
+						}
+						mkdir($tempvar, 0755, 0);
+					}
+					
 					include "thumb.php";
 			}
 
@@ -100,7 +125,6 @@ function display_thumbnails($images,$first,$num){
 		}
 
 	}
-	define("IS_IN_MY_APP", "FALSE");
 
 }
 
