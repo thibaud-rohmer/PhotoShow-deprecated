@@ -103,7 +103,7 @@ function display_thumbnails($images,$first,$num){
 					$y=100;
 					$src=$images[$i];
 					$dest=$thumbdir.$images[$i];
-					$dirs=explode("/",$images[$i]),
+					$dirs=explode("/",$images[$i]);
 					for($sec=0;$sec<sizeof($dir);$sec++){
 						$tempvar="./";
 						for($sectemp=0;$sectemp<$sec;$sectemp++){
