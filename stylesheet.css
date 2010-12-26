@@ -200,11 +200,12 @@ div#projcontent ul li{
 	
 }
 
-.menubar_button a{
+.menubar_button {
 	color:#aaa;
+	cursor:pointer;
 }
 
-.menubar_button a:hover{
+.menubar_button:hover{
 	color:white;
 }
 
