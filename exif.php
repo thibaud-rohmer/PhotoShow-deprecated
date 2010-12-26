@@ -10,7 +10,6 @@ $exifDat=@exif_read_data($_GET['img']);
    {
 
 	$model=$exifDat["Model"];
-	$lens=$exifDat["UndefinedTag:0x0095"];
 	$ISO=$exifDat["ISOSpeedRatings"];
 	$focal=$exifDat["FocalLength"]+0;
 	$aperture=$exifDat["FNumber"]+0;
@@ -18,7 +17,6 @@ $exifDat=@exif_read_data($_GET['img']);
 	
 		echo ("
 			<div class='info_type1'> $model </div>
-			<div class='info_type1'> $lens </div>
 			<div class='exif_infos'>
 			<div class='info_type2 border-right'>ISO $ISO</div>
 			<div class='info_type2 border-right'>$focal mm</div>
