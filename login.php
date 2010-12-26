@@ -2,7 +2,7 @@
 $name=$_POST['name'];
 $pass=$_POST['pass'];
 
-require_once "functions.php";
+include "functions.php";
 
 if(isset($name) && log_me_in($name,$pass)){
 		$_SESSION["groups"][]=$name;

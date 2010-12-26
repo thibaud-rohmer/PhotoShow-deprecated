@@ -69,7 +69,7 @@ $groups[]="demo:00000000000000000000000000000000";
 * sorts all of the pictures by date added on the server and returns an array
 */
 function sort_by_date($groups,$album){ 
-	require_once "settings.php";
+	include "settings.php";
 	$images=array();
 	$folders= glob($dirname.$album."/*");	
 	
@@ -97,7 +97,7 @@ function sort_by_date($groups,$album){
 * sorts all of the pictures by date added on the server and returns an array
 */
 function sort_by_random($groups,$album){ 
-	require_once "settings.php";
+	include "settings.php";
 	$images=array();
 	$folders= glob($dirname.$album."/*");	
 	
@@ -124,7 +124,7 @@ function sort_by_random($groups,$album){
 * displays $num thumbnails taken fom the $images array
 */
 function display_thumbnails($images,$first,$num){
-	require_once "settings.php";
+	include "settings.php";
 	
 	
 	for($i=$first;$i<$first+$num && $i < sizeof($images);$i++)
@@ -152,7 +152,7 @@ function display_thumbnails($images,$first,$num){
 							}
 					}
 					
-					require_once "thumb.php";
+					include "thumb.php";
 			}
 
 			echo ('
@@ -185,7 +185,7 @@ function array_to_get($array,$name){
 
 function log_me_in($name,$pass){
 	define("ME_IZ_GOOD","TRUE");
-	require_once "pass.php";
+	include "pass.php";
 	define("ME_IZ_GOOD","FALSE");	
 	return (in_array($name.":".sha1($pass),$groups));
 }

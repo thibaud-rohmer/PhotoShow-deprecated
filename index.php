@@ -3,9 +3,9 @@
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
-require_once "functions.php";
+include "functions.php";
 generate_settings();
-require_once "settings.php"; 
+include "settings.php"; 
 
 ?>
 
@@ -38,7 +38,7 @@ require_once "settings.php";
 <div id="wrapper" >
 	<div id="leftcolumn" >
 		<div id="accordion"  >
-			<?php require_once("folders.php"); ?>
+			<?php include("folders.php"); ?>
 		</div> 
 	</div>
 	<div id="exif">

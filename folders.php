@@ -9,7 +9,7 @@ if(!isset($_SESSION["logged"])){
 }
 
 
-require_once "settings.php";
+include "settings.php";
 
 $dir 	=	scandir(urldecode($dirname),1); 
 $vf_size=	0;
