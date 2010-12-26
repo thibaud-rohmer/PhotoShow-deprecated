@@ -3,17 +3,27 @@
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
-session_start();
+if(!isset($_SESSION["logged"])){
+	session_start();
+	$_SESSION["logged"]=true;
+}
+
 include "settings.php";
 include "functions.php";
 
 define("IS_IN_MY_APP", "TRUE");
 
-$action	= $_GET['action'];
-$album 	= $_GET['album'];
-$page 	= $_GET['page'];
-$images = $_SESSION['images'];
-$groups	= $_SESSION['groups'];
+$action="";
+$album="";
+$page="";
+$images=array();
+$groups=array();
+
+if(isset($_GET['action']))	$action	= $_GET['action'];
+if(isset($_GET['album']))	$album 	= $_GET['album'];
+if(isset($_GET['page']))	$page 	= $_GET['page'];
+if(isset($_SESSION['images']))	$images = $_SESSION['images'];
+if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
 
 
 

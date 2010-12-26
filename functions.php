@@ -1,8 +1,13 @@
 <?php 
-session_start();
 /*
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
+
+
+if(!isset($_SESSION["logged"])){
+	session_start();
+	$_SESSION["logged"]=true;
+}
 
 /* generate_settings
 * generates the settings.php file if it isnt there
@@ -167,6 +172,7 @@ function display_thumbnails($images,$first,$num){
 * Returns a string containing the "get" structure of the array, with name $name
 */
 function array_to_get($array,$name){
+	$ret="";
 	for($i=0;$i<sizeof($array);$i++){
 		$ret="$ret&$name\[\]=$array[$i]";
 	}

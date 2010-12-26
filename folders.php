@@ -3,6 +3,12 @@
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
+if(!isset($_SESSION["logged"])){
+	session_start();
+	$_SESSION["logged"]=true;
+}
+
+
 include "settings.php";
 
 $dir = scandir(urldecode($dirname),1); 
