@@ -9,61 +9,6 @@ if(!isset($_SESSION["logged"])){
 	$_SESSION["logged"]=true;
 }
 
-/* generate_settings
-* generates the settings.php file if it isnt there
-*/
-function generate_settings(){
-	$tit='<?php $title="PhotoShow"; ?>
-	';
-	$dir='<?php $dirname="./photos/"; ?>
-	';
-	$vir='<?php $virtual="./virtual/"; ?>
-	';
-	$thu='<?php $thumbdir= "./thumb/"; ?>
-	';
-	$lim='<?php $limit=25; ?>
-	';
-
-	@include "./settings.php";
-	$settings = "./settings.php";
-	$file = fopen($settings, 'a');
-	
-	if(!isset($title)){
-		fwrite($file,$tit);
-	}
-	if(!isset($dirname)){
-		fwrite($file,$dir);
-	}
-	if(!isset($virtual)){
-		fwrite($file,$vir);
-	}
-	if(!isset($thumbdir)){
-		fwrite($file,$thu);
-	}
-	if(!isset($limit)){
-		fwrite($file,$lim);
-	}
-	fclose($file);
-	
-	if(!is_file("pass.php")){
-		$file = fopen("pass.php", 'w');
-		$ploup='
-<?php
-if(!defined("ME_IZ_GOOD")) die("You = bad man.");
-
-/***** ADD YOUR GROUPS HERE ******/
-
-// You may remove this group : it is just an example.
-$groups[]="demo:00000000000000000000000000000000";
-
-
-
-/***** ADD YOUR GROUPS BEFORE THIS LINE ******/
-
-?>';
-		fwrite($file,$ploup);
-	}
-}
 
 /* sort_by_date
 * sorts all of the pictures by date added on the server and returns an array

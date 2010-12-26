@@ -4,7 +4,6 @@
 */
 
 include "functions.php";
-generate_settings();
 include "settings.php"; 
 
 ?>
