@@ -11,8 +11,8 @@ if(!isset($_SESSION["logged"])){
 
 include "settings.php";
 
-$dir = scandir(urldecode($dirname),1); 
-$vf_size=0;
+$dir 	=	scandir(urldecode($dirname),1); 
+$vf_size=	0;
 
 // Generated folders
 echo("<div class='year'> Library </div><div class='albums'><ul>");

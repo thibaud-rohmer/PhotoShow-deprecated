@@ -19,12 +19,11 @@ $page="";
 $images=array();
 $groups=array();
 
-if(isset($_GET['action']))	$action	= $_GET['action'];
-if(isset($_GET['album']))	$album 	= $_GET['album'];
-if(isset($_GET['page']))	$page 	= $_GET['page'];
+if(isset($_GET['action']))		$action	= $_GET['action'];
+if(isset($_GET['album']))		$album 	= $_GET['album'];
+if(isset($_GET['page']))		$page 	= $_GET['page'];
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];
 if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
-
 
 
 if(!isset($groups))  $groups = array();
@@ -56,6 +55,7 @@ if($action=="album"){
 	{
 		$images[]=$album.$dir[$i];
 	}
+
 }elseif($action=="age"){
 	$images=sort_by_date($groups,$album);
 
@@ -70,6 +70,10 @@ if($action=="album"){
 
 }elseif($action=="go_on"){
 // Do nothing
+
+}else{
+	die("Error");
+
 }
 
 	$size_dir=sizeof($images);
