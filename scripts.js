@@ -378,11 +378,6 @@ $(document).ready(function() {
 				change_display();				
 			});
 		}
-	}else{
-		$("#projcontent").load("./files.php?action=sort_by_age",function(){
-			change_display("init");
-			$(".end").hide();
-		});
 	}
 
 
