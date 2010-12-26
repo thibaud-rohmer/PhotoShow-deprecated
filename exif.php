@@ -9,11 +9,17 @@ $exifDat=@exif_read_data($_GET['img']);
    if($exifDat)
    {
 
-	$model=$exifDat["Model"];
-	$ISO=$exifDat["ISOSpeedRatings"];
-	$focal=$exifDat["FocalLength"]+0;
-	$aperture=$exifDat["FNumber"]+0;
-	$shutter=$exifDat["ExposureTime"];
+	$model	=	"";
+	$ISO	=	"";
+	$focal	=	"";
+	$aperture=	"";
+	$shutter=	"";
+	
+	if(isset($exifDat["Model"])) 			$model=$exifDat["Model"];
+	if(isset($exifDat["ISOSpeedRatings"])) 	$ISO=$exifDat["ISOSpeedRatings"];
+	if(isset($exifDat["FocalLength"])) 		$focal=$exifDat["FocalLength"]+0;
+	if(isset($exifDat["FNumber"])) 			$aperture=$exifDat["FNumber"]+0;
+	if(isset($exifDat["ExposureTime"])) 	$shutter=$exifDat["ExposureTime"];
 	
 		echo ("
 			<div class='info_type1'> $model </div>
@@ -23,7 +29,7 @@ $exifDat=@exif_read_data($_GET['img']);
 			<div class='info_type2 border-right'>f/$aperture</div>
 			<div class='info_type2'>$shutter</div>
 			</div>");
-			//*/
+
    }else{
 	echo "<div class='info_type1'>No EXIF found.</div>";
 }
