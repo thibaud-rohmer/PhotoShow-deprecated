@@ -207,6 +207,7 @@ div#projcontent ul li{
 
 .menubar_button:hover{
 	color:white;
+	cursor:pointer;
 }
 
 #menubar_right{
