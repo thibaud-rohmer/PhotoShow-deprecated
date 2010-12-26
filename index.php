@@ -47,14 +47,14 @@ include "settings.php";
 	<div id="right" >
 		<div id="menubar" style="display:none;">
 			<div id="menubar_left">
-				<div id="ex" class="menubar_button" style="display:none;"><a href="#">EXIF</a></div>
+				<div id="ex" class="menubar_button" style="display:none;"><a>EXIF</a></div>
 			</div>
 			<div id="menubar_center">
-				<div id="prev" class="menubar_button"><a href="#"><</a></div>
-				<div id="next" class="menubar_button"><a href="#">></a></div>
+				<div id="prev" class="menubar_button"><a><</a></div>
+				<div id="next" class="menubar_button"><a>></a></div>
 			</div>
 			<div id="menubar_right">
-				<div id="wtf" class="menubar_button"><a href="#">HELP</a></div>
+				<div id="wtf" class="menubar_button"><a>HELP</a></div>
 			</div>				
 		</div>
 		
