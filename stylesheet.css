@@ -64,6 +64,9 @@ a:visited {
 	color:#666;
 }
 
+#leftcolumn p{
+	margin:3px;
+}
 .menu_selected {
 	color:#777;
 }

@@ -47,7 +47,10 @@ if($action=="album"){
 		$images[]=$album.$dir[$i];
 	}
 }elseif($action=="age"){
-	$images=sort_by_date($groups);
+	$images=sort_by_date($groups,$album);
+
+}elseif($action=="random"){
+	$images=sort_by_random($groups,$album);
 
 }elseif($action=="virtual"){
 	$images=array();

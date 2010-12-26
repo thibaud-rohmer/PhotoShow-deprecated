@@ -315,10 +315,14 @@ $(document).ready(function() {
 
 
 	$("#leftcolumn li").click(function() {
-		$("#projcontent").load("./files.php?action="+$(this).attr("class")+"&album="+$(this).attr("title"));
+		myclass=$(this).attr("class");
+		if (myclass.indexOf(" ") > 1) {
+			myclass=myclass.substr(0,myclass.indexOf(" "));
+		}
+		$("#projcontent").load("./files.php?action="+myclass+"&album="+$(this).attr("title"));
 		$('#ex').hide();
 		$('#exif').fadeOut("slow");	
-		location.hash="action="+$(this).attr("class")+"&album="+$(this).attr("title");
+		location.hash="action="+myclass+"&album="+$(this).attr("title");
 		$("#leftcolumn li").removeClass('menu_selected');
 		$(this).addClass('menu_selected');
 	});

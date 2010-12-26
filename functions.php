@@ -8,11 +8,16 @@ session_start();
 * generates the settings.php file if it isnt there
 */
 function generate_settings(){
-	$tit='<?php $title="PhotoShow"; ?>';
-	$dir='<?php $dirname="./photos/"; ?>';
-	$vir='<?php $virtual="./virtual/"; ?>';
-	$thu='<?php $thumbdir= "./thumb/"; ?>';
-	$lim='<?php $limit=25; ?>';
+	$tit='<?php $title="PhotoShow"; ?>
+	';
+	$dir='<?php $dirname="./photos/"; ?>
+	';
+	$vir='<?php $virtual="./virtual/"; ?>
+	';
+	$thu='<?php $thumbdir= "./thumb/"; ?>
+	';
+	$lim='<?php $limit=25; ?>
+	';
 
 	@include "./settings.php";
 	$settings = "./settings.php";
@@ -25,7 +30,7 @@ function generate_settings(){
 		fwrite($file,$dir);
 	}
 	if(!isset($virtual)){
-		fwrite($file,$virt);
+		fwrite($file,$vir);
 	}
 	if(!isset($thumbdir)){
 		fwrite($file,$thu);
@@ -38,19 +43,19 @@ function generate_settings(){
 	if(!is_file("pass.php")){
 		$file = fopen("pass.php", 'w');
 		$ploup='
-			<?php
-			if(!defined("ME_IZ_GOOD")) die("You = bad man.");
+<?php
+if(!defined("ME_IZ_GOOD")) die("You = bad man.");
 
-			/***** ADD YOUR GROUPS HERE ******/
+/***** ADD YOUR GROUPS HERE ******/
 
-			// You may remove this group : it is just an example.
-			$groups[]="demo:00000000000000000000000000000000";
+// You may remove this group : it is just an example.
+$groups[]="demo:00000000000000000000000000000000";
 
 
 
-			/***** ADD YOUR GROUPS BEFORE THIS LINE ******/
+/***** ADD YOUR GROUPS BEFORE THIS LINE ******/
 
-			?>';
+?>';
 		fwrite($file,$ploup);
 	}
 }
@@ -58,10 +63,10 @@ function generate_settings(){
 /* sort_by_date
 * sorts all of the pictures by date added on the server and returns an array
 */
-function sort_by_date($groups){ 
+function sort_by_date($groups,$album){ 
 	include "settings.php";
 	$images=array();
-	$folders= glob($dirname."*/*");
+	$folders= glob($dirname.$album."/*");	
 	
 	foreach($folders as $folder_id => $folder){
 		$authorized=array();
@@ -82,6 +87,33 @@ function sort_by_date($groups){
 	return $images;
 }
 
+
+/* sort_by_random
+* sorts all of the pictures by date added on the server and returns an array
+*/
+function sort_by_random($groups,$album){ 
+	include "settings.php";
+	$images=array();
+	$folders= glob($dirname.$album."/*");	
+	
+	foreach($folders as $folder_id => $folder){
+		$authorized=array();
+		if(is_file($folder."/authorized.txt")){
+			$lines=file($folder."/authorized.txt");
+			foreach($lines as $line_num => $line)
+				$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking car of the "\n" 
+			
+			if(sizeof(array_intersect($groups,$authorized))!=0){	
+				$images=array_merge($images, glob($folder."/*"));
+			}
+		}else{
+			$images=array_merge($images, glob($folder."/*"));
+		}
+	}
+	
+	shuffle($images);
+	return $images;
+}
 
 /* display_vignettes
 * displays $num thumbnails taken fom the $images array

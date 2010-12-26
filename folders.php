@@ -9,12 +9,29 @@ $dir = scandir(urldecode($dirname),1);
 $vf_size=0;
 
 // Generated folders
-echo("	<div class='year'> Generated </div><div class='albums'><ul>
-		<li class='age'> By age </li>
-		</ul>
-		</div>
-	");
+echo("<div class='year'> Library </div><div class='albums'><ul>");
 
+// Generated - By age
+echo("<p>By age</p><li class='age' title='*'>Everything </li>");
+for($i=0;$i<sizeof($dir);$i++) {
+        $subdirname=$dir[$i];
+        if($subdirname != '.' && $subdirname != '..' && is_dir($dirname.$subdirname))
+        {
+                $myname=str_replace("_"," ",$subdirname);
+                echo ("<li class='age' title='$subdirname'>$myname</li>");
+        }
+}		
+// Generated - Random
+echo("<p>Random</p><li class='random' title='*'>Everything </li>");
+for($i=0;$i<sizeof($dir);$i++) {
+        $subdirname=$dir[$i];
+        if($subdirname != '.' && $subdirname != '..' && is_dir($dirname.$subdirname))
+        {
+                $myname=str_replace("_"," ",$subdirname);
+                echo ("<li class='random' title='$subdirname'>$myname</li>");
+        }
+}		
+echo("</ul></div>");
 
 // This is for handling virtual folders
 if(is_dir($virtual)){

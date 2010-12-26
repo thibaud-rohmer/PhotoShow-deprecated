@@ -40,7 +40,6 @@ include "settings.php";
 		<div id="accordion"  >
 			<?php include("folders.php"); ?>
 		</div> 
-		<?php echo $name; ?>
 	</div>
 	<div id="exif">
 		<div class="content">EXIF</div>
