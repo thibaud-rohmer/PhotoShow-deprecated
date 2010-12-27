@@ -6,7 +6,7 @@ This document consists of 3 parts:
 * [How to install PhotoShow ?](#installation_guide)
 * [Settings and security](#settings_and_security)
 
-I really suggest looking at the [Wiki]](https://github.com/thibaud-rohmer/PhotoShow/wiki).
+I really suggest looking at the [Wiki](https://github.com/thibaud-rohmer/PhotoShow/wiki).
 
 # What is PhotoShow ?
 
