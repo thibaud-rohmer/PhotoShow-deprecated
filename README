@@ -15,4 +15,4 @@ Well, just try it : create inside "photos" :  "My_Project/My_album", and put a p
 
 Now, with your web browser, go to your server address. You should see on the top left "My Project". Click on it. you should see "My album" appear. Click on it. And now, your picture will appear.
 
-Note : It often happens that the thumbnail generation script takes a bit too long to display your picture. If it is the first time you load a picture, and this picture's thumbnail doesn't appear, don't freak out : just reload the page. The thumbnail will have been generated.
+Look at the Wiki : it should help with any question you have.

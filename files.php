@@ -55,7 +55,8 @@ if($action=="album"){
 	{
 		$images[]=$album.$dir[$i];
 	}
-
+	natsort($images);
+	
 }elseif($action=="age"){
 	$images=sort_by_date($groups,$album);
 
