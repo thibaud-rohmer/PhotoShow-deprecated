@@ -23,16 +23,16 @@ function menubar(){
 	include "settings.php";
 	
 	echo("<div id='menubar_left'>\n");
-	for($i=0;$i<sizeof($menu_left);$i++){
-		echo menubar_button($menu_left[$i],$buttons[$menu_left[$i]]);
+	for($i=0;$i<sizeof($menubar_left);$i++){
+		echo menubar_button($menubar_left[$i],$buttons[$menubar_left[$i]]);
 	}
 	echo("</div>\n<div id='menubar_center'>\n");
-	for($i=0;$i<sizeof($menu_center);$i++){
-		echo menubar_button($menu_center[$i],$buttons[$menu_center[$i]]);
+	for($i=0;$i<sizeof($menubar_center);$i++){
+		echo menubar_button($menubar_center[$i],$buttons[$menubar_center[$i]]);
 	}
 	echo("</div>\n<div id='menubar_right'>\n");
-	for($i=0;$i<sizeof($menu_right);$i++){
-		echo menubar_button($menu_right[$i],$buttons[$menu_right[$i]]);
+	for($i=0;$i<sizeof($menubar_right);$i++){
+		echo menubar_button($menubar_right[$i],$buttons[$menubar_right[$i]]);
 	}
 	echo("</div>\n");
 	

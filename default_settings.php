@@ -22,8 +22,8 @@ $buttons["next"]	=	">";
 $buttons["exif"]	=	"EXIF";
 $buttons["fblike"]	=	""; // Doesnt work great yet...
 
-$menu_left 		=	array("exif");
-$menu_center	=	array("previous","next");
-$menu_right 	=	array("help");
+$menubar_left 		=	array("exif");
+$menubar_center	=	array("previous","next");
+$menubar_right 	=	array("help");
 
 ?>
