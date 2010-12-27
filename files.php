@@ -51,6 +51,7 @@ if($action=="album"){
 	}
 	
 	$dir = scandir(urldecode($album)); 
+
 	natsort($dir);
 	
 	for($i=0;$i<sizeof($dir);$i++) 
