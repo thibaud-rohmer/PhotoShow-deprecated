@@ -51,12 +51,13 @@ if($action=="album"){
 	}
 	
 	$dir = scandir(urldecode($album)); 
+	natsort($dir);
+	
 	for($i=0;$i<sizeof($dir);$i++) 
 	{
 		$images[]=$album.$dir[$i];
 	}
-	natsort($images);
-	
+		
 }elseif($action=="age"){
 	$images=sort_by_date($groups,$album);
 
