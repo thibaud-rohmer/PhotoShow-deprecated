@@ -22,22 +22,18 @@ $thumbdir	=	"./thumb/";
 $limit		=	25; 
 
 
+
+
 /******* Left Menu *******/
 
-// Generated folders : displayed title
-$generated_title =	"Library";
 
-// Sorted by age folders : displayed title
-$age_title 		=	"By age";
+/** Choose what is displayed **/
 
 // Generated album : All images sorted by age
 $by_age_all		=	true;
 
 // Generated album : Images of each album sorted by age 
 $by_age_albums	=	true;
-
-// Randomly sorted folders : displayed title
-$random_title 		=	"Random";
 
 // Generated album : All images in random order
 $random_all		=	true;
@@ -47,6 +43,21 @@ $random_albums	=	true;
 
 // Albums : Well.. if you want to display your albums (hey, some just want generated albums)
 $real_albums	=	true;
+
+
+
+/** Choose section names **/
+
+// Generated folders : displayed title
+$generated_title =	"Library";
+
+// Sorted by age folders : displayed title
+$age_title 		=	"By age";
+
+// Randomly sorted folders : displayed title
+$random_title 		=	"Random";
+
+
 
 
 /******* Menubar *******/
