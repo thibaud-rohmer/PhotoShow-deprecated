@@ -16,31 +16,6 @@ To install PhotoShow, just get the archive. Then, in the photos folder, create y
 
 That's it, PhotoShow displays your images. You may drink your glass of whiskey now.
 
-# Frequently Asked Questions
-
-### No photos and no albums (apart from the generated one)
-
-Check that your server has the rights to write into your main (PhotoShow) folder. If you're unsure, just set it right to 775.
-
-### My photos don't show up at all
-
-Try to restart your computer. Nah, just joking... Have you considered the fact that your photos may not be in the good directory ? You NEED to have two sub-levels inside the "photos" folder.
-
-
-### I am sure I have my photos in the right folder, but still...
-
-Ok ok... Check the rights of your photos and folders. You need to be able to read (r) the photos, and read and execute (rx) the folders.
-
-### My photos seem to show up, but no thumbnail
-
-If the "thumb" folder hasnt been created in your website, then check the rights for your PhotoShow folder (the main folder).
-
-If the "thumb" folder has been created, check the rights of the folders inside it... This may be the reason of the problem (but shouldn't happen).
-
-### Can a user log in as a member of several groups ?
-
-Yes, as long as the user doesn't close the website, all of the groups he has been logged as will remain valid.
-
 # Settings and security
 
 # Settings, security
@@ -81,3 +56,28 @@ Inside this file, put, on different lines, the name of the groups allowed to see
 Save.
 
 You have secured your album. Now, if someone wants to see it, he will need to log in as a member of the group "family" or "jack". You may dring your glass of whiskey now.
+
+# Frequently Asked Questions
+
+### No photos and no albums (apart from the generated one)
+
+Check that your server has the rights to write into your main (PhotoShow) folder. If you're unsure, just set it right to 775.
+
+### My photos don't show up at all
+
+Try to restart your computer. Nah, just joking... Have you considered the fact that your photos may not be in the good directory ? You NEED to have two sub-levels inside the "photos" folder.
+
+
+### I am sure I have my photos in the right folder, but still...
+
+Ok ok... Check the rights of your photos and folders. You need to be able to read (r) the photos, and read and execute (rx) the folders.
+
+### My photos seem to show up, but no thumbnail
+
+If the "thumb" folder hasnt been created in your website, then check the rights for your PhotoShow folder (the main folder).
+
+If the "thumb" folder has been created, check the rights of the folders inside it... This may be the reason of the problem (but shouldn't happen).
+
+### Can a user log in as a member of several groups ?
+
+Yes, as long as the user doesn't close the website, all of the groups he has been logged as will remain valid.
