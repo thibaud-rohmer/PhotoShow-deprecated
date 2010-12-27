@@ -35,9 +35,6 @@ function menubar(){
 		echo menubar_button($menubar_right[$i],$buttons[$menubar_right[$i]]);
 	}
 	echo("</div>\n");
-	
-	
-	
 }
 
 /* sort_by_date
