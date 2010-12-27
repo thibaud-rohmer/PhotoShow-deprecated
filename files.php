@@ -33,6 +33,7 @@ if ($page < 1) echo ("<script>setup_keyboard();</script><div id='null'></div><ul
 
 if($action=="album"){
 	$images=array();
+	$new_dir=array();
 	/* Security */
 	
 	if (is_file(urldecode($album)."authorized.txt")){
@@ -51,12 +52,19 @@ if($action=="album"){
 	}
 	
 	$dir = scandir(urldecode($album)); 
-
-	natsort($dir);
 	
 	for($i=0;$i<sizeof($dir);$i++) 
 	{
-		$images[]=$album.$dir[$i];
+		if(substr($dir[$i],0,1)!="."){
+			$new_dir[]=$dir[$i];
+		}
+	}
+	
+	natsort($new_dir);
+	
+	for($i=0;$i<sizeof($new_dir);$i++) 
+	{
+		$images[]=$album.$new_dir[$i];
 	}
 		
 }elseif($action=="age"){
