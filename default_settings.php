@@ -80,4 +80,10 @@ $menubar_center		=	array("previous","next");
 // Right side of menu bar : buttons
 $menubar_right 		=	array("help");
 
+
+/******* Global *******/
+
+// Sorts all pictures in the albums by age instead of sorting by name
+$sort_all_by_age	=	false;
+
 ?>

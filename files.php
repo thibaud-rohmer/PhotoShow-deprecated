@@ -57,6 +57,9 @@ if($action=="album"){
 	{
 		$images[]=$album.$dir[$i];
 	}
+	
+	if($sort_all_by_age) array_multisort(array_map('filemtime', $images), SORT_DESC, $images); 
+	
 		
 }elseif($action=="age"){
 	$images=sort_by_date($groups,$album);
