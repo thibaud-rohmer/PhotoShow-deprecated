@@ -9,6 +9,36 @@ if(!isset($_SESSION["logged"])){
 	$_SESSION["logged"]=true;
 }
 
+/* menubar_button($name)
+* Returns the menubar button div associated to $name
+*/
+function menubar_button($name,$content){
+	return "<div id='$name' class='menubar_button'><a>$content</a></div>\n";
+}
+
+/* menubar
+* Creates the menu bar, according to user's settings
+*/
+function menubar(){
+	include "settings.php";
+	
+	echo("<div id='menubar_left'>\n");
+	for($i=0;$i<sizeof($menu_left);$i++){
+		echo menubar_button($menu_left[$i],$buttons[$menu_left[$i]]);
+	}
+	echo("</div>\n<div id='menubar_center'>\n");
+	for($i=0;$i<sizeof($menu_center);$i++){
+		echo menubar_button($menu_center[$i],$buttons[$menu_center[$i]]);
+	}
+	echo("</div>\n<div id='menubar_right'>\n");
+	for($i=0;$i<sizeof($menu_right);$i++){
+		echo menubar_button($menu_right[$i],$buttons[$menu_right[$i]]);
+	}
+	echo("</div>\n");
+	
+	
+	
+}
 
 /* sort_by_date
 * sorts all of the pictures by date added on the server and returns an array

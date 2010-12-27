@@ -25,11 +25,10 @@ include "settings.php";
 
 	<script src="scripts.js" type="text/javascript" charset="utf-8"></script>
 
-
 </head>
 <body>
 	<div id="fs"></div>
-	<div id="help">
+	<div id="wtf">
 		<div class="content">Aide</div>
 		<div class="bg"></div>
 	</div>
@@ -40,25 +39,14 @@ include "settings.php";
 			<?php include("folders.php"); ?>
 		</div> 
 	</div>
-	<div id="exif">
+	<div id="exifdiv">
 		<div class="content">EXIF</div>
 		<div class="bg"></div>
 	</div>
 	<div id="right" >
 		<div id="menubar" style="display:none;">
-			<div id="menubar_left">
-				<div id="ex" class="menubar_button" style="display:none;"><a>EXIF</a></div>
-			</div>
-			<div id="menubar_center">
-				<div id="prev" class="menubar_button"><a><</a></div>
-				<div id="next" class="menubar_button"><a>></a></div>
-			</div>
-			<div id="menubar_right">
-				<div id="wtf" class="menubar_button"><a>HELP</a></div>
-			</div>				
+			<?php menubar(); ?>			
 		</div>
-		
-		
 		<div id="projcontent" class="fullpage"></div>	
 		<div id="display2">
 			<div id="display_img">

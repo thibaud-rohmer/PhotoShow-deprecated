@@ -42,6 +42,6 @@ if($exifDat)
 
 <script>
 $("#close a").click(function(){
-	$("#exif").fadeOut("slow");
+	$("#exifdiv").fadeOut("slow");
 });
 </script>

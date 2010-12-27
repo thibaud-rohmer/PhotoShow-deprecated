@@ -1,7 +1,7 @@
 <div id="close" class="menubar_button"><a href="#">x</a></div>
 <script>
 $("#close a").click(function(){
-	$("#help").fadeOut("slow");
+	$("#wtf").fadeOut("slow");
 });
 </script>
 

@@ -279,7 +279,7 @@ li img{
 	max-height:100px;
 }
 
-div#exif {
+div#exifdiv {
 	z-index:2;
 	position:fixed;
 	top:20px;
@@ -293,20 +293,20 @@ div#close{
 	float:right;
 }
 
-div#exif .exif_infos{
+div#exifdiv .exif_infos{
 	width:100%;
 	border-top:1px solid #ccc;
 	color:white;
 }
 
-div#exif .info_type1{
+div#exifdiv .info_type1{
 	font-style:bold;
 	font-family:Arial;
 
 	margin:10px;
 }
 
-div#exif .info_type2{
+div#exifdiv .info_type2{
 	width:23%;
 	float:left;
 	padding:2px;
@@ -315,11 +315,11 @@ div#exif .info_type2{
 	text-align:center;
 }
 
-div#exif .border-right{
+div#exifdiv .border-right{
 	border-right:1px solid #ccc;
 }
 
-#exif .bg {
+#exifdiv .bg {
 	position:absolute;
 	top:0;
 	bottom:0;
@@ -335,7 +335,7 @@ div#exif .border-right{
 	border:3px #333 groove;
 }
 
-#exif .content {
+#exifdiv .content {
 	position: relative;
 	z-index:3;
 	padding:15px;
@@ -365,7 +365,7 @@ div#exif .border-right{
 	border:none;
 }
 
-div#help {
+div#wtf {
 	position:absolute; 
 	top:50%; 
 	left:50%;
@@ -377,7 +377,7 @@ div#help {
 	text-align:center;
 }
 
-#help .bg {
+#wtf .bg {
 	position:absolute;
 	top:0;
 	bottom:0;
@@ -392,7 +392,7 @@ div#help {
 	border-radius: 10px;
 }
 
-#help .content {
+#wtf .content {
 	position: relative;
 	z-index:3;
 	padding:15px;

@@ -9,14 +9,16 @@
 function refresh_img(url){
 	if(url==""){
 		$('#display_img').html("");
-		$('#exif .content').html("");
+		$('#exifdiv .content').html("");
+		$("#fblike").html("");
 		return;
 	}
 	$('#display_img').html('<span></span><a href="'+url+'"><img src="'+url+'"/></a>');
 	$('#fs').html('<img src="'+url+'"/>');
 
-	$('#exif .content').load('exif.php?img='+url);
-	$("#ex").show();
+	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&amp;action=like&amp;colorscheme=dark&amp;height=20&amp;ref='+escape(location.href.replace("#",""))+'&amp;href='+escape(location.href.replace("#",""))+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
+	$('#exifdiv .content').load('exif.php?img='+url);
+	$("#exif").show();
 
 	$('#display_img a').click(function(){ 
 		change_display();
@@ -160,18 +162,18 @@ function setup_keyboard(){
 			}
 	   	}
 	  	if (event.keyCode == '72') { // h
-			$('#help .content').load('help.txt');
-			if($("#help").is(":visible")){
-				$("#help").fadeOut("slow");
+			$('#wtf .content').load('help.txt');
+			if($("#wtf").is(":visible")){
+				$("#wtf").fadeOut("slow");
 			}else{
-				$("#help").fadeIn("slow");
+				$("#wtf").fadeIn("slow");
 			}
 	   	}
 	  	if (event.keyCode == '69') { // e
-			if($("#exif").is(":visible")){
-				$("#exif").fadeOut("slow");
+			if($("#exifdiv").is(":visible")){
+				$("#exifdiv").fadeOut("slow");
 			}else{
-				$("#exif").fadeIn("slow");
+				$("#exifdiv").fadeIn("slow");
 			}
 	   	}
 	  	if (event.keyCode == '13') { // enter
@@ -320,8 +322,8 @@ $(document).ready(function() {
 			myclass=myclass.substr(0,myclass.indexOf(" "));
 		}
 		$("#projcontent").load("./files.php?action="+myclass+"&album="+$(this).attr("title"));
-		$('#ex').hide();
-		$('#exif').fadeOut("slow");	
+		$('#exif').hide();
+		$('#exifdiv').fadeOut("slow");	
 		location.hash="action="+myclass+"&album="+$(this).attr("title");
 		$("#leftcolumn li").removeClass('menu_selected');
 		$(this).addClass('menu_selected');
@@ -337,24 +339,24 @@ $(document).ready(function() {
 		select_prev();
 	});
 	
-	$("#ex a").click(function(){
-		if($("#exif").is(":visible")){
-			$("#exif").fadeOut("slow");
+	$("#exif a").click(function(){
+		if($("#exifdiv").is(":visible")){
+			$("#exifdiv").fadeOut("slow");
 		}else{
-			$("#exif").fadeIn("slow");
+			$("#exifdiv").fadeIn("slow");
 		}
 	});
 	
-	$("#wtf a").click(function(){
-		$('#help .content').load('help.txt');
-		if($("#help").is(":visible")){
-			$("#help").fadeOut("slow");
+	$("#help a").click(function(){
+		$('#wtf .content').load('help.txt');
+		if($("#wtf").is(":visible")){
+			$("#wtf").fadeOut("slow");
 		}else{
-			$("#help").fadeIn("slow");
+			$("#wtf").fadeIn("slow");
 		}
 	});
 	
-	$( "#exif" ).draggable();
+	$( "#exifdiv" ).draggable();
 		
 
 
@@ -365,8 +367,8 @@ $(document).ready(function() {
 
 	if(location.hash.length>2){
 		var parsed_hash=location.hash.substr(1);
-		$('#ex').hide();
-		$('#exif').hide();	
+		$('#exif').hide();
+		$('#exifdiv').hide();	
 		$("#menubar").show();
 	
 		if(parsed_hash.charAt(0)=='a'){ // It's an album
