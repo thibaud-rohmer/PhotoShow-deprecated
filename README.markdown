@@ -1,7 +1,14 @@
-# Welcome to the PhotoShow wiki !
+# PhotoShow documentation
 
+This document consists of 3 parts:
 
-## What is PhotoShow ?
+* [What is PhotoShow ? : presentation](#what_is_photoshow)
+* [How to install PhotoShow ?](#installation_guide)
+* [Settings and security](#settings_and_security)
+
+I really suggest looking at the [Wiki]](https://github.com/thibaud-rohmer/PhotoShow/wiki).
+
+# What is PhotoShow ?
 
 PhotoShow is a very easy to use, automatically generated website, to display your pictures. Without any configuration needed, it is ready-to-go, as soon as you get the archive. *It doesn't use any database*, and doesn't require any real computer science knowledge. You need a proof ? *My mother uses it.*
 
