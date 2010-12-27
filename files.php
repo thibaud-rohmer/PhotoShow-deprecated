@@ -55,16 +55,7 @@ if($action=="album"){
 	
 	for($i=0;$i<sizeof($dir);$i++) 
 	{
-		if(substr($dir[$i],0,1)!="."){
-			$new_dir[]=$dir[$i];
-		}
-	}
-	
-	natsort($new_dir);
-	
-	for($i=0;$i<sizeof($new_dir);$i++) 
-	{
-		$images[]=$album.$new_dir[$i];
+		$images[]=$album.$dir[$i];
 	}
 		
 }elseif($action=="age"){
