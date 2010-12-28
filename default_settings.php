@@ -73,7 +73,7 @@ $buttons["comments"]=	"COMMENTS";
 $buttons["fblike"]	=	""; // Doesnt work great yet...
 
 // Left side of menu bar : buttons
-$menubar_left 		=	array("comments");
+$menubar_left 		=	array("exif","comments");
 
 // Center of menu bar : buttons
 $menubar_center		=	array("previous","next");

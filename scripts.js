@@ -370,7 +370,7 @@ $(document).ready(function() {
 	});
 	
 	$( "#exifdiv" ).draggable();
-
+	$("#commentsdiv").draggable();
 
 /* Keyboard events */
 	setup_keyboard();

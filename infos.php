@@ -9,7 +9,10 @@ if(!isset($_SESSION["logged"])){
 	$_SESSION["logged"]=true;
 }
 
-$file=$thumbir.substr($_POST["file"],0,strrpos($_POST["file"],".")).".xml";
+$file=$_POST["file"];
+
+if(!isset($_POST['addcom'])) $file=$thumbdir.substr($file,0,strrpos($file,".")).".xml";
+
 
 if(is_file($file)){
 	$library = simplexml_load_file($file);
@@ -36,10 +39,10 @@ echo '<div id="close" class="menubar_button"><a href="#">x</a></div>';
 
 /** Let's display those comms **/
 foreach ($library->comment as $comment) {
-	$cont=trim($comment->content);
-	$auth=trim($comment->author);
+	$cont=stripslashes(trim($comment->content));
+	$auth=stripslashes(trim($comment->author));
 	echo ("<div class='comment'>
-			<div class='content'>$cont </div> 
+			<div class='comm'>$cont </div> 
 			<div class='author'>Written by: $auth </div>
 		   </div>"); 
 }
@@ -53,14 +56,17 @@ function addcom(){
 	setup_keyboard();
 	var myauthor=$('input[name$=\"author\"]').val();
 	var mycomm=$('input[name$=\"comm\"]').val();
-	$('#commentsdiv .content').load('infos.php', { author: myauthor, comm: mycomm, file: '$file' } );
+	if(myauthor.length < 1 || mycomm.length < 1){
+		alert('Please fill all fields.');
+	}else{
+		$('#commentsdiv .content').load('infos.php', { author: myauthor, comm: mycomm, file: '$file', addcom: 'true' } );
+	}
 }");
 
 ?>
 
 $(document).ready(function() {	
 	$('#addcom').click(function(){
-		alert("plip");
 		addcom();
 	});
 	
@@ -77,11 +83,11 @@ $(document).ready(function() {
 
 </script>
 
-<p>Add comment :</p>
+<div class="addcomm">Add comment :</p>
 <form accept-charset="utf-8" >	
 	Name :<p><input type="text" name="author"></p>
 	Comment :<p><input type="text" name="comm"></p>
 	<div id="addcom">Validate</div>
 </form>
-
+</div>
 </div>

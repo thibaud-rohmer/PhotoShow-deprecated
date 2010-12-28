@@ -105,7 +105,7 @@ if($real_albums)
 					for($k=0;$k<sizeof($files);$k++)
 					{
 						$myfile=$files[$k];
-						if(substr($myfile,0,6)!="thumb_" && substr($myfile,0,1)!="." && substr($myfile,-3,3) != "txt")
+						if(substr($myfile,0,6)!="thumb_" && substr($myfile,0,1)!="."  && substr($myfile,-3,3) != "php" && substr($myfile,-3,3) != "xml" && substr($myfile,-3,3) != "txt")
 						{
 							$count++;
 						}

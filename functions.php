@@ -103,7 +103,7 @@ function display_thumbnails($images,$first,$num){
 	{	
 		$images[$i] = str_replace("./","",$images[$i]);
 				
-		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]) && substr($images[$i],-3,3) != "txt")	
+		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]) && substr($myfile,-3,3) != "php" && substr($myfile,-3,3) != "xml" && substr($images[$i],-3,3) != "txt")	
 		{
 
 			if(!is_file($thumbdir.$images[$i]))

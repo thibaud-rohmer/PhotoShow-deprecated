@@ -215,9 +215,17 @@ div#projcontent ul li{
 	margin: 3px 10px 0px 0px;
 }
 
+#menubar_right .menubar_button {
+	float:right;
+}
+
 #menubar_left{
 	float:left;
 	margin: 3px 0px 0px 10px;
+}
+
+#menubar_left .menubar_button {
+	float:left;
 }
 
 #menubar_center{
@@ -351,11 +359,10 @@ div#commentsdiv {
 	position:fixed;
 	top:20px;
 	left:320px;
-	right:10px;
-	bottom:20px;
+	width:300px;
+	max-height:300px;
 	display:none;
 	text-align:left;
-	overflow:auto;
 }
 
 #commentsdiv .bg {
@@ -382,7 +389,24 @@ div#commentsdiv {
 	overflow:auto;
 }
 
+#commentsdiv .comment {
+	margin:auto;
+	padding:20px;
+	border-bottom: 1px dashed white;
+}
 
+#commentsdiv .comm {
+	clear:both;
+}
+
+#commentsdiv .author {
+	float:right;
+	font-style:italic;
+}
+
+#commentsdiv .addcomm {
+	margin-top:5px;
+}
 
 #fs {
 	text-align:center;
