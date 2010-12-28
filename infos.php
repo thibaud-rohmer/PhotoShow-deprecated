@@ -2,16 +2,20 @@
 /*
 *  Created by Thibaud Rohmer on 2010-12-25. - Yup. Merry Christmas to you too.
 */
+include 'settings.php';
 
 if(!isset($_SESSION["logged"])){
 	session_start();
 	$_SESSION["logged"]=true;
 }
 
-$file=$_GET["file"];
-if(!is_file($file)) die("You need a file");
+$file=$thumbir.substr($_POST["file"],0,strrpos(".",$_POST["file"])).".xml";
 
-$library = simplexml_load_file($file);
+if(is_file($file)){
+	$library = simplexml_load_file($file);
+}else{
+	$library = new SimpleXMLElement("<library></library>");
+}
 
 /** In case the user posted a comment **/
 if(isset($_POST["author"])) $author = $_POST["author"];
@@ -50,7 +54,7 @@ function addcom(){
 	setup_keyboard();
 	var myauthor=$('input[name$="author"]').val();
 	var mycomm=$('input[name$="comm"]').val();
-	$("#commentsdivcontent").load('infos.php?file=./thumb/photos/FOTO/Tout/tifftiff.xml', { author: myauthor, comm: mycomm } );
+	$("#commentsdiv .content").load('infos.php', { author: myauthor, comm: mycomm, file: <?php $file ?> } );
 }
 
 $(document).ready(function() {	

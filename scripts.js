@@ -6,6 +6,7 @@
 *	loads given image url in the fullscreen (fs) and display (display_img) divs 
 *	and updates exif panel
 */
+
 function refresh_img(url){
 	if(url==""){
 		$('#display_img').html("");

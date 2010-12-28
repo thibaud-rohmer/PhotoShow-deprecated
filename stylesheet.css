@@ -344,6 +344,44 @@ div#exifdiv .border-right{
 }
 
 
+
+
+div#commentsdiv {
+	z-index:2;
+	position:fixed;
+	top:20px;
+	left:320px;
+	display:none;
+	text-align:left;
+	width:300px;
+}
+
+#commentsdiv .bg {
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:black;
+	opacity:0.8;
+	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:3px #333 groove;
+}
+
+#commentsdiv .content {
+	position: relative;
+	z-index:3;
+	padding:15px;
+	color:white;
+	overflow:auto;
+}
+
+
+
 #fs {
 	text-align:center;
 	padding:0px;
