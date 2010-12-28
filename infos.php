@@ -66,7 +66,7 @@ function addcom(){
 ?>
 
 $(document).ready(function() {	
-	$('#addcom').click(function(){
+	$('#validate').click(function(){
 		addcom();
 	});
 	
@@ -87,7 +87,7 @@ $(document).ready(function() {
 <form accept-charset="utf-8" >	
 	Name :<p><input type="text" name="author"></p>
 	Comment :<p><input type="text" name="comm"></p>
-	<div id="addcom">Validate</div>
+	<div id="validate">Validate</div>
 </form>
 </div>
 </div>
