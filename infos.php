@@ -9,7 +9,7 @@ if(!isset($_SESSION["logged"])){
 	$_SESSION["logged"]=true;
 }
 
-$file=$thumbir.substr($_POST["file"],0,strrpos(".",$_POST["file"])).".xml";
+$file=$thumbir.substr($_POST["file"],0,strrpos($_POST["file"],".")).".xml";
 
 if(is_file($file)){
 	$library = simplexml_load_file($file);
@@ -45,20 +45,22 @@ foreach ($library->comment as $comment) {
 }
 
 
-?>
 
-
-<script type="text/javascript">
+echo("
+<script type='text/javascript'>
 
 function addcom(){
 	setup_keyboard();
-	var myauthor=$('input[name$="author"]').val();
-	var mycomm=$('input[name$="comm"]').val();
-	$("#commentsdiv .content").load('infos.php', { author: myauthor, comm: mycomm, file: <?php $file ?> } );
-}
+	var myauthor=$('input[name$=\"author\"]').val();
+	var mycomm=$('input[name$=\"comm\"]').val();
+	$('#commentsdiv .content').load('infos.php', { author: myauthor, comm: mycomm, file: '$file' } );
+}");
+
+?>
 
 $(document).ready(function() {	
 	$('#addcom').click(function(){
+		alert("plip");
 		addcom();
 	});
 	

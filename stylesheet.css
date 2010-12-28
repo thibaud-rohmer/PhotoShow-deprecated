@@ -351,9 +351,11 @@ div#commentsdiv {
 	position:fixed;
 	top:20px;
 	left:320px;
+	right:10px;
+	bottom:20px;
 	display:none;
 	text-align:left;
-	width:300px;
+	overflow:auto;
 }
 
 #commentsdiv .bg {

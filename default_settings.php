@@ -69,10 +69,11 @@ $buttons["help"]	=	"HELP";
 $buttons["previous"]=	"<";
 $buttons["next"]	=	">";
 $buttons["exif"]	=	"EXIF";
+$buttons["comments"]=	"COMMENTS";
 $buttons["fblike"]	=	""; // Doesnt work great yet...
 
 // Left side of menu bar : buttons
-$menubar_left 		=	array("exif");
+$menubar_left 		=	array("comments");
 
 // Center of menu bar : buttons
 $menubar_center		=	array("previous","next");
