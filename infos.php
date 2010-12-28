@@ -43,12 +43,11 @@ foreach ($library->comment as $comment) {
 
 ?>
 
-<script src='jQuery/jquery.min.js' type="text/javascript" charset="utf-8"></script>
-<script src='jQuery/jquery-ui.min.js' type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
 
 function addcom(){
-	//	setup_keyboard();
+	setup_keyboard();
 	var myauthor=$('input[name$="author"]').val();
 	var mycomm=$('input[name$="comm"]').val();
 	$("#commentsdivcontent").load('infos.php?file=./thumb/photos/FOTO/Tout/tifftiff.xml', { author: myauthor, comm: mycomm } );
@@ -61,7 +60,7 @@ $(document).ready(function() {
 	
 	
 	$('input').focus(function(){
-		//			remove_keyboard();
+		remove_keyboard();
 	});
 
 	$("#close a").click(function(){

@@ -7,7 +7,7 @@
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
-$exifDat=@exif_read_data($_GET['img']);
+$exifDat=@exif_read_data($_POST['img']);
 
 if($exifDat)
 {

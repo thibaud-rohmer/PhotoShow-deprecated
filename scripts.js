@@ -10,6 +10,7 @@ function refresh_img(url){
 	if(url==""){
 		$('#display_img').html("");
 		$('#exifdiv .content').html("");
+		$('#commentsdiv .content').html("");
 		$("#fblike").html("");
 		return;
 	}
@@ -17,8 +18,11 @@ function refresh_img(url){
 	$('#fs').html('<img src="'+url+'"/>');
 
 	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&amp;action=like&amp;colorscheme=dark&amp;height=20&amp;ref='+escape(location.href.replace("#",""))+'&amp;href='+escape(location.href.replace("#",""))+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
-	$('#exifdiv .content').load('exif.php?img='+url);
+
+	$('#exifdiv .content').load('exif.php',{ img: url });
 	$("#exif").show();
+
+	$('#commentsdiv .content').load("infos.php",{ file: url });
 
 	$('#display_img a').click(function(){ 
 		change_display();
@@ -356,8 +360,15 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#comments a").click(function(){
+		if($("#commentsdiv").is(":visible")){
+			$("#commentsdiv").fadeOut("slow");
+		}else{
+			$("#commentsdiv").fadeIn("slow");
+		}
+	});
+	
 	$( "#exifdiv" ).draggable();
-		
 
 
 /* Keyboard events */

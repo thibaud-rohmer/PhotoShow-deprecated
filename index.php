@@ -32,6 +32,11 @@ include "settings.php";
 		<div class="content">Aide</div>
 		<div class="bg"></div>
 	</div>
+	<div id="commentsdiv">
+		<div class="content">Aucun commentaire</div>
+		<div class="bg"></div>
+	</div>
+	
 	
 <div id="wrapper" >
 	<div id="leftcolumn" >
