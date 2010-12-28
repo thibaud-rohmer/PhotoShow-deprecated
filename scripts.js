@@ -340,7 +340,7 @@ $(document).ready(function() {
 		select_next();
 	});
 	
-	$("#prev a").click(function(){
+	$("#previous a").click(function(){
 		select_prev();
 	});
 	
