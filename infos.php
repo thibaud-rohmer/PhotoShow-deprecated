@@ -2,7 +2,7 @@
 /*
 *  Created by Thibaud Rohmer on 2010-12-25. - Yup. Merry Christmas to you too.
 */
-include 'settings.php';
+require_once 'settings.php';
 
 if(!isset($_SESSION["logged"])){
 	session_start();

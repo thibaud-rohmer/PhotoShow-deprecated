@@ -87,7 +87,7 @@ ini_set('memory_limit', '-1');
 
 // include image processing code
 if(!$isdef){
-	include 'image.class.php';
+	require_once 'image.class.php';
 	$isdef=1;
 }
 $img = new Zubrag_image;

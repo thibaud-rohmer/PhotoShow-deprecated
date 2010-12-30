@@ -1,8 +1,8 @@
 <?php
+require_once "functions.php";
+
 $name=$_POST['name'];
 $pass=$_POST['pass'];
-
-if(!function_exists(log_me_in)) include "functions.php";
 
 if(isset($name) && log_me_in($name,$pass)){
 		$_SESSION["groups"][]=$name;

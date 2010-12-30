@@ -3,8 +3,8 @@
 *  Created by Thibaud Rohmer on 2010-12-23.
 */
 
-include "functions.php";
-include "settings.php"; 
+require_once "functions.php";
+require_once "settings.php"; 
 
 ?>
 
@@ -51,7 +51,7 @@ include "settings.php";
 <div id="wrapper" >
 	<div id="leftcolumn" >
 		<div id="accordion"  >
-			<?php include("folders.php"); ?>
+			<?php require "folders.php"; ?>
 		</div> 
 	</div>
 	<div id="exifdiv">

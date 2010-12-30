@@ -8,8 +8,8 @@ if(!isset($_SESSION["logged"])){
 	$_SESSION["logged"]=true;
 }
 
-include "settings.php";
-include "functions.php";
+require_once "settings.php";
+require_once "functions.php";
 
 define("IS_IN_MY_APP", "TRUE");
 
@@ -45,7 +45,7 @@ if($action=="album"){
 			foreach($authorized as $line_num => $group_name)
 				echo "$group_name ";
 			echo("are allowed to view this album.</p><div id='logindivcontent'>");
-			include "login.php";
+			require "login.php";
 			echo("</div></div>");
 			die();
 		}

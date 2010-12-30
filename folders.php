@@ -9,7 +9,7 @@ if(!isset($_SESSION["logged"])){
 }
 
 
-include "settings.php";
+require_once "settings.php";
 $dir 	=	scandir(urldecode($dirname),1); 
 
 // Generated folders

@@ -20,7 +20,7 @@ function menubar_button($name,$content){
 * Creates the menu bar, according to user's settings
 */
 function menubar(){
-	include "settings.php";
+	require "settings.php";
 	
 	echo("<div id='menubar_left'>\n");
 	for($i=0;$i<sizeof($menubar_left);$i++){
@@ -41,7 +41,7 @@ function menubar(){
 * sorts all of the pictures by date added on the server and returns an array
 */
 function sort_by_date($groups,$album){ 
-	include "settings.php";
+	require "settings.php";
 	$images=array();
 	$folders= glob($dirname.$album."/*");	
 	
@@ -69,7 +69,7 @@ function sort_by_date($groups,$album){
 * sorts all of the pictures by date added on the server and returns an array
 */
 function sort_by_random($groups,$album){ 
-	include "settings.php";
+	require "settings.php";
 	$images=array();
 	$folders= glob($dirname.$album."/*");	
 	
@@ -96,7 +96,7 @@ function sort_by_random($groups,$album){
 * displays $num thumbnails taken fom the $images array
 */
 function display_thumbnails($images,$first,$num){
-	include "settings.php";
+	require "settings.php";
 	
 	
 	for($i=$first;$i<$first+$num && $i < sizeof($images);$i++)
@@ -124,7 +124,7 @@ function display_thumbnails($images,$first,$num){
 							}
 					}
 					
-					include "thumb.php";
+					require "thumb.php";
 			}
 
 			echo ('
@@ -157,7 +157,7 @@ function array_to_get($array,$name){
 
 function log_me_in($name,$pass){
 	define("ME_IZ_GOOD","TRUE");
-	include "pass.php";
+	require "pass.php";
 	define("ME_IZ_GOOD","FALSE");	
 	return (in_array($name.":".sha1($pass),$groups));
 }
