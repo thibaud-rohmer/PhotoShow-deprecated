@@ -392,7 +392,7 @@ $(document).ready(function() {
 		}else{ // It's an image
 			var album = parsed_hash.substr(0,parsed_hash.lastIndexOf("/")+1);
 			
-			$("#projcontent").load("./files.php?action=album&album="+album,function(){
+			$("#projcontent").load("./files.php?action=album&album="+encodeURI(album),function(){
 				refresh_img(parsed_hash);
 				change_display();				
 			});
