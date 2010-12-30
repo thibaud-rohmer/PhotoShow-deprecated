@@ -3,7 +3,7 @@
 *  Created by Thibaud Rohmer on 2010-12-26.
 */
 
-include "default_settings.php";
+require_once "default_settings.php";
 
 // Edit your settings here.
 
