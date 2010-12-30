@@ -21,7 +21,8 @@ $thumbdir	=	"./thumb/";
 // Max number of images per page
 $limit		=	25; 
 
-
+// Website theme (design)   choices available :   black_knight   snow_white
+$theme		=	"black_knight";
 
 
 /******* Left Menu *******/

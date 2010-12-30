@@ -18,7 +18,11 @@ include "settings.php";
 		<meta name="author" content="Thibaud Rohmer" >
 		<title><?php echo $title ?></title>
 		
-	<link href="stylesheet.css" rel="stylesheet" media="screen" type="text/css" >
+		<?php 
+		if(!is_file("./stylesheets/$theme.css")) $theme="black_knight";
+		
+		echo("<link rel='stylesheet' href='stylesheets/$theme.css' type='text/css' media='screen' title='no title' charset='utf-8'>");
+		?>
 	
 	<script src='jQuery/jquery.min.js' type="text/javascript" charset="utf-8"></script>
 	<script src='jQuery/jquery-ui.min.js' type="text/javascript" charset="utf-8"></script>
@@ -27,7 +31,9 @@ include "settings.php";
 
 </head>
 <body>
-	<div id="fs"></div>
+	<div id="fs">
+		<div id="fs_img"></div>
+	</div>
 	<div id="wtf">
 		<div class="content">Aide</div>
 		<div class="bg"></div>
@@ -52,7 +58,8 @@ include "settings.php";
 		<div id="menubar" style="display:none;">
 			<?php menubar(); ?>			
 		</div>
-		<div id="projcontent" class="fullpage"></div>	
+		<div id="projcontent" class="fullpage">
+		</div>	
 		<div id="display2">
 			<div id="display_img">
 			</div>

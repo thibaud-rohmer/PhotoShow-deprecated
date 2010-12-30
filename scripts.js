@@ -16,7 +16,8 @@ function refresh_img(url){
 		return;
 	}
 	$('#display_img').html('<span></span><a href="'+url+'"><img src="'+url+'"/></a>');
-	$('#fs').html('<img src="'+url+'"/>');
+	
+	$('#fs_img').html('<img src="'+url+'"/>');
 
 	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&amp;action=like&amp;colorscheme=dark&amp;height=20&amp;ref='+escape(location.href.replace("#",""))+'&amp;href='+escape(location.href.replace("#",""))+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
 
