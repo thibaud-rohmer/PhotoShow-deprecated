@@ -1,0 +1,16 @@
+.year {
+	border-bottom: 3px solid rgba(33,78,136,1);
+	background:rgba(33,78,136,.5);
+}
+
+.menu_selected {
+	background-color:rgba(19,56,105,.2);
+}
+
+#leftcolumn li:hover {
+	background-color:rgba(19,56,105,.2);
+}
+
+div.end:hover {
+	background:rgba(19,56,105,.2);
+}

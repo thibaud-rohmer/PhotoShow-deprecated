@@ -24,6 +24,8 @@ $limit		=	25;
 // Website theme (design)   choices available :   black_knight   snow_white
 $theme		=	"black_knight";
 
+// Theme modification (only for snow_white at the moment)   choices available :   purple
+$mod		=	"";
 
 /******* Left Menu *******/
 

@@ -19,9 +19,13 @@ include "settings.php";
 		<title><?php echo $title ?></title>
 		
 		<?php 
-		if(!is_file("./stylesheets/$theme.css")) $theme="black_knight";
+		if(!is_dir("./stylesheets/$theme")) $theme="black_knight";
 		
-		echo("<link rel='stylesheet' href='stylesheets/$theme.css' type='text/css' media='screen' title='no title' charset='utf-8'>");
+		echo("<link rel='stylesheet' href='stylesheets/$theme/basic.css' type='text/css' media='screen' title='no title' charset='utf-8'>\n");
+		
+		if(is_file("./stylesheets/$theme/basic.css"))
+			echo("<link rel='stylesheet' href='stylesheets/$theme/$mod.css' type='text/css' media='screen' title='no title' charset='utf-8'>\n");
+		
 		?>
 	
 	<script src='jQuery/jquery.min.js' type="text/javascript" charset="utf-8"></script>
