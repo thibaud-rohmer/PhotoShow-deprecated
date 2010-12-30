@@ -98,7 +98,6 @@ function sort_by_random($groups,$album){
 function display_thumbnails($images,$first,$num){
 	require "settings.php";
 	
-	
 	for($i=$first;$i<$first+$num && $i < sizeof($images);$i++)
 	{	
 		$images[$i] = str_replace("./","",$images[$i]);
