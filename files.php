@@ -133,8 +133,6 @@ if($page<1) {
 			$('.select').removeClass('select');
 			$(this).parent().addClass('select');
 			refresh_img(this.title);
-			change_display(this.title); 
-			$('#menubar').show()
 			return false;
 		});	
 		</script>
