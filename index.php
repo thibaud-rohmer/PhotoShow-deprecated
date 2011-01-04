@@ -30,6 +30,7 @@ require_once "settings.php";
 	
 	<script src='jQuery/jquery.min.js' type="text/javascript" charset="utf-8"></script>
 	<script src='jQuery/jquery-ui.min.js' type="text/javascript" charset="utf-8"></script>
+	<script src="jQuery/jquery.scrollTo.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="scripts.js" type="text/javascript" charset="utf-8"></script>
 

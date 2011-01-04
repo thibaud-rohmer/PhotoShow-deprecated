@@ -15,6 +15,7 @@ function refresh_img(url){
 		$("#fblike").html("");
 		return;
 	}
+	
 	$('#display_img').html('<span></span><a href="'+url+'"><img src="'+url+'"/></a>');
 	
 	$('#fs_img').html('<img src="'+url+'"/>');
@@ -30,6 +31,8 @@ function refresh_img(url){
 		change_display();
 		return false;
 	});
+	
+	$('#projcontent').scrollTo($('.select'));
 	
 	location.hash=url;
 	
@@ -226,7 +229,8 @@ function setup_keyboard(){
 function change_display(val){
 	if(val!="init" && $("#display2").css("display")=="none"){
 
-		$("#projcontent").removeClass("fullpage").addClass("inline");
+		$("#projcontent").removeClass("fullpage").addClass("inline").scrollTo($('.select'));
+		
 		$("#menubar").show().removeClass("menubar-fullpage").addClass("menubar-inline");
 		$(".end").hide();
 
@@ -254,6 +258,7 @@ function change_display(val){
 			return false;
 		});
 
+
 	}else{
 
 		$('#projcontent a').unbind();
@@ -262,7 +267,7 @@ function change_display(val){
 		$("#display2").fadeOut();
 		$(".end").show();
 
-		$("#projcontent").removeClass("inline").addClass("fullpage");
+		$("#projcontent").removeClass("inline").addClass("fullpage").scrollTo($('.select'));;
 		$("#menubar").hide().removeClass("menubar-inline").addClass("menubar-fullpage");
 
 

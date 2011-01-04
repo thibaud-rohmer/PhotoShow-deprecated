@@ -10,7 +10,7 @@ if(!isset($_SESSION["logged"])){
 
 
 require_once "settings.php";
-$dir 	=	scandir(urldecode($dirname),1); 
+$dir 	=	scandir(urldecode($dirname)); 
 
 // Generated folders
 if($by_age_all || $by_age_albums || $random_all || $random_albums || is_dir($virtual))
