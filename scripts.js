@@ -32,7 +32,9 @@ function refresh_img(url){
 		return false;
 	});
 	
-	$('#projcontent').scrollTo($('.select'));
+	if(typeof($(".select").attr("class")) != 'undefined'){
+		$('#projcontent').scrollTo($('.select'));
+	}
 	
 	location.hash=url;
 	
@@ -228,8 +230,12 @@ function setup_keyboard(){
 */
 function change_display(val){
 	if(val!="init" && $("#display2").css("display")=="none"){
-
-		$("#projcontent").removeClass("fullpage").addClass("inline").scrollTo($('.select'));
+		$("#projcontent").removeClass("fullpage").addClass("inline");
+		
+		if(typeof($(".select").attr("class")) != 'undefined'){
+			$('#projcontent').scrollTo($('.select'));
+		}
+		
 		
 		$("#menubar").show().removeClass("menubar-fullpage").addClass("menubar-inline");
 		$(".end").hide();
@@ -258,16 +264,26 @@ function change_display(val){
 			return false;
 		});
 
-
+		$(window).bind('mousewheel', function(event,delta){			
+		 	if (delta > 0) {
+				$("#projcontent").scrollTo('-='+10*delta+'px',0);
+		 	} else {
+				$("#projcontent").scrollTo('+='+(-10*delta)+'px',0);
+		 	}
+		});
+		
 	}else{
-
 		$('#projcontent a').unbind();
 		$('#display_img a').unbind();
 		
 		$("#display2").fadeOut();
 		$(".end").show();
 
-		$("#projcontent").removeClass("inline").addClass("fullpage").scrollTo($('.select'));;
+		$("#projcontent").removeClass("inline").addClass("fullpage");
+		if(typeof($(".select").attr("class")) != 'undefined'){
+			$('#projcontent').scrollTo($('.select'));
+		}
+		
 		$("#menubar").hide().removeClass("menubar-inline").addClass("menubar-fullpage");
 
 
@@ -388,7 +404,6 @@ $(document).ready(function() {
 		$('#exif').hide();
 		$('#exifdiv').hide();	
 		$("#menubar").show();
-	
 		if(parsed_hash.charAt(0)=='a'){ // It's an album
 			$("#projcontent").load("./files.php?"+parsed_hash,function(){
 				change_display("init");
@@ -396,7 +411,6 @@ $(document).ready(function() {
 		
 		}else{ // It's an image
 			var album = parsed_hash.substr(0,parsed_hash.lastIndexOf("/")+1);
-			
 			$("#projcontent").load("./files.php?action=album&album="+encodeURI(album),function(){
 				refresh_img(parsed_hash);
 				change_display();				
