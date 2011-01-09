@@ -91,8 +91,7 @@ $imagesphp=array_to_get($images,"album");
 
 $nextpage=$page+1;
 
-
-if ($page < 1) echo ("</ul><div class='end'>More...</div>");
+if ($page < 1) echo ("<li class='end'>More...</li></ul>");
 
 
 if($page<1) {
@@ -103,40 +102,25 @@ if($page<1) {
 		change_display('init');	
 		var page = 0;
 		
-		if((page+1)*$limit + 2 >= $size_dir) {
+		
+		var limit=$limit;
+		var size_dir=$size_dir;
+		
+		if((page+1)*limit + 2 >= size_dir) {
 			$('.end').remove();
 		}
 		
 		$('.end').click(function(){
+			$(this).remove();
 			page++;
-			display_more(page);
+			display_more(page,limit,size_dir);
 		});
 		
-		function display_more(){
-			if((page+1)*$limit + 2 >= $size_dir) {
-				$('.end').hide();
-			}
-			$.get('./files.php?action=go_on&page='+page,function(data){ 
-			$(data).appendTo('#album_contents'); 
-			});
-		}
 		
 	});
 	</script>
 	");
 
-}else{
-	echo ("
-		<script>
-		$('#projcontent a').unbind();
-		$('#projcontent a').click(function(){ 
-			$('.select').removeClass('select');
-			$(this).parent().addClass('select');
-			refresh_img(this.title);
-			return false;
-		});	
-		</script>
-		");
 }
 ?>
 

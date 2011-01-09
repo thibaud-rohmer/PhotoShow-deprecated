@@ -115,9 +115,9 @@ if($real_albums)
 						<li 
 						class='album' 
 						title='".urlencode($dirname).urlencode($subdirname)."/".urlencode($file)."/'
-						>
-						".$myname."
-						<div class='countfloat'><span class='count'>".$count."</span></div>
+						><div class='folder_name'>
+						".$myname."</div>
+						<div class='count'>".$count."</div>
 						</li>");
 				}
 			}
