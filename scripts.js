@@ -162,7 +162,7 @@ function pause_diaporama(){
 * removes keyboard shortcuts
 */
 function remove_keyboard(){	
-	$('body').unbind("keydown");
+	$(window).unbind("keydown");
 }
 
 /* setup_keyboard
@@ -171,7 +171,7 @@ function remove_keyboard(){
 function setup_keyboard(){	
 	remove_keyboard();
 	
-	$('body').keydown(function(event) {
+	$(window).keydown(function(event) {
 
 		if (event.keyCode == '39') { // arrow right
 			select_next();
@@ -450,31 +450,6 @@ $(document).ready(function() {
 // Anchor
 	parse_my_hash_dude();
 
-
-/*
-	if(location.hash.length>2){
-		var parsed_hash=location.hash.substr(1);
-		$('#exif').hide();
-		$('#exifdiv').hide();	
-		$("#menubar").show();
-		
-		parse_my_hash_dude();
-		
-		if(parsed_hash.charAt(0)=='a'){ // It's an album
-			$("#projcontent").load("./files.php?"+parsed_hash,function(){
-				change_display("init");
-			});
-		
-		}else{ // It's an image
-			var album = parsed_hash.substr(0,parsed_hash.lastIndexOf("/")+1);
-			$("#projcontent").load("./files.php?action=album&album="+encodeURI(album),function(){
-				refresh_img(parsed_hash);
-				change_display();				
-			});
-		}
-	}
-*/
-
 });
 
 
@@ -516,4 +491,3 @@ function parse_my_hash_dude(){
 	}
 }
 }
-//*/
