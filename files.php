@@ -20,7 +20,7 @@ $images=array();
 $groups=array();
 
 if(isset($_GET['action']))		$action	= $_GET['action'];
-if(isset($_GET['album']))		$album 	= $_GET['album'];
+if(isset($_GET['album']))		$album 	= $_GET['album']."/";
 if(isset($_GET['page']))		$page 	= $_GET['page'];
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];
 if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
@@ -34,28 +34,13 @@ if ($page < 1) echo ("<script>setup_keyboard();</script><div id='null'></div><ul
 if($action=="album"){
 	$images=array();
 	$new_dir=array();
-	/* Security */
 	
-	if (is_file(urldecode($album)."authorized.txt")){
-		$lines=file(stripslashes(urldecode($album)."authorized.txt"));
-		foreach($lines as $line_num => $line)
-			$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking car of the "\n" 
-		if(sizeof(array_intersect($groups,$authorized))==0){
-			echo("<div id='logindiv'>Only the groups : ");
-			foreach($authorized as $line_num => $group_name)
-				echo "$group_name ";
-			echo("are allowed to view this album.</p><div id='logindivcontent'>");
-			require "login.php";
-			echo("</div></div>");
-			die();
-		}
-	}
-	
-	$dir = scandir(urldecode($album)); 
-	
-	for($i=0;$i<sizeof($dir);$i++) 
-	{
-		$images[]=$album.$dir[$i];
+	$images=load_images($album,$groups,1);
+
+	if(sizeof($images)==0){
+		$_SESSION['album']=$album;
+		echo "<script>$('#logindiv').children().first().load('login.php', { album: '$album' } ); $('#logindiv').show();</script>";
+		die();
 	}
 	
 	if($sort_all_by_age) array_multisort(array_map('filemtime', $images), SORT_DESC, $images); 
@@ -69,7 +54,7 @@ if($action=="album"){
 
 }elseif($action=="virtual"){
 	$images=array();
-	$lines=file(stripslashes(urldecode($album)));
+	$lines=file($album);
 	foreach($lines as $line_num => $line)
 		$images[]=$line;
 
@@ -84,6 +69,8 @@ if($action=="album"){
 	$size_dir=sizeof($images);
 
 $_SESSION['images']=$images;
+
+
 display_thumbnails($images,$page*$limit,$limit);	
 
 

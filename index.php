@@ -44,11 +44,28 @@ require_once "settings.php";
 		<div class="content">Aide</div>
 		<div class="bg"></div>
 	</div>
-	<div id="commentsdiv">
+	
+	<div id="commentsdiv" class="panel">
 		<div class="content">Aucun commentaire</div>
 		<div class="bg"></div>
 	</div>
+		
+	<div id="logindiv" class="panel">
+		<div class="content"><?php include "login.php" ?>
+		</div>
+		<div class="bg"></div>
+	</div>
 	
+	<div id="admindiv" class="panel">
+		<div class="content"></div>
+		<div class="bg"></div>
+	</div>
+	
+	<div id="exifdiv" class="panel">
+		<div class="content">EXIF</div>
+		<div class="bg"></div>
+	</div>
+
 	
 <div id="wrapper" >
 	<div id="leftcolumn" >
@@ -56,10 +73,7 @@ require_once "settings.php";
 			<?php require "folders.php"; ?>
 		</div> 
 	</div>
-	<div id="exifdiv">
-		<div class="content">EXIF</div>
-		<div class="bg"></div>
-	</div>
+
 	<div id="right" >
 		<div id="menubar" style="display:none;">
 			<?php menubar(); ?>			

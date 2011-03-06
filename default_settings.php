@@ -73,16 +73,18 @@ $buttons["previous"]=	"<";
 $buttons["next"]	=	">";
 $buttons["exif"]	=	"EXIF";
 $buttons["comments"]=	"COMMENTS";
+$buttons["login"]	=	"LOGIN";
+$buttons["admin"]	=	"ADMIN";
 $buttons["fblike"]	=	""; // Doesnt work great yet...
 
 // Left side of menu bar : buttons
-$menubar_left 		=	array("exif","comments");
+$menubar_left 		=	array("exif","comments","admin");
 
 // Center of menu bar : buttons
 $menubar_center		=	array("previous","next");
 
 // Right side of menu bar : buttons
-$menubar_right 		=	array("help");
+$menubar_right 		=	array("login","help");
 
 
 /******* Global *******/

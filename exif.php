@@ -1,4 +1,4 @@
-<div id="close" class="menubar_button">
+<div class="close">
 	<a href="#">x</a>
 </div>
 
@@ -41,7 +41,7 @@ if($exifDat)
 ?>
 
 <script>
-$("#close a").click(function(){
-	$("#exifdiv").fadeOut("slow");
+$(".close").click(function(){
+	$(this).parent().parent().fadeOut("slow");
 });
 </script>

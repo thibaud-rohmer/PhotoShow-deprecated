@@ -10,8 +10,10 @@ if(!isset($_SESSION["logged"])){
 
 
 require_once "settings.php";
-$dir 	=	scandir(urldecode($dirname)); 
+$dir 	=	scandir($dirname); 
 
+
+if(false){
 // Generated folders
 if($by_age_all || $by_age_albums || $random_all || $random_albums || is_dir($virtual))
 {
@@ -81,6 +83,9 @@ if($by_age_all || $by_age_albums || $random_all || $random_albums || is_dir($vir
 		echo "</ul></div>";
 	}
 }
+}
+
+echo("<div class='year' class='real_album' title='$dirname'> ALL </div>");
 
 if($real_albums)
 {
@@ -90,7 +95,7 @@ if($real_albums)
 		if($subdirname != '.' && $subdirname != '..' && is_dir($dirname.$subdirname))
 		{
 
-			echo("<div class='year'> $subdirname </div><div class='albums'><ul>");
+			echo("<div class='year' class='real_album' title='$dirname$subdirname'> $subdirname </div><div class='albums'><ul>");
 
 			$subdir=scandir($dirname.$subdirname,1);
 			for($j=0;$j<sizeof($subdir);$j++) 
@@ -110,11 +115,11 @@ if($real_albums)
 							$count++;
 						}
 					}
-
+					
 					echo("
 						<li 
 						class='album' 
-						title='".urlencode($dirname).urlencode($subdirname)."/".urlencode($file)."/'
+						title='$dirname$subdirname/$file'
 						><div class='folder_name'>
 						".$myname."</div>
 						<div class='count'>".$count."</div>

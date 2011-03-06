@@ -101,7 +101,8 @@ function display_thumbnails($images,$first,$num){
 	for($i=$first;$i<$first+$num && $i < sizeof($images);$i++)
 	{	
 		$images[$i] = str_replace("./","",$images[$i]);
-				
+
+
 		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]) && substr($myfile,-3,3) != "php" && substr($myfile,-3,3) != "xml" && substr($images[$i],-3,3) != "txt")	
 		{
 
@@ -160,4 +161,35 @@ function log_me_in($name,$pass){
 	define("ME_IZ_GOOD","FALSE");	
 	return (in_array($name.":".sha1($pass),$groups));
 }
+
+/* load_images
+* loads the images inside a folder. Recursively if $recursion==true.
+*/
+function load_images($album,$groups,$recursion){
+	if(strpos("..",$album)>-1) return;
+	
+	if (is_file($album."/authorized.txt")){
+		$lines=file($album."/authorized.txt");
+		foreach($lines as $line_num => $line)
+			$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking care of the "\n" 
+		if(sizeof(array_intersect($groups,$authorized))==0) return;
+	}
+	$dir = scandir($album); 
+
+	for($i=0;$i<sizeof($dir);$i++) 
+	{
+		$file=$album."/".$dir[$i];
+		if(is_file($file)) 
+			$images[]=$file;
+		else if(is_dir($file) && substr($file,-1,1)!="."){ 
+			$images_new=load_images($file,$groups,$recursion);
+			if(sizeof($images_new)>0)
+				$images=array_merge($images, $images_new); 
+		}
+	}
+	
+	return $images;
+}
+
+
 ?>

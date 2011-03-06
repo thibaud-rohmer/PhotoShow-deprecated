@@ -25,6 +25,8 @@ function refresh_img(url){
 	$('#exifdiv .content').load('exif.php',{ img: url });
 	$("#exif").show();
 
+	$('#admindiv .content').load('admin.php',{ img: url });
+
 	$('#commentsdiv .content').load("infos.php",{ file: url });
 
 	$('#display_img a').click(function(){ 
@@ -130,6 +132,15 @@ function select_prev() {
 	preload_prev();
 }
 
+/* 	del_select_next
+*	deletes current image, then selects and displays next image
+*	and preloads the next one
+*/
+function del_select_next(){
+	current=$(".select");
+	select_next();
+	current.hide();
+}
 
 /* Diaporama */
 
@@ -384,8 +395,11 @@ $(document).ready(function() {
 	
 	accordionCache = $('div#accordion');
   	$('.year', accordionCache).click( function () {
-    	$('div.albums', accordionCache).removeClass('open');
+		$("#projcontent").load("./files.php?action=album&album="+$(this).attr("title"));    	
+		$('div.albums', accordionCache).removeClass('open');
 		$('.year').removeClass('menu_selected');
+		$('#logindiv').hide();
+		location.hash=$(this).attr("title");
 		$(this).addClass('menu_selected');
     	$(this).next().addClass('open').slideDown('slow');
     	$('div.albums:not(.open)', accordionCache).slideUp();
@@ -416,14 +430,6 @@ $(document).ready(function() {
 		select_prev();
 	});
 	
-	$("#exif a").click(function(){
-		if($("#exifdiv").is(":visible")){
-			$("#exifdiv").fadeOut("slow");
-		}else{
-			$("#exifdiv").fadeIn("slow");
-		}
-	});
-	
 	$("#help a").click(function(){
 		$('#wtf .content').load('help.txt');
 		if($("#wtf").is(":visible")){
@@ -433,17 +439,16 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#comments a").click(function(){
-		if($("#commentsdiv").is(":visible")){
-			$("#commentsdiv").fadeOut("slow");
+	$(".menubar_button").click(function(){
+		var name="#"+$(this).attr("id")+"div";
+		if($(name).is(":visible")){
+			$(name).fadeOut("slow");
 		}else{
-			$("#commentsdiv").fadeIn("slow");
+			$(name).fadeIn("slow");
 		}
+		$(name).draggable();
 	});
 	
-	$( "#exifdiv" ).draggable();
-	$("#commentsdiv").draggable();
-
 /* Keyboard events */
 	setup_keyboard();
 	

@@ -33,9 +33,10 @@ if(isset($author) && isset($comm)){
 	$library->asXML($file);
 }
 
+echo '<div class="close"><a href="#">x</a></div>';
 echo '<div id="commentsdivcontent">';
-echo '<div id="close" class="menubar_button"><a href="#">x</a></div>';
 
+$numcomm=0;
 
 /** Let's display those comms **/
 foreach ($library->comment as $comment) {
@@ -45,6 +46,7 @@ foreach ($library->comment as $comment) {
 			<div class='comm'>$cont </div> 
 			<div class='author'>Written by: $auth </div>
 		   </div>"); 
+	$numcomm++;
 }
 
 
@@ -61,11 +63,19 @@ function addcom(){
 	}else{
 		$('#commentsdiv .content').load('infos.php', { author: myauthor, comm: mycomm, file: '$file', addcom: 'true' } );
 	}
-}");
+}
+
+$(document).ready(function() {
+");
+if($numcomm>0){
+	echo "$('#comments a').html('<span class=\"comments_num\">COMMENTS ($numcomm)</span>');";
+}else{
+	echo "$('#comments a').html('COMMENTS');";
+}
 
 ?>
 
-$(document).ready(function() {	
+	
 	$('#validate').click(function(){
 		addcom();
 	});
@@ -75,8 +85,8 @@ $(document).ready(function() {
 		remove_keyboard();
 	});
 
-	$("#close a").click(function(){
-		$("#commentsdiv").fadeOut("slow");
+	$(".close").click(function(){
+		$(this).parent().parent().fadeOut("slow");
 	});
 });    
 
@@ -87,7 +97,7 @@ $(document).ready(function() {
 <form accept-charset="utf-8" >	
 	Name :<p><input type="text" name="author"></p>
 	Comment :<p><input type="text" name="comm"></p>
-	<div id="validate">Validate</div>
+	<div id="validate" class="formvalidate">Validate</div>
 </form>
 </div>
 </div>
