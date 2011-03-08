@@ -183,11 +183,15 @@ function load_images($album,$groups,$recursion){
 			$images[]=$file;
 		else if(is_dir($file) && substr($file,-1,1)!="."){ 
 			$images_new=load_images($file,$groups,$recursion);
-			if(sizeof($images_new)>0)
-				$images=array_merge($images, $images_new); 
+			if(sizeof($images_new)>0){
+				if(sizeof($images)>0){
+					$images=array_merge($images,$images_new);
+				}else{
+					$images=$images_new;
+				}
+			}
 		}
 	}
-	
 	return $images;
 }
 

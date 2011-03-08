@@ -401,8 +401,8 @@ $(document).ready(function() {
 		$('#logindiv').hide();
 		location.hash=$(this).attr("title");
 		$(this).addClass('menu_selected');
-    	$(this).next().addClass('open').slideDown('slow');
-    	$('div.albums:not(.open)', accordionCache).slideUp();
+		$(this).next().addClass('open').slideDown('slow');
+		$('div.albums:not(.open)', accordionCache).slideUp();
   	} );
 
 
@@ -413,6 +413,7 @@ $(document).ready(function() {
 		}
 		$("#projcontent").load("./files.php?action="+myclass+"&album="+$(this).attr("title"));
 		$('#exif').hide();
+		$('#logindiv').hide();
 		$('#exifdiv').fadeOut("slow");	
 		if(myclass=="album")	location.hash=$(this).attr("title");
 		else location.hash=myclass+"_"+$(this).attr("title");
