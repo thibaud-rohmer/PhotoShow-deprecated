@@ -19,16 +19,21 @@ $page="";
 $images=array();
 $groups=array();
 
-if(isset($_GET['action']))		$action	= $_GET['action'];
-if(isset($_GET['album']))		$album 	= $_GET['album']."/";
-if(isset($_GET['page']))		$page 	= $_GET['page'];
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];
 if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
 
+if(isset($_POST['action']))		$action	= $_POST['action'];
+if(isset($_POST['album']))		$album 	= $_POST['album']."/";
+if(isset($_POST['page']))		$page 	= $_POST['page'];
+
+$album=str_replace("//","/",$album);
 
 if(!isset($groups))  $groups = array();
 
-if ($page < 1) echo ("<script>setup_keyboard();</script><div id='null'></div><ul id='album_contents'>");
+$albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));
+
+
+if ($page < 1) echo ("<script>setup_keyboard();</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
 
 
 if($action=="album"){
@@ -44,8 +49,8 @@ if($action=="album"){
 	}
 	
 	if($sort_all_by_age) array_multisort(array_map('filemtime', $images), SORT_DESC, $images); 
+	$images=str_replace("//","/",$images);
 	
-		
 }elseif($action=="age"){
 	$images=sort_by_date($groups,$album);
 

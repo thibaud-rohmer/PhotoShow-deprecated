@@ -136,9 +136,25 @@ div#right {
 	overflow-y:auto;
 }
 
+#albumname {
+  color: white;
+  cursor: pointer;
+  font-size: 200%;
+  margin: 0;
+  text-align: left;
+  border-bottom:1px solid white;
+  position:fixed;
+  background:#222;
+  right:0px;
+  top:0;
+  left:250px;
+  padding:10px;
+}
+
 div#projcontent {
 	margin:0;
-}
+	margin-top:60px;
+}	
 
 div.end {
 	border-top:1px solid #DDDDDD;

@@ -261,7 +261,6 @@ function setup_keyboard(){
 
 /* 	change_display
 *	toggles display_div visibility along with many other things...
-*	
 */
 function change_display(val){
 	
@@ -336,7 +335,7 @@ function list_selected_as_php(){
 function display_more(page,limit,size_dir){
 	morebutton="<li class='end'>More...</li>";
 	
-	$.get('./files.php?action=go_on&page='+page,function(data){ 
+	$.post('files.php', {action:'go_on', page: page} ,function(data){ 
 		$(data).appendTo('#album_contents');
 		page++;		
 		
@@ -395,9 +394,11 @@ $(document).ready(function() {
 	
 	accordionCache = $('div#accordion');
   	$('.year', accordionCache).click( function () {
-		$("#projcontent").load("./files.php?action=album&album="+$(this).attr("title"));    	
+	
+		$("#projcontent").load('files.php', { album: $(this).attr("title"), action: "album" });
 		$('div.albums', accordionCache).removeClass('open');
 		$('.year').removeClass('menu_selected');
+		$('#leftcolumn li').removeClass('menu_selected');
 		$('#logindiv').hide();
 		location.hash=$(this).attr("title");
 		$(this).addClass('menu_selected');
@@ -411,7 +412,7 @@ $(document).ready(function() {
 		if (myclass.indexOf(" ") > 1) {
 			myclass=myclass.substr(0,myclass.indexOf(" "));
 		}
-		$("#projcontent").load("./files.php?action="+myclass+"&album="+$(this).attr("title"));
+		$("#projcontent").load('files.php', { album: $(this).attr("title"), action: "album" });
 		$('#exif').hide();
 		$('#exifdiv').fadeOut("slow");	
 		if(myclass=="album")	location.hash=$(this).attr("title");
@@ -471,25 +472,26 @@ function parse_my_hash_dude(){
 		$("#menubar").show();
 	
 	lastslash = hash.lastIndexOf("/");
+	
 	if( lastslash < 0 )  
 	{
-		var action=hash.substr(0,hash.lastIndexOf("_"));
-		var album=hash.substr(hash.lastIndexOf("_")+1);
-		$("#projcontent").load("./files.php?action="+action+"&album="+album);
+		var myaction=hash.substr(0,hash.lastIndexOf("_"));
+		var myalbum=hash.substr(hash.lastIndexOf("_")+1);
+		$("#projcontent").load('files.php', { album: myalbum, action: myaction });
 	}
 	else
 	{
 		if( lastslash < hash.lastIndexOf( "." ) ){
 			// IMAGE
-			var album = hash.substr(0,hash.lastIndexOf("/")+1);
+			var myalbum = hash.substr(0,hash.lastIndexOf("/")+1);
 			
-			$("#projcontent").load("./files.php?action=album&album="+encodeURI(album),function(){
+			$("#projcontent").load('files.php', { album: myalbum, action: "album" },function(){
 				refresh_img(hash);
 				change_display();				
 			});
 		}else{
 			// FOLDER
-			$("#projcontent").load("./files.php?action=album&album="+hash,function(){
+			$("#projcontent").load('files.php', { album: hash, action: "album" },function(){
 				change_display("init");
 			});
 		}

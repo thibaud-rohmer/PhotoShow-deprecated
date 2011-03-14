@@ -10,9 +10,12 @@
 body {
 	font-family: droid-sans-1, droid-sans-2, sans-serif;
 	font-size:11pt;
-	background:#222;
+	background:#777;
 	color:white;
-	overflow-x:hidden;	
+	overflow-x:hidden;
+	padding:0;
+	margin:0;
+	overflow:hidden;
 }
 
 a {
@@ -33,11 +36,12 @@ a:visited {
 #wrapper{
 	position:absolute;
 	padding:0px;
-	border:1px solid #DDDDDD;
 	top:0px;
 	bottom:0px;
 	left:0px;
 	right:0px;
+	margin:0;
+	padding:0;
 }
 
 #leftcolumn {
@@ -45,17 +49,44 @@ a:visited {
 	float:left;
 	margin:0;
 	width:239px;
-	padding:0;
+	//padding:0;
 	overflow-y:auto;
 	overflow-x:hidden;
 	height:100%;
+	/*
 	background:black;
 	border-right:1px solid white;
 	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
 	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
-
+	*/
+	background-color:#eaeef3;
+  	background: -webkit-linear-gradient(rgba(234, 238, 243, 0.2), #eaeef3), -webkit-linear-gradient(left, #eaeef3, #eaeef3 97%, #d3d7db);
 }
 
+
+#leftcolumn > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.year {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  color: #426dc9;
+  cursor: pointer;
+  display: block;
+  font-size: 105%;
+  outline: none;
+  padding: 7px 0;
+  text-align: end;
+  text-shadow: white 0 1px 1px;
+  padding-right:24px;
+}
+
+/*
 .year {
 	margin:0 0 5px 0px;
 	padding: 5px 0px 5px 10px;
@@ -67,14 +98,22 @@ a:visited {
 	color:white;  
 
 }
+*/
 
 .year:hover {
 	cursor:pointer;
 	color:#666;
 }
 
-.menu_selected {
-	color:#666;
+
+div.menu_selected {
+	-webkit-box-shadow: 0px 1px 0px #f7f7f7;
+	background-color: #bbcee9;
+	background: -webkit-linear-gradient(left, #bbcee9, #bbcee9 97%, #aabedc);
+	border-bottom: 1px solid #8faad9;
+	border-top: 1px solid #8faad9;
+	color: #666;
+	text-shadow: #bbcee9 0 1px 1px;
 }
 
 #leftcolumn p{
@@ -83,7 +122,7 @@ a:visited {
 
 .albums .menu_selected {
 	color:white;
-	background-color:rgba(255,255,255,.2);
+	background-color:rgba(0,0,0,.8);
 }
 
 div.albums {
@@ -92,6 +131,7 @@ div.albums {
 	display:none;
 	font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 	font-weight:100;
+	color:black;
 }
 
 #leftcolumn li {
@@ -106,9 +146,7 @@ div.albums {
 
 #leftcolumn li:hover {
 	cursor:pointer;
-	background-color:rgba(255,255,255,.4);
 }
-
 
 div.count{
 	position:absolute;
@@ -128,11 +166,28 @@ div#right {
 	bottom:0px;
 	top:0px;
 	padding:0px;
-	overflow:auto;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+#albumname {
+  color: white;
+  cursor: pointer;
+  font-size: 200%;
+  margin: 0;
+  text-align: left;
+  border-bottom:1px solid white;
+  position:fixed;
+  background:#777;
+  right:0px;
+  top:0;
+  left:250px;
+  padding:10px;
 }
 
 div#projcontent {
 	margin:0;
+	margin-top:60px;
 }
 
 div.end {
@@ -198,6 +253,7 @@ div#projcontent ul li{
 	left:0px;
 	right:0px;
 	z-index:4;
+	
 }
 
 .menubar-fullpage {
@@ -259,7 +315,11 @@ div#projcontent ul li{
 
 #display_img {
 	text-align:center;
-
+	position:absolute;
+	top:0px;
+	bottom:25px;
+	left:0px;
+	right:0px;
 	vertical-align: middle;
 	border:none;
 }
@@ -275,8 +335,6 @@ div#projcontent ul li{
 
 .list_item img{
 	border:solid 4px rgba(0,0,0,.9);
-//	-moz-box-shadow: 0px 0px 1px rgba(255,255,255,1);
-//	-webkit-box-shadow: 0px 0px 1px rgba(255,255,255,1);
 }
 
 .select img{
@@ -298,7 +356,7 @@ li img{
 	max-height:100px;
 }
 
-div#exifdiv {
+div.panel{
 	z-index:2;
 	position:fixed;
 	top:20px;
@@ -308,8 +366,50 @@ div#exifdiv {
 	width:300px;
 }
 
-div#close{
+div.panel .bg{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:black;
+	opacity:0.8;
+	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	border:3px #333 groove;
+}
+
+div.panel .content{
+	position: relative;
+	z-index:3;
+	padding:15px;
+	color:white;
+	overflow:auto;
+}
+
+div.close{
 	float:right;
+}
+
+div.close a{
+		color:yellow;
+}
+
+div.formvalidate {
+	width:50%;
+	margin:2px;
+	padding:2px;
+	border:1px dotted white;
+	background:#444;
+	text-align:center;
+	color:white;
+}
+
+div.formvalidate:hover{
+	background:#999;
 }
 
 div#exifdiv .exif_infos{
@@ -338,68 +438,9 @@ div#exifdiv .border-right{
 	border-right:1px solid #ccc;
 }
 
-#exifdiv .bg {
-	position:absolute;
-	top:0;
-	bottom:0;
-	left:0;
-	right:0;
-	background:black;
-	opacity:0.8;
-	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
-	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	border:3px #333 groove;
+.comments_num{
+	color:#00FFFF;
 }
-
-#exifdiv .content {
-	position: relative;
-	z-index:3;
-	padding:15px;
-	color:white;
-	overflow:auto;
-}
-
-
-
-
-div#commentsdiv {
-	z-index:2;
-	position:fixed;
-	top:20px;
-	left:320px;
-	width:300px;
-	max-height:300px;
-	display:none;
-	text-align:left;
-}
-
-#commentsdiv .bg {
-	position:absolute;
-	top:0;
-	bottom:0;
-	left:0;
-	right:0;
-	background:black;
-	opacity:0.8;
-	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
-	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	border:3px #333 groove;
-}
-
-#commentsdiv .content {
-	position: relative;
-	z-index:3;
-	padding:15px;
-	color:white;
-	overflow:auto;
-}
-
 #commentsdiv .comment {
 	margin:auto;
 	padding:20px;
@@ -419,15 +460,15 @@ div#commentsdiv {
 	margin-top:5px;
 }
 
-#validate:hover{
+.formvalidate:hover{
 	color:#333;
 	cursor:pointer;
 }
 
-#fs {
+div#fs {
 	text-align:center;
 	padding:0px;
-	position:fixed;
+	position:absolute;
 	top:0px;
 	bottom:0px;
 	left:0px;
@@ -437,11 +478,17 @@ div#commentsdiv {
 	z-index:99;
 }
 
-#fs img{
+div#fs_img{
+	position:relative;
+	height:100%;
+}
+
+div#fs img{
 	clear:both;
-	max-height:100%;
 	max-width:100%;
+	max-height:100%;
 	margin:auto;
+	border:1px solid red;
 	border:none;
 }
 
@@ -478,15 +525,6 @@ div#wtf {
 	padding:15px;
 	color:white;
 	overflow:auto;
-}
-
-div#logindiv {
-	border: 1px solid black;
-	background: #333;
-	color: white;
-	text-align:center;
-	padding:50px;
-	margin:auto;
 }
 
 div#logmein{

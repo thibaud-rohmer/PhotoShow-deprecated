@@ -9,7 +9,7 @@ $album=$_POST['album'];
 if(isset($name) && log_me_in($name,$pass)){
 		$_SESSION["groups"][]=$name;
 		if($album!=''){
-			echo "<script>$('#logindiv').fadeOut('slow'); $('#projcontent').load('./files.php?action=album&album=$album');</script>";
+			echo "<script>$('#logindiv').fadeOut('slow'); $('#projcontent').load('files.php', { action: 'album', album: '$album'});</script>";
 		}
 		echo "You are now logged into the groups : ";
 		foreach($_SESSION["groups"] as $line_num => $group_name)
