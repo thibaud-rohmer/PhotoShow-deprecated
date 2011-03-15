@@ -34,7 +34,7 @@ function refresh_img(url){
 		return false;
 	});
 
-	location.hash=url;
+	location.hash=encodeURI(url);
 	
 }
 
@@ -467,7 +467,7 @@ $(document).ready(function() {
 
 function parse_my_hash_dude(){
 	if(location.hash.length>2){
-		var hash=location.hash.substr(1);
+		var hash=decodeURI(location.hash.substr(1));
 		$('#exif').hide();
 		$('#exifdiv').hide();	
 		$("#menubar").show();
