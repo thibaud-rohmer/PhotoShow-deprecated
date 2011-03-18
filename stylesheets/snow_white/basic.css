@@ -163,6 +163,8 @@ div#right {
   top:0;
   left:250px;
   padding:10px;
+  -moz-box-shadow: 0px 10px 20px #777;
+  -webkit-box-shadow: 0 10px 20px #777;
 }
 
 div#projcontent {
