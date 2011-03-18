@@ -400,7 +400,7 @@ $(document).ready(function() {
 		$('.year').removeClass('menu_selected');
 		$('#leftcolumn li').removeClass('menu_selected');
 		$('#logindiv').hide();
-		location.hash=$(this).attr("title");
+		location.hash=encodeURI($(this).attr("title"));
 		$(this).addClass('menu_selected');
 		$(this).next().addClass('open').slideDown('slow');
 		$('div.albums:not(.open)', accordionCache).slideUp();
@@ -416,8 +416,8 @@ $(document).ready(function() {
 		$('#exif').hide();
 		$('#logindiv').hide();
 		$('#exifdiv').fadeOut("slow");	
-		if(myclass=="album")	location.hash=$(this).attr("title");
-		else location.hash=myclass+"_"+$(this).attr("title");
+		if(myclass=="album")	location.hash=encodeURI($(this).attr("title"));
+		else location.hash=encodeURI(myclass+"_"+$(this).attr("title"));
 		$("#leftcolumn li").removeClass('menu_selected');
 		$(this).addClass('menu_selected');
 	});
