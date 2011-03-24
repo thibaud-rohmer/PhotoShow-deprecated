@@ -72,6 +72,7 @@ require_once "settings.php";
 		<div id="accordion"  >
 			<?php require "folders.php"; ?>
 		</div> 
+		<div id="author">Powered by <a href="https://github.com/thibaud-rohmer/PhotoShow">PhotoShow</a></div>
 	</div>
 
 	<div id="right" >

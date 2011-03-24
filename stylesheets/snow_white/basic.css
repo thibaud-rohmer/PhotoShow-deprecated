@@ -137,6 +137,14 @@ div.count{
 	text-align:center;
 }
 
+#author {
+	position:absolute;
+	bottom:20px;
+	text-align:center;
+	width:100%;
+	color:black;	
+}
+
 div#right {
 	text-align:left;
 	position:absolute;
