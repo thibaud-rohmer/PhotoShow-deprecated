@@ -145,6 +145,10 @@ div.count{
 	color:black;	
 }
 
+#author a{
+	color:#333;
+}
+
 div#right {
 	text-align:left;
 	position:absolute;
