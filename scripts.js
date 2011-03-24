@@ -324,16 +324,12 @@ function list_selected_as_php(){
 	return mylist;
 };
 
-/* more_button
-* Displays the "more" button
-*/
-
 /* display_more
 * Displays next thumbnails
 *
 */
 function display_more(page,limit,size_dir){
-	morebutton="<li class='end'>More...</li>";
+	morebutton="<li class='end'><a>More...</a></li>";
 	
 	$.post('files.php', {action:'go_on', page: page} ,function(data){ 
 		$(data).appendTo('#album_contents');

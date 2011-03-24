@@ -18,7 +18,7 @@ if(false){
 if($by_age_all || $by_age_albums || $random_all || $random_albums || is_dir($virtual))
 {
 
-	echo("<div class='year'> $generated_title </div><div class='albums'><ul>");
+	echo("<div class='year'><a>$generated_title</a></div><div class='albums'><ul>");
 
 	// Generated - By age
 	if($by_age_all || $by_age_albums)
