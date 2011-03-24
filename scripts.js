@@ -434,16 +434,19 @@ $(document).ready(function() {
 	
 	$("#help a").click(function(){
 		$('#wtf .content').load('help.txt');
-		if($("#wtf").is(":visible")){
-			$("#wtf").fadeOut("slow");
-		}else{
-			$("#wtf").fadeIn("slow");
+		if(!$("#wtf").is(":visible")){
+			$("#wtf").fadeIn("slow",function(){
+				$("body").click(function(){
+					if($("#wtf").is(":visible")) {
+						$("#wtf").fadeOut("slow");
+						$("body").unbind("click");
+					}
+				});
+			});
+	
 		}
 	});
-	
-	$("body").click(function(){
-			if($("#wtf").is(":visible")) $("#wtf").fadeOut("slow");
-	});
+
 
 	$(".menubar_button").click(function(){
 		var name="#"+$(this).attr("id")+"div";
