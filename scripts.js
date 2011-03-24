@@ -441,6 +441,10 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("body").click(function(){
+			if($("#wtf").is(":visible")) $("#wtf").fadeOut("slow");
+	});
+
 	$(".menubar_button").click(function(){
 		var name="#"+$(this).attr("id")+"div";
 		if($(name).is(":visible")){
