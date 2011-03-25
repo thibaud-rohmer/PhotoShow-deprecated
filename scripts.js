@@ -39,6 +39,10 @@ function refresh_img(url){
 }
 
 
+function update_title(title){
+	document.title = title;
+}
+
 /* show_select
 * Brings focus to selected image
 *
