@@ -329,7 +329,7 @@ function list_selected_as_php(){
 *
 */
 function display_more(page,limit,size_dir){
-	morebutton="<li class='end'><a>More...</a></li>";
+	morebutton="<li class='end'>More...</li>";
 	
 	$.post('files.php', {action:'go_on', page: page} ,function(data){ 
 		$(data).appendTo('#album_contents');
