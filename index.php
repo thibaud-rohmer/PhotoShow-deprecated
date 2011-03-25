@@ -16,6 +16,8 @@ require_once "settings.php";
 	
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta name="author" content="Thibaud Rohmer" >
+
+		<link rel="icon" type="image/ico" href="favicon.ico">
 		<title><?php echo $title ?></title>
 		
 		<?php 
