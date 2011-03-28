@@ -69,7 +69,7 @@ a:visited {
 .year {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
-  color: #426dc9;
+  color: #999;
   cursor: pointer;
   display: block;
   font-size: 105%;
@@ -88,12 +88,11 @@ a:visited {
 
 div.menu_selected {
 	-webkit-box-shadow: 0px 1px 0px #f7f7f7;
-	background-color: #bbcee9;
-	background: -webkit-linear-gradient(left, #bbcee9, #bbcee9 97%, #aabedc);
-	border-bottom: 1px solid #8faad9;
-	border-top: 1px solid #8faad9;
+	background-color: #ddd;
+	border-bottom: 1px solid #bbb;
+	border-top: 1px solid #ccc;
 	color: #666;
-	text-shadow: #bbcee9 0 1px 1px;
+	text-shadow: #ddd 0 1px 1px;
 }
 
 #leftcolumn p{
@@ -137,16 +136,37 @@ div.count{
 	text-align:center;
 }
 
-#author {
+div#leftcolumnbottom {
+	background: #ccc;
 	position:absolute;
-	bottom:20px;
+	bottom:0px;
 	text-align:center;
 	width:100%;
-	color:black;	
+	color:white;
+	border-top:1px solid #999;
+}
+
+div.sortbutton{
+	background-color:#999;
+	padding:2px;
+	display:inline-block;
+	margin-top:10px;
+	margin-bottom:5px;
+	border:1px solid white;
+	cursor:pointer;
+}
+
+div.sortbuttonselected {
+	background-color:#666;
 }
 
 #author a{
 	color:#333;
+}
+
+div#author{
+	margin-bottom:20px;
+	color:black;
 }
 
 div#right {

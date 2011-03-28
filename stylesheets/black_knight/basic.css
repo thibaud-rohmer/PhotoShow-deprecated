@@ -123,13 +123,39 @@ div.count{
 	text-align:center;
 }
 
-#author {
+div#leftcolumnbottom {
+        background: black;
         position:absolute;
-        bottom:20px;
+        bottom:0px;
         text-align:center;
         width:100%;
         color:white;
+        border-top:1px solid #999;
 }
+
+div.sortbutton{
+        background-color:#999;
+        padding:2px;
+        display:inline-block;
+        margin-top:10px;
+        margin-bottom:5px;
+        border:1px solid white;
+        cursor:pointer;
+}
+
+div.sortbuttonselected {
+        background-color:#666;
+}
+
+#author a{
+        color:#aaa;
+}
+
+div#author{
+        margin-bottom:20px;
+        color:white;
+}
+
 
 div#right {
 	text-align:left;

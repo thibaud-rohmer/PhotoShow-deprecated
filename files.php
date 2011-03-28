@@ -16,17 +16,29 @@ define("IS_IN_MY_APP", "TRUE");
 $action="";
 $album="";
 $page="";
+$sort="";
 $images=array();
 $groups=array();
 
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];
 if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
+if(isset($_SESSION['sort']))	$sort	= $_SESSION['sort'];
+if(isset($_SESSION['album']))	$album	= $_SESSION['album'];
 
 if(isset($_POST['action']))		$action	= $_POST['action'];
-if(isset($_POST['album']))		$album 	= $_POST['album']."/";
 if(isset($_POST['page']))		$page 	= $_POST['page'];
+if(isset($_POST['album'])){
+		$album 	= $_POST['album']."/";
+		$_SESSION['album'] = $_POST['album']."/";
+}
+if(isset($_POST['sort'])){
+	$sort			=	$_POST['sort'];
+	$_SESSION['sort']	=	$_POST['sort'];
+}
 
 $album=str_replace("//","/",$album);
+
+
 
 if(!isset($groups))  $groups = array();
 
@@ -48,15 +60,27 @@ if($action=="album"){
 		die();
 	}
 	
-	if($sort_all_by_age) array_multisort(array_map('filemtime', $images), SORT_DESC, $images); 
 	$images=str_replace("//","/",$images);
-	
+
+	switch ($sort){
+		case "date_desc" :
+			array_multisort(array_map('filemtime', $images), SORT_DESC, $images);
+			break;
+		case "date_asc" :
+			array_multisort(array_map('filemtime', $images), SORT_ASC, $images);
+			break;
+		case "name" :
+			sort($images);
+			break;
+	}
+//		if($sort_all_by_age) array_multisort(array_map('filemtime', $images), SORT_DESC, $images);
+/*
 }elseif($action=="age"){
 	$images=sort_by_date($groups,$album);
 
 }elseif($action=="random"){
 	$images=sort_by_random($groups,$album);
-
+*/
 }elseif($action=="virtual"){
 	$images=array();
 	$lines=file($album);
