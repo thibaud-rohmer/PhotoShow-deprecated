@@ -77,7 +77,7 @@ require_once "settings.php";
 		<div id="leftcolumnbottom">
 			<div class="sortbutton" ><a title='date_asc'>DATE ASC</a></div>
 			<div class="sortbutton" ><a title='date_desc'>DATE DESC</a></div>
-			<div class="sortbutton" ><a title='name'>NAME</a></div>
+			<div class="sortbutton sortbuttonselected" ><a title='name'>NAME</a></div>
 			<div id="author">Powered by <a href="https://github.com/thibaud-rohmer/PhotoShow">PhotoShow</a></div>
 		</div>
 	</div>
