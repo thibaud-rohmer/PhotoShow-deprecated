@@ -89,7 +89,4 @@ $menubar_right 		=	array("login","help");
 
 /******* Global *******/
 
-// Sorts all pictures in the albums by age instead of sorting by name
-$sort_all_by_age	=	false;
-
 ?>

@@ -418,6 +418,11 @@ $(document).ready(function() {
 		$(this).addClass('menu_selected');
 	});
 	
+	$(".sortbutton a").click(function(){
+		$(".sortbuttonselected").removeClass("sortbuttonselected");
+		$("#projcontent").load('files.php', { sort: $(this).attr("title"), action: "album" });
+		$(this).parent().addClass("sortbuttonselected");
+	});
 /* Menubar */
 
 	$("#next a").click(function(){		
