@@ -81,7 +81,7 @@ $buttons["fblike"]	=	""; // Doesnt work great yet...
 $menubar_left 		=	array("exif","comments","admin");
 
 // Center of menu bar : buttons
-$menubar_center		=	array("previous","next");
+$menubar_center		=	array("previous","largeimg","next");
 
 // Right side of menu bar : buttons
 $menubar_right 		=	array("login","help");

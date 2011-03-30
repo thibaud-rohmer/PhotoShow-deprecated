@@ -34,6 +34,7 @@ function refresh_img(url){
 	$('#admindiv .content').load('admin.php',{ img: url });
 
 	$('#commentsdiv .content').load("infos.php",{ file: url });
+	$('#largeimg').html("<a href='"+url+"'>IMG</a>");
 
 	$('#display_img a').click(function(){ 
 		change_display();
