@@ -146,6 +146,7 @@ function display_thumbnails($images,$first,$num){
 						}
 					}
 					
+					//echo ("<script>$.post('thumb.php',{ x: 800, y: 600, src: '$src', dest:'$dest' }); </script>");
 					require "thumb.php";
 			}
 
