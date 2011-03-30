@@ -37,6 +37,12 @@ require_once "settings.php";
 
 	<script src="scripts.js" type="text/javascript" charset="utf-8"></script>
 
+<?php
+
+echo "<script>
+thumbdir = '$thumbdir';
+</script>";
+?>
 </head>
 <body>
 	<div id="fs">
@@ -75,9 +81,10 @@ require_once "settings.php";
 			<?php require "folders.php"; ?>
 		</div> 
 		<div id="leftcolumnbottom">
-			<div class="sortbutton" ><a title='date_asc'>DATE ASC</a></div>
-			<div class="sortbutton" ><a title='date_desc'>DATE DESC</a></div>
-			<div class="sortbutton sortbuttonselected" ><a title='name'>NAME</a></div>
+			<?php if($slow_conn) echo '<div class="slowconn lcbbutton" ><a>SLOW CONNECTION</a></div>'; ?>
+			<div class="sortbutton lcbbutton" ><a title='date_asc'>DATE ASC</a></div>
+			<div class="sortbutton lcbbutton" ><a title='date_desc'>DATE DESC</a></div>
+			<div class="sortbutton lcbbutton sortbuttonselected" ><a title='name'>NAME</a></div>
 			<div id="author">Powered by <a href="https://github.com/thibaud-rohmer/PhotoShow">PhotoShow</a></div>
 		</div>
 	</div>

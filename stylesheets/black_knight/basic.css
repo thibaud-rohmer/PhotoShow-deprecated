@@ -133,7 +133,7 @@ div#leftcolumnbottom {
         border-top:1px solid #999;
 }
 
-div.sortbutton{
+div.lcbbutton{
         background-color:#999;
         padding:2px;
         display:inline-block;
@@ -143,6 +143,9 @@ div.sortbutton{
         cursor:pointer;
 }
 
+div.slowconnselected {
+	background-color:#666;
+}
 div.sortbuttonselected {
         background-color:#666;
 }

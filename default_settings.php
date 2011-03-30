@@ -89,4 +89,5 @@ $menubar_right 		=	array("login","help");
 
 /******* Global *******/
 
+$slow_conn		=	true;
 ?>

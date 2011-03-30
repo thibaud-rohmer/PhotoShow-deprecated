@@ -16,8 +16,14 @@ function refresh_img(url){
 		return false;
 	}
 	
-	$('#display_img').html('<span></span><a href="'+url+'"><img src="'+url+'"/></a>');
-	
+	if(slow_conn){
+		mypos=url.lastIndexOf("/");
+		small_url = thumbdir + url.substr(0,mypos) + "/s_" + url.substr(mypos+1);
+		$('#display_img').html('<span></span><a href="'+small_url+'"><img src="'+small_url+'"/></a>');
+	}else{
+		$('#display_img').html('<span></span><a href="'+url+'"><img src="'+url+'"/></a>');
+	}
+
 	$('#fs_img').html('<img src="'+url+'"/>');
 
 	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&amp;action=like&amp;colorscheme=dark&amp;height=20&amp;ref='+escape(location.href.replace("#",""))+'&amp;href='+escape(location.href.replace("#",""))+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
@@ -392,6 +398,7 @@ $(document).ready(function() {
 	
 /* Left menu */
 	
+	slow_conn=false;
 	accordionCache = $('div#accordion');
   	$('.year', accordionCache).click( function () {
 	
@@ -426,6 +433,11 @@ $(document).ready(function() {
 		$(".sortbuttonselected").removeClass("sortbuttonselected");
 		$("#projcontent").load('files.php', { sort: $(this).attr("title"), action: "album" });
 		$(this).parent().addClass("sortbuttonselected");
+	});
+
+	$(".slowconn a").click(function(){
+		slow_conn = !(slow_conn);
+		$(this).parent().toggleClass("slowconnselected");
 	});
 /* Menubar */
 

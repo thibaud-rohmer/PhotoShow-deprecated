@@ -48,7 +48,7 @@ $albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));
 if ($page < 1) echo ("<script>setup_keyboard();</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
 
 
-if($action=="album"){
+if($action=="album" && $album != ""){
 	$images=array();
 	$new_dir=array();
 	
@@ -73,14 +73,7 @@ if($action=="album"){
 			sort($images);
 			break;
 	}
-//		if($sort_all_by_age) array_multisort(array_map('filemtime', $images), SORT_DESC, $images);
-/*
-}elseif($action=="age"){
-	$images=sort_by_date($groups,$album);
 
-}elseif($action=="random"){
-	$images=sort_by_random($groups,$album);
-*/
 }elseif($action=="virtual"){
 	$images=array();
 	$lines=file($album);

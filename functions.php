@@ -103,7 +103,7 @@ function display_thumbnails($images,$first,$num){
 		$images[$i] = str_replace("./","",$images[$i]);
 
 
-		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]) && substr($myfile,-3,3) != "php" && substr($myfile,-3,3) != "xml" && substr($images[$i],-3,3) != "txt")	
+		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]) && substr($images[$i],-3,3) != "php" && substr($images[$i],-3,3) != "xml" && substr($images[$i],-3,3) != "txt")
 		{
 
 			if(!is_file($thumbdir.$images[$i]))
@@ -121,11 +121,34 @@ function display_thumbnails($images,$first,$num){
 						if(!is_dir($tempvar)){
 							 mkdir($tempvar);
 							 chmod($tempvar,0777);
-							}
+						}
+					}
+					require "thumb.php";
+			}
+			$thumbname=$thumbdir.$images[$i];
+			$smallpic = substr_replace($thumbname, "/s_", strrpos($thumbname, "/"), strlen("/"))
+
+			if(!is_file($smallpic) && $slow_conn)
+			{
+					$x=800;
+					$y=600;
+					$src=$images[$i];
+					$dest=$smallpic;
+					$dirs=explode("/",$images[$i]);
+					for($sec=0;$sec<sizeof($dirs);$sec++){
+						$tempvar=$thumbdir;
+						for($sectemp=0;$sectemp<$sec;$sectemp++){
+							$tempvar="$tempvar/$dirs[$sectemp]";
+						}
+						if(!is_dir($tempvar)){
+							 mkdir($tempvar);
+							 chmod($tempvar,0777);
+						}
 					}
 					
 					require "thumb.php";
 			}
+
 
 			echo ('
 				<li class="list_item">
