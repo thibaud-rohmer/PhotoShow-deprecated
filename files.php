@@ -45,7 +45,7 @@ if(!isset($groups))  $groups = array();
 $albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));
 
 
-if ($page < 1) echo ("<script>setup_keyboard();</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
+if ($page < 1) echo ("<script>setup_keyboard(); update_title('$title - $albumname');</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
 
 
 if($action=="album" && $album != ""){
