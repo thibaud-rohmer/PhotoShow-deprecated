@@ -20,11 +20,12 @@ function refresh_img(url){
 		mypos=url.lastIndexOf("/");
 		small_url = thumbdir + url.substr(0,mypos) + "/s_" + url.substr(mypos+1);
 		$('#display_img').html('<span></span><a href="'+small_url+'"><img src="'+small_url+'"/></a>');
+		$('#fs_img').html('<img src="'+small_url+'"/>');
 	}else{
 		$('#display_img').html('<span></span><a href="'+url+'"><img src="'+url+'"/></a>');
+		$('#fs_img').html('<img src="'+url+'"/>');
 	}
 
-	$('#fs_img').html('<img src="'+url+'"/>');
 
 	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&amp;action=like&amp;colorscheme=dark&amp;height=20&amp;ref='+escape(location.href.replace("#",""))+'&amp;href='+escape(location.href.replace("#",""))+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
 
@@ -87,8 +88,16 @@ function preload_next(){
 			$('.end').trigger('click');
 		}
 	
+		url=$(".select").next().children("a").attr("title");
+
+		if(slow_conn){
+			mypos=url.lastIndexOf("/");
+			url = thumbdir + url.substr(0,mypos) + "/s_" + url.substr(mypos+1);
+		}
+
+
 		nextImage = new Image(); 
-		nextImage.src = $(".select").next().children("a").attr("title");
+		nextImage.src = url;
 	}
 }
 
@@ -98,8 +107,16 @@ function preload_next(){
 */
 function preload_prev(){
 	if(typeof($(".select").prev().attr("class")) != 'undefined'){
+		url = $(".select").prev().children("a").attr("title");
+
+		if(slow_conn){
+			mypos=url.lastIndexOf("/");
+			url = thumbdir + url.substr(0,mypos) + "/s_" + url.substr(mypos+1);
+		}
+
+
 		nextImage = new Image(); 
-		nextImage.src = $(".select").prev().children("a").attr("title");
+		nextImage.src = url;
 	}
 }
 
