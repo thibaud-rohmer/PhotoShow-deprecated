@@ -126,7 +126,7 @@ function display_thumbnails($images,$first,$num){
 					require "thumb.php";
 			}
 			$thumbname=$thumbdir.$images[$i];
-			$smallpic = substr_replace($thumbname, "/s_", strrpos($thumbname, "/"), strlen("/"))
+			$smallpic = substr_replace($thumbname, "/s_", strrpos($thumbname, "/"), strlen("/"));
 
 			if(!is_file($smallpic) && $slow_conn)
 			{
