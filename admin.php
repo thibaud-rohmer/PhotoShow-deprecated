@@ -38,7 +38,7 @@ if(sizeof(array_intersect($groups,$authorized))==0){
 }else{
 	if(file_exists($img) && !is_dir($img))
 	if($action=="delete") {
-		system("rm ".$img);
+		$res=unlink($img);
 		echo("<script>del_select_next();</script>");
 	}
 }
