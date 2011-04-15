@@ -145,9 +145,13 @@ function display_thumbnails($images,$first,$num){
 							 chmod($tempvar,0777);
 						}
 					}
-					
-					//echo ("<script>$.post('thumb.php',{ x: 800, y: 600, src: '$src', dest:'$dest' }); </script>");
-					require "thumb.php";
+					$dimensions = getimagesize($src);
+					if($dimensions && $dimensions[0] <= 800 && $dimensions[1] <= 600) {
+						copy($src,$dest);
+					}else{
+						//echo ("<script>$.post('thumb.php',{ x: 800, y: 600, src: '$src', dest:'$dest' }); </script>");
+						require "thumb.php";
+					}
 			}
 
 
