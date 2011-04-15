@@ -119,7 +119,7 @@ if($real_albums)
 					echo("
 						<li 
 						class='album' 
-						title='$dirname$subdirname/$file'
+						title=\"$dirname$subdirname/$file\"
 						><div class='folder_name'>
 						".$myname."</div>
 						<div class='count'>".$count."</div>
