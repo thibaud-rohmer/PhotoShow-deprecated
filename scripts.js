@@ -168,6 +168,7 @@ function del_select_next(){
 	current=$(".select");
 	select_next();
 	current.hide();
+	current.remove();
 }
 
 /* Diaporama */

@@ -31,7 +31,9 @@ if(!isset($groups))  $groups = array();
 
 $authorized[0]="admin";
 if(sizeof(array_intersect($groups,$authorized))==0){
-	echo "Only the admin can view this";
+	echo "Only the admin can view this</br>";
+	$included=1;
+	include "login.php";
 	return;
 }else{
 	if(file_exists($img) && !is_dir($img))

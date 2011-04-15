@@ -40,12 +40,15 @@ if(isset($name) && log_me_in($name,$pass)){
 		});
 	});   
 </script>
-
+<?php if(!$included) { ?>
 <div class="close">
 	<a href="#">x</a>
 </div>
 
 <p>Please login to access this album :</p>
+<?php
+}
+?>
 <form accept-charset="utf-8" >	
 	Group name :<p><input type="text" name="name"></p>
 	Password :<p><input type="password" name="pass"></p>
