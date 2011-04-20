@@ -468,6 +468,14 @@ $(document).ready(function() {
 		select_prev();
 	});
 	
+	$("#fullscreen a").click(function(){
+		$("#fs").show();
+	});
+
+	$("#fs").click(function(){
+		$("#fs").hide();
+	});
+
 	$("#help a").click(function(){
 		$('#wtf .content').load('help.txt');
 		if(!$("#wtf").is(":visible")){
