@@ -152,7 +152,7 @@ function display_thumbnails($images,$first,$num){
 					require "thumb.php";
 					$rssimg=$dest;
 					$authfile=substr($src,0,strrpos("/",$src))."/authorized.txt";
-					if(!is_file($authfile)&& $url=''){
+					if(!is_file($authfile)&& $url!=''){
 						if($slow_conn) $rssimg=$smallpic;
 						rssupdate($url.$rssimg,$url."#".$src,$title);
 					}
