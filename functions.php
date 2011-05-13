@@ -95,14 +95,18 @@ function sort_by_random($groups,$album){
 function rssupdate($urlimg,$urlbase,$title){
 	if(!is_file("./feed.xml")){
 		$r_f = fopen("./feed.xml","w+");
-		fwrite($r_f,"<rss version='2.0'><channel><title>$title</title>\n</channel>\n</rss>");
+		fwrite($r_f,"<rss version='2.0'><channel><title>$title</title>\n</channel></rss>");
 		fclose($r_f);
 	}
-	$buffer="<item><title>New Photo !</title>\n<description><img src='$urlimg'/></description>\n<link>$urlbase</link><pubDate>".date()."</pubDate>\n</item>\n";
+	$buffer="<item><title>New Photo !</title><description><img src='$urlimg'/></description><link>$urlbase</link><pubDate>".date()."</pubDate></item>\n";
 	$r_f=file("./feed.xml");
 	$arr_tmp = array_splice($r_f,1);
     	$r_f[] = $buffer;
     	$r_f = array_merge($r_f,$arr_tmp);
+	if(sizeof($r_f)>22){
+		array_splice($r_f,20);
+		$r_f[]="</channel></rss>";
+	}
    
 	$r_file=fopen("./feed.xml","w+");
 	foreach($r_f as $k => $v){
@@ -148,7 +152,7 @@ function display_thumbnails($images,$first,$num){
 					require "thumb.php";
 					$rssimg=$dest;
 					$authfile=substr($src,0,strrpos("/",$src))."/authorized.txt";
-					if(!is_file($authfile)){
+					if(!is_file($authfile)&& $url=''){
 						if($slow_conn) $rssimg=$smallpic;
 						rssupdate($url.$rssimg,$url."#".$src,$title);
 					}
