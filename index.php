@@ -48,6 +48,7 @@ thumbdir = '$thumbdir';
 	<div id="fs">
 		<div id="fs_img"></div>
 	</div>
+	<div id="loading">Generating Thumbnails...</div>
 	<div id="wtf">
 		<div class="content">Aide</div>
 		<div class="bg"></div>
@@ -85,6 +86,8 @@ thumbdir = '$thumbdir';
 			<div class="sortbutton lcbbutton" ><a title='date_asc'>DATE ASC</a></div>
 			<div class="sortbutton lcbbutton" ><a title='date_desc'>DATE DESC</a></div>
 			<div class="sortbutton lcbbutton sortbuttonselected" ><a title='name'>NAME</a></div>
+			<div class="lcbbutton" ><a href="feed.xml">RSS</a></div>
+			<div class="lcbbutton" ><a href="edit_settings.php">ADMIN</a></div>
 			<div id="author">Powered by <a href="https://github.com/thibaud-rohmer/PhotoShow">PhotoShow</a></div>
 		</div>
 	</div>

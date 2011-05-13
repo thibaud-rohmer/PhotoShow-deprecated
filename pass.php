@@ -1,12 +1,9 @@
 <?php
-if(!defined("ME_IZ_GOOD")) die("You = bad man.");
-
-/***** ADD YOUR GROUPS HERE ******/
-
-// You may remove this group : it is just an example.
-$groups[]="demo:00000000000000000000000000000000";
-
-
-/***** ADD YOUR GROUPS BEFORE THIS LINE ******/
-
+ /*
+ * Created by Thibaud Rohmer
+*/
+/******* GROUPS ******/
+ if(!defined('ME_IZ_GOOD')) die('You = bad man.');
+// If you remove the admin account, it will still exist will password : passadmin
+ $groups['admin']='e8b17190ea1ddbaf88efe0bdc56a4ba2a602407e';
 ?>

@@ -359,24 +359,24 @@ function list_selected_as_php(){
 */
 function display_more(page,limit,size_dir){
 	morebutton="<li class='end'>More...</li>";
-	
-	$.post('files.php', {action:'go_on', page: page} ,function(data){ 
-		$(data).appendTo('#album_contents');
-		page++;		
+	$("#loading").show("fast",function(){
+		$.post('files.php', {action:'go_on', page: page} ,function(data){ 
+			$(data).appendTo('#album_contents');
+			page++;		
+			if((page)*limit + 2 < size_dir) 
+			$(morebutton).appendTo('#album_contents');
+			
+			$('.end').click(function(){
+				$(this).remove();
+				if((page)*limit + 2 < size_dir)
+				{
+					display_more(page,limit,size_dir);
+				}
+			});
 		
-		if((page)*limit + 2 < size_dir) 
-		$(morebutton).appendTo('#album_contents');
-		
-		$('.end').click(function(){
-			$(this).remove();
-			if((page)*limit + 2 < size_dir)
-			{
-				display_more(page,limit,size_dir);
-			}
+			init_thumbs();
+			$("#loading").hide("fast");
 		});
-		
-		init_thumbs();
-		
 	});
 }
 
@@ -420,16 +420,21 @@ $(document).ready(function() {
 	slow_conn=false;
 	accordionCache = $('div#accordion');
   	$('.year', accordionCache).click( function () {
-	
-		$("#projcontent").load('files.php', { album: $(this).attr("title"), action: "album" });
-		$('div.albums', accordionCache).removeClass('open');
-		$('.year').removeClass('menu_selected');
-		$('#leftcolumn li').removeClass('menu_selected');
-		$('#logindiv').hide();
-		location.hash=encodeURI($(this).attr("title"));
-		$(this).addClass('menu_selected');
-		$(this).next().addClass('open').slideDown('slow');
-		$('div.albums:not(.open)', accordionCache).slideUp();
+
+		mytitle=$(this).attr("title");
+		$("#loading").show("fast",function(){
+			$("#projcontent").load('files.php', { album: mytitle, action: "album" },function(){
+				$("#loading").hide("fast");
+			});
+		});
+			$('div.albums', accordionCache).removeClass('open');
+			$('.year').removeClass('menu_selected');
+			$('#leftcolumn li').removeClass('menu_selected');
+			$('#logindiv').hide();
+			location.hash=encodeURI($(this).attr("title"));
+			$(this).addClass('menu_selected');
+			$(this).next().addClass('open').slideDown('slow');
+			$('div.albums:not(.open)', accordionCache).slideUp();
   	} );
 
 
@@ -438,7 +443,13 @@ $(document).ready(function() {
 		if (myclass.indexOf(" ") > 1) {
 			myclass=myclass.substr(0,myclass.indexOf(" "));
 		}
-		$("#projcontent").load('files.php', { album: $(this).attr("title"), action: "album" });
+		mytitle=$(this).attr("title");
+		$("#loading").show("fast",function(){
+			$("#projcontent").load('files.php', { album: mytitle, action: "album" },function(){
+				$("#loading").hide("fast");
+			});
+		});
+		
 		$('#exif').hide();
 		$('#logindiv').hide();
 		$('#exifdiv').fadeOut("slow");	
@@ -450,7 +461,13 @@ $(document).ready(function() {
 	
 	$(".sortbutton a").click(function(){
 		$(".sortbuttonselected").removeClass("sortbuttonselected");
-		$("#projcontent").load('files.php', { sort: $(this).attr("title"), action: "album" });
+		mytitle=$(this).attr("title");
+		$("#loading").show("fast",function(){
+			$("#projcontent").load('files.php', { album: mytitle, action: "album" },function(){
+				$("#loading").hide("fast");
+			});
+		});
+	
 		$(this).parent().addClass("sortbuttonselected");
 	});
 
@@ -530,6 +547,7 @@ function parse_my_hash_dude(){
 		var myaction=hash.substr(0,hash.lastIndexOf("_"));
 		var myalbum=hash.substr(hash.lastIndexOf("_")+1);
 		$("#projcontent").load('files.php', { album: myalbum, action: myaction });
+
 	}
 	else
 	{

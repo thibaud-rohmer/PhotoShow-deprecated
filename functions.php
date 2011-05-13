@@ -92,6 +92,25 @@ function sort_by_random($groups,$album){
 	return $images;
 }
 
+function rssupdate($urlimg,$urlbase,$title){
+	if(!is_file("./feed.xml")){
+		$r_f = fopen("./feed.xml","w+");
+		fwrite($r_f,"<rss version='2.0'><channel><title>$title</title>\n</channel>\n</rss>");
+		fclose($r_f);
+	}
+	$buffer="<item><title>New Photo !</title>\n<description><img src='$urlimg'/></description>\n<link>$urlbase</link><pubDate>".date()."</pubDate>\n</item>\n";
+	$r_f=file("./feed.xml");
+	$arr_tmp = array_splice($r_f,1);
+    	$r_f[] = $buffer;
+    	$r_f = array_merge($r_f,$arr_tmp);
+   
+	$r_file=fopen("./feed.xml","w+");
+	foreach($r_f as $k => $v){
+		fwrite($r_file,$v);
+	}
+	fclose($r_file);
+}
+
 /* display_vignettes
 * displays $num thumbnails taken fom the $images array
 */
@@ -105,6 +124,9 @@ function display_thumbnails($images,$first,$num){
 
 		if(strpos($images[$i],"/.")===false && !is_dir($images[$i]) && is_file($images[$i]) && substr($images[$i],-3,3) != "php" && substr($images[$i],-3,3) != "xml" && substr($images[$i],-3,3) != "txt")
 		{
+
+			$thumbname=$thumbdir.$images[$i];
+			$smallpic = substr_replace($thumbname, "/s_", strrpos($thumbname, "/"), strlen("/"));
 
 			if(!is_file($thumbdir.$images[$i]))
 			{
@@ -124,9 +146,13 @@ function display_thumbnails($images,$first,$num){
 						}
 					}
 					require "thumb.php";
+					$rssimg=$dest;
+					$authfile=substr($src,0,strrpos("/",$src))."/authorized.txt";
+					if(!is_file($authfile)){
+						if($slow_conn) $rssimg=$smallpic;
+						rssupdate($url.$rssimg,$url."#".$src,$title);
+					}
 			}
-			$thumbname=$thumbdir.$images[$i];
-			$smallpic = substr_replace($thumbname, "/s_", strrpos($thumbname, "/"), strlen("/"));
 
 			if(!is_file($smallpic) && $slow_conn)
 			{
@@ -187,7 +213,8 @@ function log_me_in($name,$pass){
 	define("ME_IZ_GOOD","TRUE");
 	require "pass.php";
 	define("ME_IZ_GOOD","FALSE");	
-	return (in_array($name.":".sha1($pass),$groups));
+	return ($groups[$name]==sha1($pass));
+//	return (in_array($name.":".sha1($pass),$groups));
 }
 
 /* load_images

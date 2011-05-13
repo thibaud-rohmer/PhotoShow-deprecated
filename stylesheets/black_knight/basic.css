@@ -530,6 +530,20 @@ div#wtf {
 	overflow:auto;
 }
 
+div#loading {
+        position:absolute;
+        top:50%;
+        left:50%;
+        height:50px;
+        width:200px;
+        margin:-25px 0px 0px -25px;
+        padding:20px;
+        z-index:11;
+        display:none;
+        text-align:center;
+        background:#222;
+}
+
 div#logmein{
 	margin:10px;
 	cursor:pointer;
