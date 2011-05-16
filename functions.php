@@ -92,14 +92,25 @@ function sort_by_random($groups,$album){
 	return $images;
 }
 
-function rssupdate($urlimg,$urlbase,$title){
-	if(!is_file("./feed.xml")){
-		$r_f = fopen("./feed.xml","w+");
+function rssupdate($urlimg,$urlbase,$title,$type,$art_t){
+	if($type=="photos"){
+		$feed_f="./photos.xml";
+		$art_title="New Photo !";
+	}elseif($type=="albums"){
+		$feed_f="./albums.xml";
+		$art_title="New Album : ".addslashes($art_t);
+	}elseif($type=="comments"){
+		$feed_f="./comments.xml";
+		$art_title="New Comment !";
+	}
+
+	if(!is_file($feed_f)){
+		$r_f = fopen($feed_f,"w+");
 		fwrite($r_f,"<rss version='2.0'><channel><title>$title</title>\n</channel></rss>");
 		fclose($r_f);
 	}
-	$buffer="<item><title>New Photo !</title><description><img src='$urlimg'/></description><link>$urlbase</link><pubDate>".date()."</pubDate></item>\n";
-	$r_f=file("./feed.xml");
+	$buffer="<item><title>$art_title</title><description><img src='$urlimg'/></description><link>$urlbase</link><pubDate>".date('r')."</pubDate></item>\n";
+	$r_f=file($feed_f);
 	$arr_tmp = array_splice($r_f,1);
     	$r_f[] = $buffer;
     	$r_f = array_merge($r_f,$arr_tmp);
@@ -108,7 +119,7 @@ function rssupdate($urlimg,$urlbase,$title){
 		$r_f[]="</channel></rss>";
 	}
    
-	$r_file=fopen("./feed.xml","w+");
+	$r_file=fopen($feed_f,"w+");
 	foreach($r_f as $k => $v){
 		fwrite($r_file,$v);
 	}
@@ -139,22 +150,27 @@ function display_thumbnails($images,$first,$num){
 					$src=$images[$i];
 					$dest=$thumbdir.$images[$i];
 					$dirs=explode("/",$images[$i]);
+					$rssimg=$dest;
+					$srcdir=substr($src,0,strrpos($src,"/"));
+					$authfile=$srcdir."/authorized.txt";
 					for($sec=0;$sec<sizeof($dirs);$sec++){
 						$tempvar=$thumbdir;
 						for($sectemp=0;$sectemp<$sec;$sectemp++){
 							$tempvar="$tempvar/$dirs[$sectemp]";
 						}
 						if(!is_dir($tempvar)){
-							 mkdir($tempvar);
-							 chmod($tempvar,0777);
+							mkdir($tempvar);
+							chmod($tempvar,0777);
+							if(!is_file($authfile)&& $url!='' && $sec+1==sizeof($dirs)){
+								if($slow_conn) $rssimg=$smallpic;
+								rssupdate($url.$rssimg,$url."#".$srcdir,$title,"albums",substr($srcdir,strrpos($srcdir,"/")+1));
+							}
 						}
 					}
 					require "thumb.php";
-					$rssimg=$dest;
-					$authfile=substr($src,0,strrpos("/",$src))."/authorized.txt";
 					if(!is_file($authfile)&& $url!=''){
 						if($slow_conn) $rssimg=$smallpic;
-						rssupdate($url.$rssimg,$url."#".$src,$title);
+						rssupdate($url.$rssimg,$url."#".$src,$title,"photos");
 					}
 			}
 
