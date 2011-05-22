@@ -122,7 +122,7 @@ function rssupdate($urlimg,$urlbase,$title,$type,$art_t){
 		fwrite($r_f,"<rss version='2.0'><channel><title>$title</title>\n</channel></rss>");
 		fclose($r_f);
 	}
-	$buffer="<item><title>$art_title</title><description><img src='$urlimg'/></description><link>$urlbase</link><pubDate>".date('r')."</pubDate></item>\n";
+	$buffer="<item><title>$art_title</title><description><img src='$urlimg'/></description><link>\"$urlbase\"</link><pubDate>".date('r')."</pubDate></item>\n";
 	$r_f=file($feed_f);
 	$arr_tmp = array_splice($r_f,1);
     	$r_f[] = $buffer;
@@ -176,14 +176,14 @@ function display_thumbnails($images,$first,$num){
 							chmod($tempvar,0777);
 							if(!is_file($authfile)&& $url!='' && $sec+1==sizeof($dirs)){
 								if($slow_conn) $rssimg=$smallpic;
-								rssupdate($url.$rssimg,$url."#".$srcdir,$title,"albums",substr($srcdir,strrpos($srcdir,"/")+1));
+								rssupdate($url.$rssimg,$url."index.php?album=".$srcdir,$title,"albums",substr($srcdir,strrpos($srcdir,"/")+1));
 							}
 						}
 					}
 					require "thumb.php";
 					if(!is_file($authfile)&& $url!=''){
 						if($slow_conn) $rssimg=$smallpic;
-						rssupdate($url.$rssimg,$url."?action=image&image=".$src,$title,"photos");
+						rssupdate($url.$rssimg,$url."index.php?image=".$src,$title,"photos");
 					}
 			}
 

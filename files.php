@@ -68,6 +68,8 @@ $albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));
 
 if ($page < 1 || $getpage) echo ("<script>setup_keyboard(); update_title('$title - $albumname');</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
 
+if($action=='' && isset($_GET['image'])) $action="image";
+if($action=='' && isset($_GET['album'])) $action="album";
 
 if( ($action=="album" && $album != "") || $action=="image" ){
 	$images=array();
@@ -126,7 +128,7 @@ if($page<1) {
 	<script>
 	$(document).ready(function() {
 	");
-	if(!$getpage) echo ("change_display('init');");
+	if(!$getpage && $action!="image") echo ("change_display('init');");
 	else echo ("change_display('initpic');");
 	echo("
 		var page = 0;
