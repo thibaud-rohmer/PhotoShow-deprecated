@@ -5,6 +5,7 @@
 
 require_once "functions.php";
 require_once "settings.php"; 
+require "trick.php";
 
 ?>
 
@@ -42,6 +43,7 @@ require_once "settings.php";
 echo "<script>
 thumbdir = '$thumbdir';
 </script>";
+
 ?>
 </head>
 <body>
@@ -60,7 +62,10 @@ thumbdir = '$thumbdir';
 	</div>
 		
 	<div id="logindiv" class="panel">
-		<div class="content"><?php include "login.php" ?>
+		<div class="content">
+		<?php 
+			include "login.php"; 
+		?>
 		</div>
 		<div class="bg"></div>
 	</div>
@@ -93,16 +98,26 @@ thumbdir = '$thumbdir';
 	</div>
 
 	<div id="right" >
-		<div id="menubar" style="display:none;">
-			<?php menubar(); ?>			
-		</div>
-		<div id="projcontent" class="fullpage">
+<?php
+
+	if($action=='image'){
+		echo '<div id="menubar" class="menubar-inline">';
+		menubar();
+		echo '</div><div id="projcontent" style="display:visible;" class="inline">';
+		include 'files.php';
+		echo '</div><div id="display2" style="display:visible;">';
+		if(is_file("./".$image)) echo "<div id='display_img'><a href='./index.php?action=album'><img src='./".addslashes($image)."'></a></div>";
+		else echo "<div id='display_img'>Image not found !</div>";
+	}else{
+		echo '<div id="menubar" class="menubar-fullpage" style="display:none;">';
+		menubar();
+		echo '</div><div id="projcontent" class="fullpage">';
+		include 'files.php';
+		echo '</div><div id="display2" style="display:none;">';
+		echo "<div id='display_img'></div>";
+	}
+?>
 		</div>	
-		<div id="display2">
-			<div id="display_img">
-			</div>
-		</div>
-		
 	</div>	
 </div>	   
 

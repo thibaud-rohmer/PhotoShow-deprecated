@@ -19,12 +19,12 @@ body {
 }
 
 a {
-	color: white;
+	color: #333;
 	text-decoration:none;
 }
 
 a:hover {
-	color: #333;
+	color: #CCC;
 	text-decoration:none;	
 }
 
@@ -107,7 +107,6 @@ div.menu_selected {
 div.albums {
 	overflow:hidden;
 	margin:0;
-	display:none;
 	font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
 	font-weight:100;
 	color:black;
@@ -271,7 +270,6 @@ div#projcontent ul li{
 }
 
 #display2{
-	display:none;
 	background:black;
 	border-bottom:1px solid white;
 	padding:0px;

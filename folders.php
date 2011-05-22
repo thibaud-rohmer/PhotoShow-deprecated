@@ -13,76 +13,26 @@ require_once "settings.php";
 $dir 	=	scandir($dirname); 
 
 
-if(false){
 // Generated folders
-if($by_age_all || $by_age_albums || $random_all || $random_albums || is_dir($virtual))
-{
-
-	echo("<div class='year'><a>$generated_title</a></div><div class='albums'><ul>");
-
-	// Generated - By age
-	if($by_age_all || $by_age_albums)
-	{
-		echo("<p> $age_title </p>");
-
-		if($by_age_all) echo("<li class='age' title='*'>Everything </li>");
-
-		if($by_age_albums)
-		{
-			for($i=0;$i<sizeof($dir);$i++) 
-			{
-				$subdirname=$dir[$i];
-				if($subdirname != '.' && $subdirname != '..' && is_dir($dirname.$subdirname))
-				{
-					$myname=str_replace("_"," ",$subdirname);
-					echo ("<li class='age' title='$subdirname'>$myname</li>");
-				}
-			}	
-		}	
-	}
-
-	// Generated - Random
-	if($random_all || $random_albums)
-	{
-		echo("<p> $random_title </p>");
-
-		if($random_all) echo("<li class='random' title='*'>Everything </li>");
-
-		if($random_albums)
-		{
-			for($i=0;$i<sizeof($dir);$i++) {
-				$subdirname=$dir[$i];
-				if($subdirname != '.' && $subdirname != '..' && is_dir($dirname.$subdirname))
-				{
-					$myname=str_replace("_"," ",$subdirname);
-					echo ("<li class='random' title='$subdirname'>$myname</li>");
-				}
-			}		
-			echo("</ul></div>");
-		}
-	}
-
 	// This is for handling virtual folders
-	if(is_dir($virtual))
-	{
-		echo ("<p> $virtual_title <p><div class='albums'><ul>");
-		$virtual_dir=scandir($virtual);
+if(is_dir($virtual))
+{
+	echo ("<p> $virtual_title <p><div class='albums'><ul>");
+	$virtual_dir=scandir($virtual);
 
-		for($j=0;$j<sizeof($virtual_dir);$j++)
+	for($j=0;$j<sizeof($virtual_dir);$j++)
+	{
+		$file=$virtual_dir[$j];
+		if(substr($file,strrpos($file,"/")+1,1) != '.' && !is_dir($file))
 		{
-			$file=$virtual_dir[$j];
-			if(substr($file,strrpos($file,"/")+1,1) != '.' && !is_dir($file))
-			{
-				echo("<li 
-					class='virtual'
-					title='$virtual$file'
-					> ".substr($file,strrpos($file,"/"),strrpos($file,"."))." </li>
-					");
-			}
+			echo("<li 
+			class='virtual'
+			title='$virtual$file'
+			> ".substr($file,strrpos($file,"/"),strrpos($file,"."))." </li>
+			");
 		}
-		echo "</ul></div>";
 	}
-}
+	echo "</ul></div>";
 }
 
 echo("<div class='year' class='real_album' title='$dirname'> ALL </div>");
@@ -92,16 +42,21 @@ if($real_albums)
 	for($i=0;$i<sizeof($dir);$i++)
 	{
 		$subdirname=$dir[$i];
-		if($subdirname != '.' && $subdirname != '..' && is_dir($dirname.$subdirname))
+		$current_album=$dirname.$subdirname;
+		if($subdirname != '.' && $subdirname != '..' && is_dir($current_album))
 		{
 
-			echo("<div class='year' class='real_album' title='$dirname$subdirname'> $subdirname </div><div class='albums'><ul>");
+			if($current_album==$_SESSION['album'] || $current_album == substr($_SESSION['album'],0,strrpos($_SESSION['album'],'/'))){
+				echo("<div class='year real_album menu_selected' title=\"$current_album\"><a href=\"./index.php?action=album&album=$current_album\"> $subdirname </a></div><div class='albums' style='display:visible;'><ul style='display:visible;'>");
+			}else{
+				echo("<div class='year real_album' title=\"$current_album\"><a href=\"./index.php?action=album&album=$current_album\"> $subdirname </a></div><div class='albums' style='display:none;'><ul>");
+			}
 
-			$subdir=scandir($dirname.$subdirname,1);
+			$subdir=scandir($current_album,1);
 			for($j=0;$j<sizeof($subdir);$j++) 
 			{
 				$file=$subdir[$j];
-				if($file != '.' && $file != '..' && is_dir($dirname.$subdirname."/".$file) && $dirname.$file!=$virtual)
+				if($file != '.' && $file != '..' && is_dir($current_album."/".$file) && $dirname.$file!=$virtual)
 				{
 					$myname=str_replace("_"," ",$file);
 
@@ -116,14 +71,17 @@ if($real_albums)
 						}
 					}
 					
-					echo("
-						<li 
-						class='album' 
-						title=\"$dirname$subdirname/$file\"
-						><div class='folder_name'>
-						".$myname."</div>
-						<div class='count'>".$count."</div>
-						</li>");
+					if($current_album.'/'.$file==$_SESSION['album']){
+						echo "<li class='album menu_selected' title=\"$current_album/$file\">";
+					}else{
+						echo "<li class='album' title=\"$current_album/$file\">";
+					}
+					echo("<a href=\"./index.php?action=album&album=$current_album/$file\">
+					<div class='folder_name'>
+					".$myname."</div>
+					</a>
+					<div class='count'>".$count."</div>
+					</li>");
 				}
 			}
 			echo ("</ul></div>");

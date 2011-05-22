@@ -13,6 +13,19 @@ if(!isset($_SESSION["logged"])){
 * Returns the menubar button div associated to $name
 */
 function menubar_button($name,$content){
+	$curr_pos=array_search($_SESSION['image'],$_SESSION['images']);
+	if($name=="next"){
+		$next_pos=$curr_pos+1;
+		if($next_pos>sizeof($_SESSION['images'])) $next_pos=$curr_pos;
+		$nextimg=$_SESSION['images'][$next_pos];
+		return "<div id='$name' class='menubar_button'><a href=\"./index.php?image=$nextimg\">$content</a></div>\n";
+	}
+	if($name=="previous"){
+		$next_pos=$curr_pos-1;
+		if($next_pos<0) $next_pos=0;
+		$nextimg=$_SESSION['images'][$next_pos];
+		return "<div id='$name' class='menubar_button'><a href=\"./index.php?image=$nextimg\">$content</a></div>\n";
+	}
 	return "<div id='$name' class='menubar_button'><a>$content</a></div>\n";
 }
 
@@ -126,7 +139,7 @@ function rssupdate($urlimg,$urlbase,$title,$type,$art_t){
 	fclose($r_file);
 }
 
-/* display_vignettes
+/* display_thumbnails
 * displays $num thumbnails taken fom the $images array
 */
 function display_thumbnails($images,$first,$num){
@@ -170,7 +183,7 @@ function display_thumbnails($images,$first,$num){
 					require "thumb.php";
 					if(!is_file($authfile)&& $url!=''){
 						if($slow_conn) $rssimg=$smallpic;
-						rssupdate($url.$rssimg,$url."#".$src,$title,"photos");
+						rssupdate($url.$rssimg,$url."?action=image&image=".$src,$title,"photos");
 					}
 			}
 
@@ -199,12 +212,15 @@ function display_thumbnails($images,$first,$num){
 						require "thumb.php";
 					}
 			}
-
-
+			if("./".$images[$i]==$_SESSION['image']){
+				$curr_select="select";
+			}else{
+				$curr_select="";
+			}
 			echo ('
 				<li class="list_item">
-				<a title="'.$images[$i].'"> 
-				<div class="img_contain"><div class="around_img"><img src="'.$thumbdir.$images[$i].'"/></div></div>
+				<a title="'.$images[$i].'" href="index.php?action=image&image=./'.$images[$i].'" > 
+				<div class="img_contain"><div class="around_img '.$curr_select.'"><img src="'.$thumbdir.$images[$i].'"/></div></div>
 				</a>
 				</li>
 			');

@@ -1,6 +1,3 @@
-.newstyle {
-}
-
 
 * {
 	margin:0;
@@ -19,7 +16,6 @@ body {
 }
 
 a {
-	color: white;
 	text-decoration:none;
 }
 
@@ -68,7 +64,6 @@ a:visited {
 	font-style:	italic;
 	font-size:20px;
 	font-weight: 100;
-	color:white;  
 
 }
 
@@ -257,6 +252,10 @@ div#projcontent ul li{
 	right:0px;
 	z-index:4;
 	
+}
+
+#menubar a{
+	color:white;
 }
 
 .menubar-fullpage {

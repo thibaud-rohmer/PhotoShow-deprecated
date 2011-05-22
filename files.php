@@ -20,6 +20,7 @@ $sort="";
 $images=array();
 $groups=array();
 
+//require('trick.php');
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];
 if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
 if(isset($_SESSION['sort']))	$sort	= $_SESSION['sort'];
@@ -36,8 +37,28 @@ if(isset($_POST['sort'])){
 	$_SESSION['sort']	=	$_POST['sort'];
 }
 
-$album=str_replace("//","/",$album);
+if(isset($_GET['action'])){
+		$action	= $_GET['action'];
+		$getpage=true;
+}
+if(isset($_GET['page'])){
+	$page 	= $_GET['page'];
+	$getpage=true;
+}
+if(isset($_GET['album'])){
+		$album 	= $_GET['album']."/";
+		$_SESSION['album'] = $_GET['album']."/";
+}
+if(isset($_GET['sort'])){
+	$sort			=	$_GET['sort'];
+	$_SESSION['sort']	=	$_GET['sort'];
+}
 
+if($album=="" && $image!=""){
+	$album=dirname($image);
+}
+
+$album=str_replace("//","/",$album);
 
 
 if(!isset($groups))  $groups = array();
@@ -45,10 +66,10 @@ if(!isset($groups))  $groups = array();
 $albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));
 
 
-if ($page < 1) echo ("<script>setup_keyboard(); update_title('$title - $albumname');</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
+if ($page < 1 || $getpage) echo ("<script>setup_keyboard(); update_title('$title - $albumname');</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
 
 
-if($action=="album" && $album != ""){
+if( ($action=="album" && $album != "") || $action=="image" ){
 	$images=array();
 	$new_dir=array();
 	
@@ -80,35 +101,34 @@ if($action=="album" && $album != ""){
 	foreach($lines as $line_num => $line)
 		$images[]=$line;
 
-}elseif($action=="go_on"){
-// Do nothing
-
-}else{
-	die("Error");
-
 }
+
 
 	$size_dir=sizeof($images);
 
 $_SESSION['images']=$images;
 
-
-display_thumbnails($images,$page*$limit,$limit);	
-
+if($getpage){
+	display_thumbnails($images,0,($page+1)*$limit);	
+}else{
+	display_thumbnails($images,$page*$limit,$limit);	
+}
 
 $imagesphp=array_to_get($images,"album");
 
 $nextpage=$page+1;
 
-if ($page < 1) echo ("<li class='end'>More...</li></ul>");
+if ($page < 1 || ($getpage && ($page+1)*$limit + 2 <= $size_dir)) echo ("<li class='end'><a href='./index.php?page=$nextpage'>More...</a></li></ul>");
 
 
 if($page<1) {
 	echo("
 	<script>
 	$(document).ready(function() {
-		
-		change_display('init');	
+	");
+	if(!$getpage) echo ("change_display('init');");
+	else echo ("change_display('initpic');");
+	echo("
 		var page = 0;
 		
 		
@@ -129,7 +149,6 @@ if($page<1) {
 	});
 	</script>
 	");
-
 }
 ?>
 

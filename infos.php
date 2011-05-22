@@ -3,6 +3,7 @@
 *  Created by Thibaud Rohmer on 2010-12-25. - Yup. Merry Christmas to you too.
 */
 require_once 'settings.php';
+require_once 'functions.php';
 
 if(!isset($_SESSION["logged"])){
 	session_start();
@@ -31,6 +32,7 @@ if(isset($author) && isset($comm)){
 	$new_comment -> addChild('author',$author);
 
 	$library->asXML($file);
+
 }
 
 echo '<div class="close"><a href="#">x</a></div>';
