@@ -5,7 +5,7 @@
 
 require_once "functions.php";
 require_once "settings.php"; 
-//require "trick.php";
+require "trick.php";
 
 ?>
 
@@ -26,7 +26,7 @@ require_once "settings.php";
 		
 		echo("<link rel='stylesheet' href='stylesheets/$theme/basic.css' type='text/css' media='screen' title='no title' charset='utf-8'>\n");
 		
-		if(is_file("./stylesheets/$theme/basic.css"))
+		if(is_file("./stylesheets/$theme/$mod.css"))
 			echo("<link rel='stylesheet' href='stylesheets/$theme/$mod.css' type='text/css' media='screen' title='no title' charset='utf-8'>\n");
 		
 		?>
@@ -99,7 +99,7 @@ thumbdir = '$thumbdir';
 
 	<div id="right" >
 <?php
-
+if(!isset($action)) $action='';
 	if($action=='image'){
 		echo '<div id="menubar" class="menubar-inline">';
 		menubar();

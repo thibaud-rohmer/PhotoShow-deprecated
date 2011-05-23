@@ -61,6 +61,15 @@ if($album=="" && $image!=""){
 $album=str_replace("//","/",$album);
 
 
+$myscope=realpath($dirname);
+$path_required=realpath($album);
+
+if(strncmp($path_required, $myscope, strlen($myscope)) != 0){ 
+	die("This album isn't available."); 
+}
+
+
+
 if(!isset($groups))  $groups = array();
 
 $albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));

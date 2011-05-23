@@ -13,7 +13,8 @@ if(!isset($_SESSION["logged"])){
 * Returns the menubar button div associated to $name
 */
 function menubar_button($name,$content){
-	$curr_pos=array_search($_SESSION['image'],$_SESSION['images']);
+	$curr_pos=0;
+	if(isset($_SESSION['image']) && isset($_SESSION['images'])) $curr_pos=array_search($_SESSION['image'],$_SESSION['images']);
 	if($name=="next"){
 		$next_pos=$curr_pos+1;
 		if($next_pos>sizeof($_SESSION['images'])) $next_pos=$curr_pos;
@@ -253,12 +254,22 @@ function log_me_in($name,$pass){
 //	return (in_array($name.":".sha1($pass),$groups));
 }
 
+function check_path($album){
+	require 'settings.php';
+	$myscope=realpath($dirname);
+	$path_required=realpath($album);
+
+	return (strncmp($path_required, $myscope, strlen($myscope)) == 0);
+}
+
+	
 /* load_images
 * loads the images inside a folder. Recursively if $recursion==true.
 */
 function load_images($album,$groups,$recursion){
 	if(strpos("..",$album)>-1) return;
 	
+	if(check_path($album) == 0) return;
 	if (is_file($album."/authorized.txt")){
 		$lines=file($album."/authorized.txt");
 		foreach($lines as $line_num => $line)

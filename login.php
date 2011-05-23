@@ -2,9 +2,12 @@
 
 require_once "functions.php";
 
-$name=$_POST['name'];
-$pass=$_POST['pass'];
-$album=$_POST['album'];
+if(isset($_POST['name'])){
+	$name=$_POST['name'];
+	$pass=$_POST['pass'];
+	$album=$_POST['album'];
+}
+
 if(!isset ($included)) $included=$_POST['inc'];
 
 if(isset($name) && log_me_in($name,$pass)){
