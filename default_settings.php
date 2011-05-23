@@ -70,15 +70,17 @@ $buttons=array();
 // Edit button names
 $buttons["help"]	=	"HELP";
 $buttons["previous"]=	"<";
+$buttons["largeimg"]	=	"IMG";
 $buttons["next"]	=	">";
 $buttons["exif"]	=	"EXIF";
 $buttons["comments"]=	"COMMENTS";
 $buttons["login"]	=	"LOGIN";
 $buttons["admin"]	=	"ADMIN";
+$buttons["fullscreen"]	=	"FS";
 $buttons["fblike"]	=	""; // Doesnt work great yet...
 
 // Left side of menu bar : buttons
-$menubar_left 		=	array("exif","comments","admin");
+$menubar_left 		=	array("exif","fullscreen","admin");
 
 // Center of menu bar : buttons
 $menubar_center		=	array("previous","largeimg","next");

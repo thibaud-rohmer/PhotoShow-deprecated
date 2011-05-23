@@ -128,8 +128,11 @@ if($page<1) {
 	<script>
 	$(document).ready(function() {
 	");
-	if(!$getpage && $action!="image") echo ("change_display('init');");
-	else echo ("change_display('initpic');");
+	if(!$getpage && $action!="image"){
+		echo ("change_display('init');");
+	}else{
+		echo ("change_display('initpic');");
+	}
 	echo("
 		var page = 0;
 		

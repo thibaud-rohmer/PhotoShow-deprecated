@@ -5,7 +5,7 @@
 
 require_once "functions.php";
 require_once "settings.php"; 
-require "trick.php";
+//require "trick.php";
 
 ?>
 

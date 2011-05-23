@@ -136,6 +136,7 @@ div.count{
 }
 
 div#leftcolumnbottom {
+	display:none;
 	background: #ccc;
 	position:absolute;
 	bottom:0px;
