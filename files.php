@@ -19,6 +19,7 @@ $page="";
 $sort="";
 $images=array();
 $groups=array();
+$getpage=false;
 
 //require('trick.php');
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];

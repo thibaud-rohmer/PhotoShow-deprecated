@@ -213,10 +213,12 @@ function display_thumbnails($images,$first,$num){
 						require "thumb.php";
 					}
 			}
-			if("./".$images[$i]==$_SESSION['image']){
-				$curr_select="select";
-			}else{
-				$curr_select="";
+			if(isset($_SESSION['image']){
+				if("./".$images[$i]==$_SESSION['image']){
+					$curr_select="select";
+				}else{
+					$curr_select="";
+				}
 			}
 			echo ('
 				<li class="list_item">
