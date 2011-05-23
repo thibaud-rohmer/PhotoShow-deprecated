@@ -213,7 +213,7 @@ function display_thumbnails($images,$first,$num){
 						require "thumb.php";
 					}
 			}
-			if(isset($_SESSION['image']){
+			if(isset($_SESSION['image'])){
 				if("./".$images[$i]==$_SESSION['image']){
 					$curr_select="select";
 				}else{
