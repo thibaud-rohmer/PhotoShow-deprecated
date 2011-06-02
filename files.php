@@ -22,6 +22,8 @@ $groups=array();
 $getpage=false;
 
 //require('trick.php');
+
+/*
 if(isset($_SESSION['images']))	$images = $_SESSION['images'];
 if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
 if(isset($_SESSION['sort']))	$sort	= $_SESSION['sort'];
@@ -58,6 +60,27 @@ if(isset($_GET['sort'])){
 if($album=="" && $image!=""){
 	$album=dirname($image);
 }
+*/
+
+if(isset($_GET['f'])) $f=$_GET['f'];
+
+echo "$f</br>";
+if(!check_path($f)) die("Unauthorized access");
+if(!file_exists($f)) die("Unknown file");
+
+if(is_dir($f)){
+	// This is an album
+	$album=$f;
+	$action="album";
+	$image=-1;
+}else if(is_file($f)){
+	// This is a picture
+	$album		=	dirname($f);
+	$albumname	=	basename($album);
+	$image		=	$f;
+	$action		=	"image";
+}
+
 
 $album=str_replace("//","/",$album);
 

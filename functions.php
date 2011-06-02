@@ -77,7 +77,44 @@ function sort_by_date($groups,$album){
 	array_multisort(array_map('filemtime', $images), SORT_DESC, $images); 
 	return $images;
 }
+/*
+function action($f){
+	$session_vars=["image","images","album","page","layout","action"];
 
+	foreach ($session_vars as $a){
+		$$a=-1;
+		if(isset($_SESSION[$a])) $$a=$_SESSION[$a];
+	}
+
+	if(!check_path($f)) die("Unauthorized access");
+	if(!file_exists($f)) die("Unknown file");
+
+	if(is_dir($f)){
+       		// This is an album
+        	$album=$f;
+        	$action="album";
+		$images=load_images($album);
+        	$image=$images[0];
+		$page=0;
+		$layout="album";
+		
+	}else if(is_file($f)){
+        	// This is a picture
+        	$album          =       dirname($f);
+        	$albumname      =       basename($album);
+        	$image          =       $f;
+        	$action         =       "image";
+		$layout		=	"image";
+	}else if($f=="go_on"){
+		$page=$page+1;
+	}
+
+	foreach ($session_vars as $a) {
+		$_SESSION[$a]=$$a;
+	}
+}
+
+*/
 
 /* sort_by_random
 * sorts all of the pictures by date added on the server and returns an array
