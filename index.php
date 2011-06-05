@@ -47,7 +47,6 @@ thumbdir = '$thumbdir';
 if(isset($_POST['f'])) $f=$_POST['f'];
 if(isset($_GET['f'])) $f=$_GET['f'];
 
-echo $f;
 action($f);
 
 ?>
