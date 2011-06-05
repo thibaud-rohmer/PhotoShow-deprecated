@@ -13,93 +13,16 @@ require_once "functions.php";
 
 define("IS_IN_MY_APP", "TRUE");
 
-$action="";
-$album="";
-$page="";
-$sort="";
-$images=array();
-$groups=array();
-$getpage=false;
-
-//require('trick.php');
-
-/*
-if(isset($_SESSION['images']))	$images = $_SESSION['images'];
-if(isset($_SESSION['groups']))	$groups	= $_SESSION['groups'];
-if(isset($_SESSION['sort']))	$sort	= $_SESSION['sort'];
-if(isset($_SESSION['album']))	$album	= $_SESSION['album'];
-
-if(isset($_POST['action']))		$action	= $_POST['action'];
-if(isset($_POST['page']))		$page 	= $_POST['page'];
-if(isset($_POST['album'])){
-		$album 	= $_POST['album']."/";
-		$_SESSION['album'] = $_POST['album']."/";
-}
-if(isset($_POST['sort'])){
-	$sort			=	$_POST['sort'];
-	$_SESSION['sort']	=	$_POST['sort'];
-}
-
-if(isset($_GET['action'])){
-		$action	= $_GET['action'];
-		$getpage=true;
-}
-if(isset($_GET['page'])){
-	$page 	= $_GET['page'];
-	$getpage=true;
-}
-if(isset($_GET['album'])){
-		$album 	= $_GET['album']."/";
-		$_SESSION['album'] = $_GET['album']."/";
-}
-if(isset($_GET['sort'])){
-	$sort			=	$_GET['sort'];
-	$_SESSION['sort']	=	$_GET['sort'];
-}
-
-if($album=="" && $image!=""){
-	$album=dirname($image);
-}
-*/
-
+if(isset($_POST['f'])) $f=$_POST['f'];
 if(isset($_GET['f'])) $f=$_GET['f'];
+if(isset($_POST['p'])) $page=$_POST['p'];
+if(isset($_GET['p'])) $page=$_GET['p'];
 
-echo "$f</br>";
-if(!check_path($f)) die("Unauthorized access");
-if(!file_exists($f)) die("Unknown file");
-
-if(is_dir($f)){
-	// This is an album
-	$album=$f;
-	$action="album";
-	$image=-1;
-}else if(is_file($f)){
-	// This is a picture
-	$album		=	dirname($f);
-	$albumname	=	basename($album);
-	$image		=	$f;
-	$action		=	"image";
-}
-
-
-$album=str_replace("//","/",$album);
-
-
-$myscope=realpath($dirname);
-$path_required=realpath($album);
-
-if(strncmp($path_required, $myscope, strlen($myscope)) != 0){ 
-	die("This album isn't available."); 
-}
-
-
+action($f);
 
 if(!isset($groups))  $groups = array();
 
-$albumname=str_replace("_"," ",substr($album,strrpos($album,"/",-2)+1,-1));
-
-
-if ($page < 1 || $getpage) echo ("<script>setup_keyboard(); update_title('$title - $albumname');</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
+if ($page < 1 ) echo ("<script>setup_keyboard(); update_title(\"$title - $albumname\");</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
 
 if($action=='' && isset($_GET['image'])) $action="image";
 if($action=='' && isset($_GET['album'])) $action="album";
@@ -168,7 +91,6 @@ if($page<1) {
 	}
 	echo("
 		var page = 0;
-		
 		
 		var limit=$limit;
 		var size_dir=$size_dir;

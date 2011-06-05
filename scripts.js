@@ -43,7 +43,9 @@ function refresh_img(url){
 		return false;
 	});
 
-	location.hash=encodeURI(url);
+//	location.hash=encodeURI(url);
+//	location=location.protocol + "//" + location.host + location.pathname + "?f=" + encodeURI(url);
+window.history.pushState("plip", url.substr(url.lastIndexOf("/")+1), location.pathname + "?f=" + encodeURI(url));
 	
 }
 
@@ -361,21 +363,22 @@ function list_selected_as_php(){
 function display_more(page,limit,size_dir){
 	morebutton="<li class='end'>More...</li>";
 	$("#loading").show("fast",function(){
-		$.post('files.php', {action:'go_on', page: page} ,function(data){ 
+		$.post('files.php', { f: "go_on", p: page } ,function(data){ 
 			$(data).appendTo('#album_contents');
-			page++;		
+			page++;
 			if((page)*limit + 2 < size_dir) 
-			$(morebutton).appendTo('#album_contents');
+			{
+				$(morebutton).appendTo('#album_contents');
 			
-			$('.end').click(function(){
-				$(this).remove();
-				if((page)*limit + 2 < size_dir)
-				{
-					display_more(page,limit,size_dir);
-				}
-				return(false);
-			});
-		
+				$('.end').click(function(){
+					$(this).remove();
+					if((page)*limit + 2 < size_dir)
+					{
+						display_more(page,limit,size_dir);
+					}
+					return(false);
+				});
+			}
 			init_thumbs();
 			$("#loading").hide("fast");
 		});
@@ -429,7 +432,7 @@ $(document).ready(function() {
 
 		mytitle=$(this).attr("title");
 		$("#loading").show("fast",function(){
-			$("#projcontent").load('files.php', { album: mytitle, action: "album" },function(){
+			$("#projcontent").load('files.php', { f: mytitle },function(){
 				$("#loading").hide("fast");
 			});
 		});
@@ -437,13 +440,12 @@ $(document).ready(function() {
 			$('.year').removeClass('menu_selected');
 			$('#leftcolumn li').removeClass('menu_selected');
 			$('#logindiv').hide();
-			location.hash=encodeURI($(this).attr("title"));
+			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI($(this).attr("title")));
 			$(this).addClass('menu_selected');
 			$(this).next().addClass('open').slideDown('slow');
 			$('div.albums:not(.open)', accordionCache).slideUp();
 		return false;
   	} );
-
 
 	$("#leftcolumn li").click(function() {
 		myclass=$(this).attr("class");
@@ -452,7 +454,7 @@ $(document).ready(function() {
 		}
 		mytitle=$(this).attr("title");
 		$("#loading").show("fast",function(){
-			$("#projcontent").load('files.php', { album: mytitle, action: "album" },function(){
+			$("#projcontent").load('files.php', { f: mytitle },function(){
 				$("#loading").hide("fast");
 			});
 		});
@@ -460,8 +462,10 @@ $(document).ready(function() {
 		$('#exif').hide();
 		$('#logindiv').hide();
 		$('#exifdiv').fadeOut("slow");	
-		if(myclass=="album")	location.hash=encodeURI($(this).attr("title"));
-		else location.hash=encodeURI(myclass+"_"+$(this).attr("title"));
+		if(myclass=="album")
+			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI($(this).attr("title")));
+		else 
+			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI(myclass+"_"+$(this).attr("title")));
 		$("#leftcolumn li").removeClass('menu_selected');
 		$(this).addClass('menu_selected');
 		return false;
@@ -471,7 +475,7 @@ $(document).ready(function() {
 		$(".sortbuttonselected").removeClass("sortbuttonselected");
 		mytitle=$(this).attr("title");
 		$("#loading").show("fast",function(){
-			$("#projcontent").load('files.php', { album: mytitle, action: "album" },function(){
+			$("#projcontent").load('files.php', { f: mytitle },function(){
 				$("#loading").hide("fast");
 			});
 		});
@@ -539,7 +543,7 @@ $(document).ready(function() {
 	setup_keyboard();
 	
 // Anchor
-	parse_my_hash_dude();
+	//parse_my_hash_dude();
 
 });
 
@@ -562,7 +566,7 @@ function parse_my_hash_dude(){
 	{
 		var myaction=hash.substr(0,hash.lastIndexOf("_"));
 		var myalbum=hash.substr(hash.lastIndexOf("_")+1);
-		$("#projcontent").load('files.php', { album: myalbum, action: myaction });
+		$("#projcontent").load('files.php', { f: myalbum });
 
 	}
 	else
