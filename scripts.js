@@ -7,6 +7,7 @@
 *	and updates exif panel
 */
 
+
 function refresh_img(url){
 	if(url=="" || url==undefined){
 		$('#display_img').html("");
@@ -27,7 +28,6 @@ function refresh_img(url){
 	}
 
 
-	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&amp;action=like&amp;colorscheme=dark&amp;height=20&amp;ref='+escape(location.href.replace("#",""))+'&amp;href='+escape(location.href.replace("#","/index.php?action=image&image="))+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
 
 	$('#exifdiv .content').load('exif.php',{ img: url });
 	$("#exif").show();
@@ -46,7 +46,7 @@ function refresh_img(url){
 //	location.hash=encodeURI(url);
 //	location=location.protocol + "//" + location.host + location.pathname + "?f=" + encodeURI(url);
 window.history.pushState("plip", url.substr(url.lastIndexOf("/")+1), location.pathname + "?f=" + encodeURI(url));
-	
+	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&action=like&height=20&href='+location.href+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
 }
 
 
@@ -381,6 +381,7 @@ function display_more(page,limit,size_dir){
 			}
 			init_thumbs();
 			$("#loading").hide("fast");
+
 		});
 	});
 }
@@ -440,10 +441,10 @@ $(document).ready(function() {
 			$('.year').removeClass('menu_selected');
 			$('#leftcolumn li').removeClass('menu_selected');
 			$('#logindiv').hide();
-			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI($(this).attr("title")));
 			$(this).addClass('menu_selected');
 			$(this).next().addClass('open').slideDown('slow');
 			$('div.albums:not(.open)', accordionCache).slideUp();
+			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI($(this).attr("title")));
 		return false;
   	} );
 
@@ -462,12 +463,12 @@ $(document).ready(function() {
 		$('#exif').hide();
 		$('#logindiv').hide();
 		$('#exifdiv').fadeOut("slow");	
+		$("#leftcolumn li").removeClass('menu_selected');
+		$(this).addClass('menu_selected');
 		if(myclass=="album")
 			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI($(this).attr("title")));
 		else 
 			window.history.pushState("object or string", window.title, location.pathname + "?f=" + encodeURI(myclass+"_"+$(this).attr("title")));
-		$("#leftcolumn li").removeClass('menu_selected');
-		$(this).addClass('menu_selected');
 		return false;
 	});
 	
@@ -544,6 +545,13 @@ $(document).ready(function() {
 	
 // Anchor
 	//parse_my_hash_dude();
+
+
+	$("#right").scroll(function(){
+		if($("#right").scrollTop() >= $("#projcontent").height() - $("#right").height() - 35){
+			$(".end").click();
+		}
+	});
 
 });
 

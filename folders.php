@@ -35,7 +35,7 @@ if(is_dir($virtual))
 	echo "</ul></div>";
 }
 
-echo("<div class='year' class='real_album' title='$dirname'> ALL </div>");
+echo("<div class='year' class='real_album' title='$dirname'><a href=\"./index.php?f=$dirname\">ALL</a></div>");
 
 if($real_albums)
 {
@@ -47,9 +47,9 @@ if($real_albums)
 		{
 
 			if($current_album==$_SESSION['album'] || $current_album == substr($_SESSION['album'],0,strrpos($_SESSION['album'],'/'))){
-				echo("<div class='year real_album menu_selected' title=\"$current_album\"><a href=\"./index.php?action=album&album=$current_album\"> $subdirname </a></div><div class='albums' style='display:visible;'><ul style='display:visible;'>");
+				echo("<div class='year real_album menu_selected' title=\"$current_album\"><a href=\"./?f=$current_album\"> $subdirname </a></div><div class='albums' style='display:visible;'><ul style='display:visible;'>");
 			}else{
-				echo("<div class='year real_album' title=\"$current_album\"><a href=\"./index.php?action=album&album=$current_album\"> $subdirname </a></div><div class='albums' style='display:none;'><ul>");
+				echo("<div class='year real_album' title=\"$current_album\"><a href=\"./?f=$current_album\"> $subdirname </a></div><div class='albums' style='display:none;'><ul>");
 			}
 
 			$subdir=scandir($current_album,1);
@@ -76,7 +76,7 @@ if($real_albums)
 					}else{
 						echo "<li class='album' title=\"$current_album/$file\">";
 					}
-					echo("<a href=\"./index.php?action=album&album=$current_album/$file\">
+					echo("<a href=\"./?f=$current_album/$file\">
 					<div class='folder_name'>
 					".$myname."</div>
 					</a>

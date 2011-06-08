@@ -271,7 +271,7 @@ function display_thumbnails($images,$first,$num){
 			}
 			echo ('
 				<li class="list_item">
-				<a title="'.$images[$i].'" href="index.php?action=image&image=./'.$images[$i].'" > 
+				<a title="'.$images[$i].'" href="?f='.$images[$i].'" > 
 				<div class="img_contain"><div class="around_img '.$curr_select.'"><img src="'.$thumbdir.$images[$i].'"/></div></div>
 				</a>
 				</li>

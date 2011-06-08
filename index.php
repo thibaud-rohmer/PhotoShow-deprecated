@@ -38,6 +38,8 @@ require "trick.php";
 
 	<script src="scripts.js" type="text/javascript" charset="utf-8"></script>
 
+
+
 <?php
 
 echo "<script>

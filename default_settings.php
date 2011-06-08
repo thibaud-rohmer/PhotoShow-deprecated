@@ -19,7 +19,7 @@ $virtual	=	"./virtual/";
 $thumbdir	=	"./thumb/"; 
 
 // Max number of images per page
-$limit		=	25; 
+$limit		=	100; 
 
 // Website theme (design)   choices available :   black_knight   snow_white
 $theme		=	"snow_white";
@@ -77,7 +77,8 @@ $buttons["comments"]=	"COMMENTS";
 $buttons["login"]	=	"LOGIN";
 $buttons["admin"]	=	"ADMIN";
 $buttons["fullscreen"]	=	"FS";
-$buttons["fblike"]	=	""; // Doesnt work great yet...
+$buttons["fblike"]	=	"";
+$buttons["google"]	=	""; // Doesnt work great yet...
 
 // Left side of menu bar : buttons
 $menubar_left 		=	array("exif","fullscreen","admin");
