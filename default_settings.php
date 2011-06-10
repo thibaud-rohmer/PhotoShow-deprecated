@@ -22,7 +22,7 @@ $thumbdir	=	"./thumb/";
 $limit		=	100; 
 
 // Website theme (design)   choices available :   black_knight   snow_white
-$theme		=	"snow_white";
+$theme		=	"panther";
 
 // Theme modification (only for snow_white at the moment)   choices available :   purple
 $mod		=	"";
@@ -81,7 +81,7 @@ $buttons["fblike"]	=	"";
 $buttons["google"]	=	""; // Doesnt work great yet...
 
 // Left side of menu bar : buttons
-$menubar_left 		=	array("exif","fullscreen","admin");
+$menubar_left 		=	array("exif","fullscreen","comments");
 
 // Center of menu bar : buttons
 $menubar_center		=	array("previous","largeimg","next");

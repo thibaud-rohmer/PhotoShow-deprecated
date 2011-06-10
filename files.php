@@ -31,12 +31,11 @@ if( ($action=="album" && $album != "") || $action=="image" ){
 	$images=array();
 	$new_dir=array();
 	
-	$images=load_images($album,$groups,1);
+	$images=load_images($album,$groups,$thumbdir,1);
 
 	if(sizeof($images)==0){
 		$_SESSION['album']=$album;
 		echo "<script>$('#logindiv').children().first().load('login.php', { album: '$album' } ); $('#logindiv').show();</script>";
-		die();
 	}
 	
 	$images=str_replace("//","/",$images);
@@ -110,6 +109,7 @@ if($page<1) {
 	</script>
 	");
 }
+
 ?>
 
 

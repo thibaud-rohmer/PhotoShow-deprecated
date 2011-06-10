@@ -264,7 +264,6 @@ div#projcontent ul li{
 }
 
 #display2{
-	display:none;
 	background:black;
 	border-bottom:1px solid white;
 	padding:0px;
@@ -356,7 +355,7 @@ div#projcontent ul li{
 	top:0px;
 	bottom:25px;
 	left:0px;
-	right:0px;
+	right:200px;
 	vertical-align: middle;
 	border:none;
 }
@@ -478,6 +477,68 @@ div#exifdiv .info_type2{
 div#exifdiv .border-right{
 	border-right:1px solid #ccc;
 }
+
+/*
+.comments_num{
+	color:#00FFFF;
+}
+
+#commentsdiv {
+	background:#333;
+	border-left:1px solid white;
+	position:absolute;
+	right:0;
+	top:0;
+	bottom:25px;
+	width:200px;
+	box-shadow: inset 0 0 10px #111;
+  	moz-box-shadow: inset 0 0 10px #111;
+}
+
+#commentslist{
+	position:absolute;
+	top:0;
+	bottom:100px;
+	overflow-y:auto;
+	overflow-x:none;
+}
+
+#commentsdiv .comment {
+	margin:auto;
+	padding:10px;
+}
+
+#commentsdiv .comm {
+	clear:both;
+	background:#ddd;
+	border-radius:5px;
+	moz-box-radius:5px;
+	-moz-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
+	-webkit-box-shadow: 0px 0px 15px rgba(0,0,0,0.9);
+	padding:5px;
+	color:#333;
+}
+
+#commentsdiv .author {
+	margin:0 5px 0 0;
+	width:auto;
+	font-style:italic;
+	text-align:right;
+}
+
+#commentsdiv .addcomm {
+	background:#222;
+	border-top:1px solid white;
+	box-shadow: 0px -2px 5px #111;
+  	moz-box-shadow: 0px -2px 5px #111;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	text-align:center;
+}
+*/
+
 
 .comments_num{
 	color:#00FFFF;

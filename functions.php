@@ -51,43 +51,52 @@ function menubar(){
 	echo("</div>\n");
 }
 
-/* sort_by_date
-* sorts all of the pictures by date added on the server and returns an array
+/* list_allowed
+* Returns a list of the people allowed to see this amazing stuff
 */
-function sort_by_date($groups,$album){ 
-	require "settings.php";
-	$images=array();
-	$folders= glob($dirname.$album."/*");	
-	
-	foreach($folders as $folder_id => $folder){
-		$authorized=array();
-		if(is_file($folder."/authorized.txt")){
-			$lines=file($folder."/authorized.txt");
-			foreach($lines as $line_num => $line)
-				$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking car of the "\n" 
-			
-			if(sizeof(array_intersect($groups,$authorized))!=0){	
-				$images=array_merge($images, glob($folder."/*"));
-			}
-		}else{
-			$images=array_merge($images, glob($folder."/*"));
+function list_allowed($dir){
+	require('settings.php');
+	if(is_file($dir)) $dir=dirname($dir);
+
+	$groups = array();
+	if(isset($_SESSION['groups'])) $groups = $_SESSION['groups'];
+	$realbase= realpath($dirname);
+	$realdir = realpath($dir);
+	$created = false;
+
+	$realdir = substr($realdir,strlen($realbase));
+	$tocheck = realpath($thumbdir."/".$dirname);
+	$checkdirs = explode("/",$realdir);
+	foreach ($checkdirs as $a=>$c) {
+		$tocheck = $tocheck."/".$c;
+		if(file_exists($authfile=$tocheck."/authorized.txt")){
+			if(isset($allowed))	
+				$allowed=array_intersect($allowed,file($authfile));
+			else
+				$allowed=file($authfile);
 		}
 	}
-	
-	array_multisort(array_map('filemtime', $images), SORT_DESC, $images); 
-	return $images;
+	return $allowed;
+}
+
+/* allowed
+* checks if the visitor is allowed to see this amazing stuff
+*/
+function allowed($dir){
+	$allowed=list_allowed($dir);
+	return (sizeof($allowed)==0 || sizeof(array_intersect($allowed,$groups)) > 0);
 }
 
 /* action
 * Does coffee. Real nice coffee.
 */
 function action($f){
-	$session_vars=array("image","images","album","albumname","layout","action");
+	require_once('settings.php');
+	$session_vars=array("image","album","albumname","layout","action");
 
-	GLOBAL $image, $images, $album, $albumname, $page, $layout, $action;
+	GLOBAL $image, $album, $albumname, $page, $layout, $action;
 
 	foreach ($session_vars as $a){
-		if($a == "images") $$a = array();
 		if($a == "layout") $$a = "album";
 		if(isset($_SESSION[$a])) $$a=$_SESSION[$a];
 	}
@@ -100,59 +109,35 @@ function action($f){
 		$page		=	0;
 	}
 
-	if(!check_path($f)) die("Unauthorized access");
-	if(!file_exists($f)) die("Unknown file");
-
+	if(!check_path($f) || !file_exists($f)) return -1;
 	
 	if(is_dir($f)){
        		// This is an album
         	$album		=	$f;
         	$albumname	=	basename($album);
         	$action		=	"album";
-		$images		=	load_images($album);
-        	$image		=	$images[0];
-		$layout		=	"album";
+//			$images		=	load_images($album,$groups,$thumbdir,1);
+//        	$image		=	$images[0];
+			$layout		=	"album";
 		
 	}else if(is_file($f)){
         	// This is a picture
-        	$album          =       dirname($f);
-        	$albumname      =       basename($album);
-        	$image          =       $f;
-        	$action         =       "image";
-		$layout		=	"image";
+    		$album          =       dirname($f);
+    		$albumname      =       basename($album);
+			if(allowed($f)){
+        		$image          =       $f;
+        		$action         =       "image";
+				$layout			=		"image";
+			}else{
+				$action			=	"album";
+				$layout			=	"album";
+			}
 	}
-
+		
 	foreach ($session_vars as $a) {
 		$_SESSION[$a]=$$a;
 	}
-}
-
-
-/* sort_by_random
-* sorts all of the pictures by date added on the server and returns an array
-*/
-function sort_by_random($groups,$album){ 
-	require "settings.php";
-	$images=array();
-	$folders= glob($dirname.$album."/*");	
-	
-	foreach($folders as $folder_id => $folder){
-		$authorized=array();
-		if(is_file($folder."/authorized.txt")){
-			$lines=file($folder."/authorized.txt");
-			foreach($lines as $line_num => $line)
-				$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking car of the "\n" 
-			
-			if(sizeof(array_intersect($groups,$authorized))!=0){	
-				$images=array_merge($images, glob($folder."/*"));
-			}
-		}else{
-			$images=array_merge($images, glob($folder."/*"));
-		}
-	}
-	
-	shuffle($images);
-	return $images;
+	return 0;
 }
 
 function rssupdate($urlimg,$urlbase,$title,$type,$art_t){
@@ -215,7 +200,7 @@ function display_thumbnails($images,$first,$num){
 					$dirs=explode("/",$images[$i]);
 					$rssimg=$dest;
 					$srcdir=substr($src,0,strrpos($src,"/"));
-					$authfile=$srcdir."/authorized.txt";
+					$authfile=$thumbdir."/".$srcdir."/authorized.txt";
 					for($sec=0;$sec<sizeof($dirs);$sec++){
 						$tempvar=$thumbdir;
 						for($sectemp=0;$sectemp<$sec;$sectemp++){
@@ -226,14 +211,14 @@ function display_thumbnails($images,$first,$num){
 							chmod($tempvar,0777);
 							if(!is_file($authfile)&& $url!='' && $sec+1==sizeof($dirs)){
 								if($slow_conn) $rssimg=$smallpic;
-								rssupdate($url.$rssimg,$url."index.php?album=".$srcdir,$title,"albums",substr($srcdir,strrpos($srcdir,"/")+1));
+								rssupdate($url.$rssimg,$url."index.php?f=".$srcdir,$title,"albums",substr($srcdir,strrpos($srcdir,"/")+1));
 							}
 						}
 					}
 					require "thumb.php";
 					if(!is_file($authfile)&& $url!=''){
 						if($slow_conn) $rssimg=$smallpic;
-						rssupdate($url.$rssimg,$url."index.php?image=".$src,$title,"photos");
+						rssupdate($url.$rssimg,$url."index.php?f=".$src,$title,"photos");
 					}
 			}
 
@@ -317,16 +302,19 @@ function check_path($album){
 /* load_images
 * loads the images inside a folder. Recursively if $recursion==true.
 */
-function load_images($album,$groups,$recursion){
+function load_images($album,$groups,$thumbdir,$recursion){
 	if(strpos("..",$album)>-1) return;
 	
 	if(check_path($album) == 0) return;
-	if (is_file($album."/authorized.txt")){
-		$lines=file($album."/authorized.txt");
+	if(!allowed($album)) return;
+/*
+	if (is_file($thumbdir."/".$album."/authorized.txt")){
+		$lines=file($thumbdir."/".$album."/authorized.txt");
 		foreach($lines as $line_num => $line)
 			$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking care of the "\n" 
 		if(sizeof(array_intersect($groups,$authorized))==0) return;
 	}
+*/
 	$dir = scandir($album); 
 
 	for($i=0;$i<sizeof($dir);$i++) 
@@ -335,7 +323,7 @@ function load_images($album,$groups,$recursion){
 		if(is_file($file)) 
 			$images[]=$file;
 		else if(is_dir($file) && substr($file,-1,1)!="."){ 
-			$images_new=load_images($file,$groups,$recursion);
+			$images_new=load_images($file,$groups,$thumbdir,$recursion);
 			if(sizeof($images_new)>0){
 				if(sizeof($images)>0){
 					$images=array_merge($images,$images_new);

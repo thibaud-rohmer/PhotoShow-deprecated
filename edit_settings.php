@@ -48,7 +48,7 @@ function setting_cb_table($valname,$val,$checked){
 }
 
 
-function load_dirs($album){
+function load_dirs($album,$thumbdir){
         if(strpos("..",$album)>-1) return;
 
         $dir = scandir($album);
@@ -58,8 +58,8 @@ function load_dirs($album){
                 $file=$album."/".$dir[$i];
                 if(is_dir($file) && substr($file,-1,1)!="."){
                		$authorized=array();
-                	if(is_file($file."/authorized.txt")){
-                        	$lines=file($file."/authorized.txt");
+                	if(is_file($thumbdir."/".$file."/authorized.txt")){
+                        	$lines=file($thumbdir."/".$file."/authorized.txt");
                         
 				foreach($lines as $line_num => $line){
                                 	$authorized[]=substr($line,0,strlen($line)-1);  // substr is here for taking car of the "\n" 
@@ -67,7 +67,7 @@ function load_dirs($album){
 			}
 
                         $images[$file]=$authorized;
-                        $images_new=load_dirs($file);
+                        $images_new=load_dirs($file,$thumbdir);
                         if(sizeof($images_new)>0){
                                 if(sizeof($images)>0){
                                         $images=array_merge($images,$images_new);
@@ -192,7 +192,7 @@ if(isset($_POST['dirname'])){
 
 	$total_groups=count($groups);
 	foreach($_POST['folders'] as $k => $v){
-		$auth=$k."/authorized.txt";
+		$auth=$thumbdir."/".$k."/authorized.txt";
 		$free=(sizeof($v)==$total_groups);
 		if($free && is_file($auth)){
 			unlink($auth);
@@ -315,7 +315,7 @@ require "pass.php";
 		</div>
 	</div>
 
-<?php  $dirs=load_dirs($dirname); ?>
+<?php  $dirs=load_dirs($dirname,$thumbdir); ?>
 
 	<div class="info">
 		<h2>Rights</h2>

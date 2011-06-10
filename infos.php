@@ -36,7 +36,7 @@ if(isset($author) && isset($comm)){
 }
 
 echo '<div class="close"><a href="#">x</a></div>';
-echo '<div id="commentsdivcontent">';
+echo '<div id="commentsdivcontent"><div id="commentslist">';
 
 $numcomm=0;
 
@@ -45,8 +45,8 @@ foreach ($library->comment as $comment) {
 	$cont=stripslashes(trim($comment->content));
 	$auth=stripslashes(trim($comment->author));
 	echo ("<div class='comment'>
-			<div class='comm'>$cont </div> 
-			<div class='author'>Written by: $auth </div>
+			<div class='comm'>$cont</div> 
+			<div class='author'>$auth</div>
 		   </div>"); 
 	$numcomm++;
 }
@@ -94,7 +94,7 @@ if($numcomm>0){
 
 
 </script>
-
+</div>
 <div class="addcomm">Add comment :</p>
 <form accept-charset="utf-8" >	
 	Name :<p><input type="text" name="author"></p>

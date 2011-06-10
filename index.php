@@ -54,17 +54,13 @@ action($f);
 ?>
 </head>
 <body>
+
 	<div id="fs">
 		<div id="fs_img"></div>
 	</div>
 	<div id="loading">Generating Thumbnails...</div>
 	<div id="wtf">
 		<div class="content">Aide</div>
-		<div class="bg"></div>
-	</div>
-	
-	<div id="commentsdiv" class="panel">
-		<div class="content">Aucun commentaire</div>
 		<div class="bg"></div>
 	</div>
 		
@@ -87,6 +83,10 @@ action($f);
 		<div class="bg"></div>
 	</div>
 
+	<div id='commentsdiv' class="panel">
+	<div class='content'>Aucun commentaire</div>
+	<div class='bg'></div>
+	</div>
 	
 <div id="wrapper" >
 	<div id="leftcolumn" >
@@ -113,8 +113,12 @@ if(!isset($action)) $action='';
 		echo '</div><div id="projcontent" style="display:visible;" class="inline">';
 		include 'files.php';
 		echo '</div><div id="display2" style="display:visible;">';
-		if(is_file("./".$image)) echo "<div id='display_img'><a href='./index.php?action=album'><img src='./".addslashes($image)."'></a></div>";
-		else echo "<div id='display_img'>Image not found !</div>";
+		if(is_file("./".$image))
+		{
+			echo ("<div id='display_img'><a href='./index.php?action=album'><img src='./".addslashes($image)."'></a></div>");
+		}else{
+			echo "<div id='display_img'>Image not found !</div>";
+		}
 	}else{
 		echo '<div id="menubar" class="menubar-fullpage" style="display:none;">';
 		menubar();
