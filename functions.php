@@ -9,6 +9,56 @@ if(!isset($_SESSION["logged"])){
 	$_SESSION["logged"]=true;
 }
 
+/* list_allowed
+* Returns a list of the people allowed to see this amazing stuff
+*/
+function list_allowed($dir){
+	require('settings.php');
+	if(is_file($dir)) $dir=dirname($dir);
+
+	$groups = array();
+	if(isset($_SESSION['groups'])) $groups = $_SESSION['groups'];
+	$realbase= realpath($dirname);
+	$realdir = realpath($dir);
+	$created = false;
+
+	$realdir = substr($realdir,strlen($realbase));
+	$tocheck = realpath($thumbdir."/".$dirname);
+	$checkdirs = explode("/",$realdir);
+	foreach ($checkdirs as $a=>$c) {
+		$tocheck = $tocheck."/".$c;
+		if(file_exists($authfile=$tocheck."/authorized.txt")){
+			if(isset($allowed))	
+				$allowed=array_intersect($allowed,file($authfile));
+			else
+				$allowed=file($authfile);
+		}
+	}
+	return $allowed;
+}
+
+/* allowed
+* checks if the visitor is allowed to see this amazing stuff
+*/
+function allowed($dir){
+	$allowed=list_allowed($dir);
+	return (sizeof($allowed)==0 || sizeof(array_intersect($allowed,$groups)) > 0);
+}
+
+/* list_dirs($dir)
+* returns a list of the directories of $dir
+*/
+function list_dirs($dir){
+	$dirlist=array();
+	if(allowed($dir)){
+		$d=opendir($dir);
+		while ($file=readdir($d)){
+			if($file!="." && $file!=".." && is_dir($dir.$file)) $dirlist[]=$dir.$file;
+		}
+	}
+	return $dirlist;
+}
+
 /* menubar_button($name)
 * Returns the menubar button div associated to $name
 */
@@ -49,42 +99,6 @@ function menubar(){
 		echo menubar_button($menubar_right[$i],$buttons[$menubar_right[$i]]);
 	}
 	echo("</div>\n");
-}
-
-/* list_allowed
-* Returns a list of the people allowed to see this amazing stuff
-*/
-function list_allowed($dir){
-	require('settings.php');
-	if(is_file($dir)) $dir=dirname($dir);
-
-	$groups = array();
-	if(isset($_SESSION['groups'])) $groups = $_SESSION['groups'];
-	$realbase= realpath($dirname);
-	$realdir = realpath($dir);
-	$created = false;
-
-	$realdir = substr($realdir,strlen($realbase));
-	$tocheck = realpath($thumbdir."/".$dirname);
-	$checkdirs = explode("/",$realdir);
-	foreach ($checkdirs as $a=>$c) {
-		$tocheck = $tocheck."/".$c;
-		if(file_exists($authfile=$tocheck."/authorized.txt")){
-			if(isset($allowed))	
-				$allowed=array_intersect($allowed,file($authfile));
-			else
-				$allowed=file($authfile);
-		}
-	}
-	return $allowed;
-}
-
-/* allowed
-* checks if the visitor is allowed to see this amazing stuff
-*/
-function allowed($dir){
-	$allowed=list_allowed($dir);
-	return (sizeof($allowed)==0 || sizeof(array_intersect($allowed,$groups)) > 0);
 }
 
 /* action
