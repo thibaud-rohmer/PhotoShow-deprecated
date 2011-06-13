@@ -83,6 +83,76 @@ a:visited {
 	border-right:5px solid #34CFBE;
 }
 
+.tab{
+	display:none;
+}
+
+.tab.selected{
+	display:inherit;
+}
+
+
+#tab_buttons{
+	margin:auto;
+	width:100%;
+	text-align:center;
+	border-bottom:1px solid black;
+}
+
+.tab_button{
+	display:inline-block;
+	border:1px solid black;
+	border-bottom:0;
+	border-radius:5px 5px 0 0;
+	background:#555;
+	padding:4px;
+	margin-top:3px;
+	box-shadow:inset 0px 0px 5px #111;
+	moz-box-shadow:inset 0px 0px 5px #111;
+	cursor:pointer;
+}
+
+.tab_button.selected{
+	background:#aaa;
+}
+
+
+.tab .close{
+	display:none;
+}
+
+#tabexif{
+	margin-bottom:20px;
+}
+
+#tabcomments{
+	border-top:1px solid white;
+	clear:both;
+	padding-top:10px;
+	
+}
+
+#tabcomments .comment{
+	border-top:1px solid #333;
+	padding:5px;
+}
+
+#tabcomments .comment:nth-child(even){
+	background:#666;
+}
+
+#tabcomments .comment:nth-child(odd){
+	background:#444;
+	box-shadow:inset 0px 0px 7px #111;
+	moz-box-shadow:inset 0px 0px 7px #111;
+}
+
+#tabcomments .author{
+	font-style:italic;
+	text-align:right;
+	width:90%;
+}
+
 #leftcolumn p{
 	margin:3px;
 }
@@ -140,24 +210,15 @@ div.count{
 	text-align:center;
 }
 
-div#leftcolumnbottom {
-	display:none;
-        background: #333;
-        position:absolute;
-        bottom:0px;
-        text-align:center;
-        width:100%;
-        color:white;
-        border-top:1px solid #999;
-}
-
 div.lcbbutton{
         background-color:#999;
         padding:2px;
-        display:inline-block;
         margin-top:10px;
         margin-bottom:5px;
-        border:1px solid white;
+	border-top:1px solid #333;
+	border-bottom:1px solid #333;
+	width:100%;
+	text-align:center;
         cursor:pointer;
 }
 
@@ -452,20 +513,20 @@ div.formvalidate:hover{
 	background:#999;
 }
 
-div#exifdiv .exif_infos{
+div.exif_infos{
 	width:100%;
 	border-top:1px solid #ccc;
 	color:white;
 }
 
-div#exifdiv .info_type1{
+div.info_type1{
 	font-style:bold;
 	font-family:Arial;
 
 	margin:10px;
 }
 
-div#exifdiv .info_type2{
+div.info_type2{
 	width:23%;
 	float:left;
 	padding:2px;
@@ -474,7 +535,7 @@ div#exifdiv .info_type2{
 	text-align:center;
 }
 
-div#exifdiv .border-right{
+div.border-right{
 	border-right:1px solid #ccc;
 }
 

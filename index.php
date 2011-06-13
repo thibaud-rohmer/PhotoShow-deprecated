@@ -90,18 +90,41 @@ action($f);
 	
 <div id="wrapper" >
 	<div id="leftcolumn" >
+	<div id="tab_buttons">
+		<div class="tab_button selected" id="lib">LIB</div>
+		<div class="tab_button" id="img">IMG</div>
+		<div class="tab_button" id="settings">SETTINGS</div>
+	</div>
+	<div class="tab selected" id="tablib">
 		<div id="accordion"  >
 			<?php require "folders.php"; ?>
 		</div> 
-		<div id="leftcolumnbottom">
+	</div>
+	<div class="tab" id="tabimg">
+		<div id="tabexif">
+
+		</div>
+
+		<div id="tabcomments">
+
+		</div>
+	</div>
+
+	<div class="tab" id="tabsettings">
+			Login :
+			<?php include('login.php'); ?>
 			<?php if($slow_conn) echo '<div class="slowconn lcbbutton" ><a>SLOW CONNECTION</a></div>'; ?>
-			<div class="sortbutton lcbbutton" ><a title='date_asc'>DATE ASC</a></div>
+<!--			<div class="sortbutton lcbbutton" ><a title='date_asc'>DATE ASC</a></div>
 			<div class="sortbutton lcbbutton" ><a title='date_desc'>DATE DESC</a></div>
 			<div class="sortbutton lcbbutton sortbuttonselected" ><a title='name'>NAME</a></div>
-			<div class="lcbbutton" ><a href="feed.xml">RSS</a></div>
+-->
+			<div class="lcbbutton" ><a href="photos.xml">RSS : Images</a></div>
+			<div class="lcbbutton" ><a href="albums.xml">RSS : Albums</a></div>
+			<div class="lcbbutton" ><a href="comments.xml">RSS : Comments</a></div>
 			<div class="lcbbutton" ><a href="edit_settings.php">ADMIN</a></div>
 			<div id="author">Powered by <a href="https://github.com/thibaud-rohmer/PhotoShow">PhotoShow</a></div>
-		</div>
+	</div>
+
 	</div>
 
 	<div id="right" >

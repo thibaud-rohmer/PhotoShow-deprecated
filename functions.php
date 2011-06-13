@@ -158,12 +158,15 @@ function rssupdate($urlimg,$urlbase,$title,$type,$art_t){
 	if($type=="photos"){
 		$feed_f="./photos.xml";
 		$art_title="New Photo !";
+		$art_content="<img src=\"$urlimg\"/>";
 	}elseif($type=="albums"){
 		$feed_f="./albums.xml";
 		$art_title="New Album : ".addslashes($art_t);
-	}elseif($type=="comments"){
+		$art_content="<img src=\"$urlimg\"/>";
+	}elseif($type=="comm"){
 		$feed_f="./comments.xml";
-		$art_title="New Comment !";
+		$art_title=$art_t;
+		$art_content=$urlimg;
 	}
 
 	if(!is_file($feed_f)){
@@ -171,7 +174,7 @@ function rssupdate($urlimg,$urlbase,$title,$type,$art_t){
 		fwrite($r_f,"<rss version='2.0'><channel><title>$title</title>\n</channel></rss>");
 		fclose($r_f);
 	}
-	$buffer="<item><title>$art_title</title><description><img src='$urlimg'/></description><link>$urlbase</link><pubDate>".date('r')."</pubDate></item>\n";
+	$buffer="<item><title>$art_title</title><description>$art_content</description><link>$urlbase</link><pubDate>".date('r')."</pubDate></item>\n";
 	$r_f=file($feed_f);
 	$arr_tmp = array_splice($r_f,1);
     	$r_f[] = $buffer;

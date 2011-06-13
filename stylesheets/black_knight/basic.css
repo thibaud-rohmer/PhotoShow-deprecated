@@ -17,6 +17,7 @@ body {
 
 a {
 	text-decoration:none;
+	color:#333;
 }
 
 a:hover {
@@ -75,6 +76,80 @@ a:visited {
 .menu_selected {
 	color:#666;
 }
+
+
+.tab{
+	display:none;
+}
+
+.tab.selected{
+	display:inherit;
+}
+
+
+#tab_buttons{
+	margin:auto;
+	width:100%;
+	text-align:center;
+	border-bottom:1px solid #ccc;
+}
+
+.tab_button{
+	display:inline-block;
+	border:1px solid #ccc;
+	border-bottom:0;
+	border-radius:5px 5px 0 0;
+	background: black;
+	padding:4px;
+	margin-top:3px;
+	box-shadow:inset 0px 0px 5px #888;
+	moz-box-shadow:inset 0px 0px 5px #888;
+	cursor:pointer;
+	color:white;
+}
+
+.tab_button.selected{
+	background:#aaa;
+}
+
+
+.tab .close{
+	display:none;
+}
+
+#tabexif{
+	margin-bottom:20px;
+	color:white;
+}
+
+#tabcomments{
+	border-top:1px solid white;
+	clear:both;
+	padding-top:10px;
+	color:white;
+}
+
+#tabcomments .comment{
+	border-top:1px solid #ccc;
+	padding:5px;
+}
+
+#tabcomments .comment:nth-child(even){
+	background:black;
+}
+
+#tabcomments .comment:nth-child(odd){
+	background:#444;
+	box-shadow:inset 0px 0px 5px #888;
+	moz-box-shadow:inset 0px 0px 5px #888;
+}
+
+#tabcomments .author{
+	font-style:italic;
+	text-align:right;
+	width:90%;
+}
+
 
 #leftcolumn p{
 	margin:3px;
@@ -414,20 +489,20 @@ div.formvalidate:hover{
 	background:#999;
 }
 
-div#exifdiv .exif_infos{
+div.exif_infos{
 	width:100%;
 	border-top:1px solid #ccc;
 	color:white;
 }
 
-div#exifdiv .info_type1{
+div.info_type1{
 	font-style:bold;
 	font-family:Arial;
 
 	margin:10px;
 }
 
-div#exifdiv .info_type2{
+div.info_type2{
 	width:23%;
 	float:left;
 	padding:2px;
@@ -436,7 +511,7 @@ div#exifdiv .info_type2{
 	text-align:center;
 }
 
-div#exifdiv .border-right{
+div.border-right{
 	border-right:1px solid #ccc;
 }
 

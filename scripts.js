@@ -4,10 +4,8 @@
 
 /* 	refresh_img
 *	loads given image url in the fullscreen (fs) and display (display_img) divs 
-*	and updates exif panel
+*	and updates panels, tabs, ...
 */
-
-
 function refresh_img(url){
 	if(url=="" || url==undefined){
 		$('#display_img').html("");
@@ -28,13 +26,21 @@ function refresh_img(url){
 	}
 
 
+	$.post('exif.php',{ img: url },function(data){
+		$('#exifdiv .content').html(data);
+		$('#tabexif').html(data);
+		
+	});
 
-	$('#exifdiv .content').load('exif.php',{ img: url });
-	$("#exif").show();
+	$.post('infos.php',{ file: url },function(data){
+		$('#commentsdiv .content').html(data);
+		$('#tabcomments').html(data);
+		
+	});
+
 
 	$('#admindiv .content').load('admin.php',{ img: url });
 
-	$('#commentsdiv .content').load("infos.php",{ file: url });
 	$('#largeimg').html("<a href='"+url+"'>IMG</a>");
 	$('#largeimg a').unbind('click');
 
@@ -43,10 +49,15 @@ function refresh_img(url){
 		return false;
 	});
 
-//	location.hash=encodeURI(url);
-//	location=location.protocol + "//" + location.host + location.pathname + "?f=" + encodeURI(url);
-window.history.pushState("plip", url.substr(url.lastIndexOf("/")+1), location.pathname + "?f=" + encodeURI(url));
+	select_tab(1);
+	window.history.pushState("plip", url.substr(url.lastIndexOf("/")+1), location.pathname + "?f=" + encodeURI(url));
+	
 	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&action=like&height=20&href='+location.href+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
+	
+	$("iframe").css('display','none');
+	$('iframe').load(function(){
+    		$(this).fadeIn('slow');
+  	});
 }
 
 
@@ -201,6 +212,25 @@ function pause_diaporama(){
 	}
 }
 
+function select_tab(i){
+	tabs=$('.tab_button');
+	$(tabs[i]).click();
+}
+
+function next_tab(){
+	tabs=$('.tab_button');
+	s=0;
+	for(i=0;i<tabs.length;i++){
+		if($(tabs[i]).hasClass('selected')){
+			s=i;
+		}		
+	}
+	s++;
+	if(s>=tabs.length) s=0;
+	
+	$(tabs[s]).click();
+}
+
 /* remove_keyboard
 * removes keyboard shortcuts
 */
@@ -219,6 +249,11 @@ function setup_keyboard(){
 		if (event.keyCode == '39') { // arrow right
 			select_next();
 	   	}
+
+		if (event.keyCode == '9') { // tab
+			next_tab();
+		}
+
 		if (event.keyCode == '37') { // arrow left
 				select_prev();
 		}
@@ -460,7 +495,6 @@ $(document).ready(function() {
 			});
 		});
 		
-		$('#exif').hide();
 		$('#logindiv').hide();
 		$('#exifdiv').fadeOut("slow");	
 		$("#leftcolumn li").removeClass('menu_selected');
@@ -472,6 +506,14 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	$(".tab_button").click(function(){
+		myid=$(this).attr("id");
+		$(".tab_button").removeClass("selected");
+		$(this).addClass("selected");
+		$(".tab").removeClass("selected");
+		$("#tab"+myid).addClass("selected");
+	});
+
 	$(".sortbutton a").click(function(){
 		$(".sortbuttonselected").removeClass("sortbuttonselected");
 		mytitle=$(this).attr("title");
@@ -564,7 +606,6 @@ $(document).ready(function() {
 function parse_my_hash_dude(){
 	if(location.hash.length>2){
 		var hash=decodeURI(location.hash.substr(1));
-		$('#exif').hide();
 		$('#exifdiv').hide();	
 		$("#menubar").show();
 	

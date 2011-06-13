@@ -27,6 +27,8 @@ if(isset($_POST["comm"])) 	$comm = $_POST["comm"];
 
 if(isset($author) && isset($comm)){
 
+	rssupdate(htmlentities($comm),$urlbase,$title,'comm','Comment by '.htmlentities($author));
+
 	$new_comment = $library->addChild('comment');
 	$new_comment -> addChild('content',$comm);
 	$new_comment -> addChild('author',$author);
@@ -45,8 +47,8 @@ foreach ($library->comment as $comment) {
 	$cont=stripslashes(trim($comment->content));
 	$auth=stripslashes(trim($comment->author));
 	echo ("<div class='comment'>
-			<div class='comm'>$cont</div> 
-			<div class='author'>$auth</div>
+			<div class='comm'>".htmlentities($cont)."</div> 
+			<div class='author'>".htmlentities($auth)."</div>
 		   </div>"); 
 	$numcomm++;
 }
@@ -56,14 +58,17 @@ foreach ($library->comment as $comment) {
 echo("
 <script type='text/javascript'>
 
-function addcom(){
+function addcom(plip){
 	setup_keyboard();
-	var myauthor=$('input[name$=\"author\"]').val();
-	var mycomm=$('input[name$=\"comm\"]').val();
+	var myauthor=$(plip).children('p').children('input[name$=\"author\"]').val();
+	var mycomm=$(plip).children('p').children('textarea[name$=\"comm\"]').val();
 	if(myauthor.length < 1 || mycomm.length < 1){
 		alert('Please fill all fields.');
 	}else{
-		$('#commentsdiv .content').load('infos.php', { author: myauthor, comm: mycomm, file: '$file', addcom: 'true' } );
+        	$.post('infos.php',{ author:myauthor, comm: mycomm, file: '$file', addcom: 'true' },function(data){
+                	$('#commentsdiv .content').html(data);
+                	$('#tabcomments').html(data);
+        	});
 	}
 }
 
@@ -77,9 +82,9 @@ if($numcomm>0){
 
 ?>
 
-	
-	$('#validate').click(function(){
-		addcom();
+	$('.validate').unbind();	
+	$('.validate').click(function(){
+		addcom($(this).parent());
 	});
 	
 	
@@ -98,8 +103,8 @@ if($numcomm>0){
 <div class="addcomm">Add comment :</p>
 <form accept-charset="utf-8" >	
 	Name :<p><input type="text" name="author"></p>
-	Comment :<p><input type="text" name="comm"></p>
-	<div id="validate" class="formvalidate">Validate</div>
+	Comment :<p><textarea name="comm" cols="30" rows="5"></textarea></p>
+	<div class="validate formvalidate">Validate</div>
 </form>
 </div>
 </div>

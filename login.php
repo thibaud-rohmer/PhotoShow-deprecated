@@ -48,7 +48,6 @@ if(isset($name) && log_me_in($name,$pass)){
 	<a href="#">x</a>
 </div>
 
-<p>Oh, look ! A login form !</p>
 <?php
 }
 ?>
