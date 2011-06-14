@@ -31,7 +31,7 @@ if ($page < 1 ){
 	<div id='albumname'>$albumname
 
 		<div class='fbshare'>
-			<a class='fbsharelink' href=\"http://www.facebook.com/share.php?u=<;url>\" onclick=\"return fb_share();\" target=\"_blank\">Share</a>
+			<a class='fbsharelink' href=\"http://www.facebook.com/share.php?u=<;url>\" onclick=\"return fb_share();\" target=\"_blank\"><img src='http://static.ak.facebook.com/images/share/facebook_share_icon.gif'> Share</a>
 		</div>
 
 	</div>

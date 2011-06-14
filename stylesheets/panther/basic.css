@@ -183,7 +183,9 @@ div.albums {
 }
 
 #leftcolumn li .folder_name{
-	margin:0px 50px 0 0;
+	margin:0;
+	padding:0;
+	width:100%;
 }
 
 #leftcolumn li:hover {
@@ -202,9 +204,8 @@ div.albums {
 
 
 div.count{
-	position:absolute;
-	right:5px;
-	top:2px;
+	margin:0;
+	float:right;
 	padding:0;
 	width:40px;
 	text-align:center;

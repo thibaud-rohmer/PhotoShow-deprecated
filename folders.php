@@ -78,9 +78,10 @@ if($real_albums)
 					}
 					echo("<a href=\"./?f=$current_album/$file\">
 					<div class='folder_name'>
-					".$myname."</div>
-					</a>
 					<div class='count'>".$count."</div>
+					".$myname."
+					</div>
+					</a>
 					</li>");
 				}
 			}
