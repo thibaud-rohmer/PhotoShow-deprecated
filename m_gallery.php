@@ -8,12 +8,13 @@ if(isset($_GET['dir'])){
 	die ('No directory selected');
 }
 
+$pagelength=10;
 $got_img=1;
 if(isset($_GET['page'])){
 	$got_img=0;
 	$page=$_GET['page'];
-	echo "<div class='gallery-row'>";
-	for($i=$page*3; $i<(1+$page)*3 && $i<sizeof($images);$i=$i+1){
+//	echo "<div class='gallery-row'>";
+	for($i=$page*$pagelength; $i<(1+$page)*$pagelength && $i<sizeof($images);$i=$i+1){
 		$im=$images[$i];
 		echo "<div class='gallery-item'><a href=\"$im\"><img src=\"$thumbdir/$im\"></a></div>";
 		$got_img=1;
@@ -26,10 +27,16 @@ $page=$page+1;
 
 <?php if(isset($_GET['page'])) {
 	if($got_img==1){ 
-	echo("<script type=\"text/javascript\">
+	echo("
+	<div id='more' class='button'>More...</div>
+	
+	<script type=\"text/javascript\">
 	$(document).ready(function(){
-		$.post(\"m_gallery.php?page=$page&dir=$dir\" ,function(data){ 
-			$(data).appendTo('#Gallery');
+		$('#more').click(function(){
+			$(this).remove();
+			$.post(\"m_gallery.php?page=$page&dir=$dir\" ,function(data){ 
+				$(data).appendTo('#Gallery');
+			});
 		});
 	});
 	</script>
@@ -62,7 +69,8 @@ $page=$page+1;
 
 <div data-role="page" data-theme="b" id="index">
 <div data-role="Header">
-<a href="./m.php">Back</a>
+	<div class='button'><a href="./m.php">Back</a></div>
+
 </div>
 
 <div id="MainContent">
