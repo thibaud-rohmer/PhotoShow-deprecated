@@ -271,13 +271,18 @@ function display_thumbnails($images,$first,$num){
 					$curr_select="";
 				}
 			}
-			echo ('
-				<li class="list_item">
-				<a title="'.$images[$i].'" href="?f='.$images[$i].'" > 
-				<div class="img_contain"><div class="around_img '.$curr_select.'"><img src="'.$thumbdir.$images[$i].'"/></div></div>
+			$curr_img=$images[$i];
+			echo ("
+				<li class='list_item'>
+				<a title=\"$curr_img\" href=\"?f=$curr_img\" > 
+				<div class='img_contain'>
+					<div class='around_img $curr_select'>
+						<img src=\"$thumbdir/$curr_img\"/>
+					</div>
+				</div>
 				</a>
 				</li>
-			');
+			");
 		}
 
 	}

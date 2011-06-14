@@ -22,8 +22,21 @@ action($f);
 
 if(!isset($groups))  $groups = array();
 
-if ($page < 1 ) echo ("<script>setup_keyboard(); update_title(\"$title - $albumname\");</script><div id='albumname'>$albumname</div><ul id='album_contents'>");
+if ($page < 1 ){
+ 	echo ("
+	<script>
+		setup_keyboard(); 
+		update_title(\"$title - $albumname\");
+	</script>
+	<div id='albumname'>$albumname
 
+		<div class='fbshare'>
+			<a class='fbsharelink' href=\"http://www.facebook.com/share.php?u=<;url>\" onclick=\"return fb_share();\" target=\"_blank\">Share</a>
+		</div>
+
+	</div>
+	<ul id='album_contents'>");
+}
 if($action=='' && isset($_GET['image'])) $action="image";
 if($action=='' && isset($_GET['album'])) $action="album";
 

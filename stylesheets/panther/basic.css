@@ -256,7 +256,6 @@ div#right {
 
 #albumname {
   color: white;
-  cursor: pointer;
   font-size: 200%;
   margin: 0;
   text-align: left;
@@ -270,6 +269,18 @@ div#right {
   box-shadow: 0 0 10px #111;
   text-shadow: 1px 1px 2px #111;
   z-index:0;
+}
+
+.fbshare{
+  position:absolute;
+  right:10px;
+  top:20px;
+  font-size:13px;
+  border:1px solid #333;
+  border-radius:3px;
+  background:white;
+  padding:4px;
+  cursor:pointer;
 }
 
 div#projcontent {

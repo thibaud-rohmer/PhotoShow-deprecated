@@ -65,6 +65,13 @@ function update_title(title){
 	document.title = title;
 }
 
+function fb_share(){
+	u=location.href;
+	t=document.title;
+	window.open('http://www.facebook.com/sharer.php?u='+encodeURIComponent(u)+'&t'+encodeURIComponent(t),'Share album on Facebook','toolbar=0,status=0,width=626,height=436');
+	return false;
+}
+
 /* show_select
 * Brings focus to selected image
 *
@@ -427,6 +434,7 @@ function init_thumbs(){
 		$('#projcontent a').unbind();
 		
 		$('#projcontent a').click(function(){ 
+			if($(this).hasClass('fbsharelink')) return false;
 			if($(this).parent().hasClass('end')){
 				$('.end').trigger('click');
 				return false;
@@ -437,12 +445,12 @@ function init_thumbs(){
 			change_display();
 			return false;
 		});
-		
-		
+
 	}else{
 		$('#projcontent a').unbind();
 
 		$('#projcontent a').click(function(){
+			if($(this).hasClass('fbsharelink')) return false;
 			if ($(this).parent().hasClass("select")) return false;
 			$(".select").removeClass("select");
 			$(this).parent().addClass("select");			

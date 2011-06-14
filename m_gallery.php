@@ -8,7 +8,7 @@ if(isset($_GET['dir'])){
 	die ('No directory selected');
 }
 
-$pagelength=10;
+$pagelength=25;
 $got_img=1;
 if(isset($_GET['page'])){
 	$got_img=0;
@@ -55,6 +55,9 @@ $page=$page+1;
                 <link rel="icon" type="image/ico" href="favicon.ico">
         <link rel="stylesheet" href="./stylesheets/mobile.css" />
         <title><?php echo "$title"; ?></title> 
+	<meta name="viewport" content="width = 300px" />
+
+
         <script type="text/javascript" src="./jQuery/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){

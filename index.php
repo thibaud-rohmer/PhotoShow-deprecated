@@ -37,6 +37,7 @@ require "trick.php";
 	<script src="jQuery/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
 
 	<script src="scripts.js" type="text/javascript" charset="utf-8"></script>
+	<script src="http://connect.facebook.net/en_US/all.js#xfbml=1">
 
 
 
