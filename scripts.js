@@ -49,7 +49,6 @@ function refresh_img(url){
 		return false;
 	});
 
-	select_tab(1);
 	window.history.pushState("plip", url.substr(url.lastIndexOf("/")+1), location.pathname + "?f=" + encodeURI(url));
 	
 	$("#fblike").html('<iframe src="http://www.facebook.com/plugins/like.php?layout=button_count&action=like&height=20&href='+location.href+'" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:21px;" allowTransparency="true"></iframe>');
@@ -344,6 +343,7 @@ function change_display(val){
 		$("#menubar").show().removeClass("menubar-fullpage").addClass("menubar-inline");
 		$("#display2").fadeIn();
 		$('#display_img a').unbind();
+		select_tab(1);
 		$('#display_img a').click(function(){ 
 			change_display();
 			return false;
@@ -363,6 +363,7 @@ function change_display(val){
 		$("#display2").fadeOut();
 		$("#projcontent").removeClass("inline").addClass("fullpage");		
 		$("#menubar").hide().removeClass("menubar-inline").addClass("menubar-fullpage");
+		select_tab(0);
 	}
 	init_thumbs();
 	show_select();
